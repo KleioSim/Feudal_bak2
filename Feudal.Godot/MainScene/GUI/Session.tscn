@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4dk1p5d2iwkf"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_cnqyo"]
+script/source = "using Godot;
+using System;
+
+public partial class Session : Node2D
+{
+}
+"
+
+[node name="Session" type="Node2D"]
+script = SubResource("CSharpScript_cnqyo")

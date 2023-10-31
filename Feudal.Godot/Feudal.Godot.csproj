@@ -1,0 +1,10 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.1.2">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
+    <ProjectReference Include="..\Feudal.Sessions.Builders\Feudal.Sessions.Builders.csproj" />
+  </ItemGroup>
+</Project>

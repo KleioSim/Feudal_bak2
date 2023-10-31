@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://bke6fnpqcxp0j"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/GUIView.cs" id="1_gbelf"]
+[ext_resource type="PackedScene" uid="uid://dge8i8nfe8iiv" path="res://MainScene/GUI/TaskContainer.tscn" id="2_pl7hd"]
+[ext_resource type="PackedScene" uid="uid://b47lswfbp45i" path="res://MainScene/GUI/Left.tscn" id="3_jvwno"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_56pkw"]
+font_size = 18
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gbelf")
+
+[node name="Top" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+
+[node name="Player" type="Button" parent="Top"]
+custom_minimum_size = Vector2(150, 180)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayerClanName" type="Label" parent="Top/Player/VBoxContainer"]
+layout_mode = 2
+text = "ClanName"
+label_settings = SubResource("LabelSettings_56pkw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerClanPopCount" type="Label" parent="Top/Player/VBoxContainer"]
+layout_mode = 2
+text = "1000"
+label_settings = SubResource("LabelSettings_56pkw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopInfoContainer" type="HBoxContainer" parent="Top/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Button5" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="Button6" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="WarningContainer" type="HBoxContainer" parent="Top/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Top/VBoxContainer/WarningContainer"]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Right" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = 80.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TaskContainer" parent="Right" instance=ExtResource("2_pl7hd")]
+layout_mode = 2
+
+[node name="NextTurnButton" type="Button" parent="Right"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Left" parent="." instance=ExtResource("3_jvwno")]
+layout_mode = 1
+offset_top = -180.0
+offset_bottom = 420.0
+
+[editable path="Right/TaskContainer"]
+[editable path="Left"]
