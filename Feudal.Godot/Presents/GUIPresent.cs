@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Feudal.Godot.Presents;
 
-public class GUIPresent : Present<GUIView, ISession>
+public partial class GUIPresent : Present<GUIView, ISession>
 {
     public override ISession MockModel => new SessionMock()
     {

@@ -22,7 +22,7 @@ public partial class MVPEditorPlugin : EditorPlugin
 	{
         // Clean-up of the plugin goes here.
         // Always remember to remove it from the engine when deactivated.
-        RemoveCustomType("MVP.View");
+        RemoveCustomType("ViewControl");
         //RemoveCustomType("ViewDataSet.PresentManager");
     }
 }

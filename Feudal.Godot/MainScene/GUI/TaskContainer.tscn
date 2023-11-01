@@ -6,8 +6,9 @@
 [node name="ViewControl" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 10.0
 offset_right = 180.0
-offset_bottom = 916.0
+offset_bottom = 926.0
 size_flags_vertical = 3
 script = ExtResource("1_piset")
 

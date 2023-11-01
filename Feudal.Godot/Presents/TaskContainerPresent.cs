@@ -1,31 +1,11 @@
 ﻿using Feudal.Interfaces;
-using Godot;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using static Godot.Node;
 
 namespace Feudal.Godot.Presents;
 
-[Tool]
-internal class TaskContainerPresent : Present<TaskContainerView, ISession>
+internal partial class TaskContainerPresent : Present<TaskContainerView, ISession>
 {
-    public override ISession MockModel { get; } = new SessionMock()
-    {
-        tasks = new List<TaskMock>()
-        {
-            new TaskMock()
-            {
-                Id = "TASK1"
-            },
-            new TaskMock()
-            {
-                Id = "TASK2"
-            },
-        }
-    };
-
     protected override void InitialConnects(TaskContainerView view)
     {
         //throw new System.NotImplementedException();

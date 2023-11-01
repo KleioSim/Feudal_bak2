@@ -8,7 +8,7 @@ public partial class InitialScene : Node2D
     {
         base._Ready();
 
-        PresentManager.model = SessionBuilder.Build();
+        Present.model = SessionBuilder.Build();
 
         GetTree().ChangeSceneToFile("res://MainScene/MainScene.tscn");
     }

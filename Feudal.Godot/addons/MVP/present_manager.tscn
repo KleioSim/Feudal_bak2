@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://5y2rdy6qbyo1"]
-
-[ext_resource type="Script" path="res://addons/MVP/PresentManager.cs" id="1_exfel"]
-
-[node name="PresentManager" type="Node"]
-script = ExtResource("1_exfel")
