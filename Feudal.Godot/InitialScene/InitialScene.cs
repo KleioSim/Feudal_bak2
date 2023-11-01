@@ -10,6 +10,6 @@ public partial class InitialScene : Node2D
 
         PresentManager.model = SessionBuilder.Build();
 
-        GetTree().ChangeSceneToFile("res://MainScene/GUI/GUI.tscn");
+        GetTree().ChangeSceneToFile("res://MainScene/MainScene.tscn");
     }
 }
