@@ -9,22 +9,22 @@ public abstract class Present
         PresentManager.SendUICommand(command);
     }
 
-    internal abstract void InitialConnects(View view);
-    internal abstract void Process(View view, object model);
+    internal abstract void InitialConnects(ViewControl view);
+    internal abstract void Process(ViewControl view, object model);
 }
 
 public abstract class Present<TView, TModel> : Present
-    where TView : View
+    where TView : ViewControl
     where TModel : class
 {
     public abstract TModel MockModel { get; }
 
-    internal override void Process(View view, object model)
+    internal override void Process(ViewControl view, object model)
     {
         Refresh(view as TView, (model ?? MockModel) as TModel);
     }
 
-    internal override void InitialConnects(View view)
+    internal override void InitialConnects(ViewControl view)
     {
         InitialConnects(view as TView);
     }

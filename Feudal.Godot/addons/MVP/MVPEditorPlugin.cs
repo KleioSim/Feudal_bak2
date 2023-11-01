@@ -14,10 +14,7 @@ public partial class MVPEditorPlugin : EditorPlugin
         // Add the new type with a name, a parent type, a script and an icon.
         var script = GD.Load<Script>("res://addons/MVP/View.cs");
         var texture = GD.Load<Texture2D>("res://addons/MVP/Icon.png");
-        AddCustomType("MVP.View", "Node", script, texture);
-
-        //var script2 = GD.Load<Script>("res://addons/MVP/PresentManager.cs");
-        //AddCustomType("ViewDataSet.PresentManager", "Node", script2, texture);
+        AddCustomType("ViewControl", "Control", script, texture);
     }
 
 

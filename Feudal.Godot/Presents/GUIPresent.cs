@@ -1,7 +1,8 @@
-﻿using Feudal.Interfaces;
+using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using System.Collections.Generic;
 
-namespace Fedual.Presents;
+namespace Feudal.Godot.Presents;
 
 public class GUIPresent : Present<GUIView, ISession>
 {
@@ -9,6 +10,18 @@ public class GUIPresent : Present<GUIView, ISession>
     {
         PlayerClanName = "Mock",
         PlayerClanPopCount = 0,
+
+        tasks = new List<TaskMock>()
+        {
+            new TaskMock()
+            {
+                Id = "TASK1"
+            },
+            new TaskMock()
+            {
+                Id = "TASK2"
+            },
+        }
     };
 
     protected override void InitialConnects(GUIView view)
@@ -27,6 +40,8 @@ public class SessionMock : ISession
 {
     public string PlayerClanName { get; set; }
     public int PlayerClanPopCount { get; set; }
+
+    public IEnumerable<ITask> tasks { get; set; }
 
     public void ProcessUICommand(UICommand command)
     {

@@ -26,3 +26,7 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="Feudal.Godot"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/MVP/plugin.cfg")

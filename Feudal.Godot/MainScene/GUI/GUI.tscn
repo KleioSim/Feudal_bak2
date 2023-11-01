@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bke6fnpqcxp0j"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/GUIView.cs" id="1_gbelf"]
-[ext_resource type="PackedScene" uid="uid://dge8i8nfe8iiv" path="res://MainScene/GUI/TaskContainer.tscn" id="2_pl7hd"]
+[ext_resource type="PackedScene" uid="uid://cpbxiuomdmabt" path="res://MainScene/GUI/TaskContainer.tscn" id="2_eaeb3"]
 [ext_resource type="PackedScene" uid="uid://b47lswfbp45i" path="res://MainScene/GUI/Left.tscn" id="3_jvwno"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56pkw"]
@@ -104,7 +104,7 @@ offset_top = 80.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="TaskContainer" parent="Right" instance=ExtResource("2_pl7hd")]
+[node name="TaskContainer" parent="Right" instance=ExtResource("2_eaeb3")]
 layout_mode = 2
 
 [node name="NextTurnButton" type="Button" parent="Right"]
@@ -116,5 +116,4 @@ layout_mode = 1
 offset_top = -180.0
 offset_bottom = 420.0
 
-[editable path="Right/TaskContainer"]
 [editable path="Left"]

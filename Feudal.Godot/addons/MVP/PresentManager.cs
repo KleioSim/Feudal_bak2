@@ -1,5 +1,4 @@
-﻿using Fedual.Presents;
-using Feudal.Interfaces;
+﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
 using Godot;
 using System;
@@ -20,8 +19,8 @@ public partial class PresentManager : Node
 
     public bool isDirty { get; set; } = true;
 
-    private View view;
-
+    private ViewControl view;
+    private Present present;
 
     internal static void SendUICommand(UICommand command)
     {
@@ -57,7 +56,7 @@ public partial class PresentManager : Node
         {
             isDirty = false;
 
-            if (!dict.TryGetValue(view.GetType(), out Present present))
+            if(present == null)
             {
                 GD.PushWarning($"Can not find present for {view.GetType()}");
                 return;
@@ -67,7 +66,7 @@ public partial class PresentManager : Node
         }
     }
 
-    internal void SetView(View view)
+    internal void SetView(ViewControl view)
     {
         if(this.view != null)
         {
@@ -76,7 +75,7 @@ public partial class PresentManager : Node
 
         this.view = view;
 
-        if (!dict.TryGetValue(view.GetType(), out Present present))
+        if (!dict.TryGetValue(view.GetType(), out present))
         {
             GD.PushWarning($"Can not find present for {view.GetType()}");
             return;
