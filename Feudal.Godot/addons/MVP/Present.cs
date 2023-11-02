@@ -15,10 +15,10 @@ public abstract partial class Present : Control
 
     protected bool isDirty { get; set; } = true;
 
-    private ViewControl view;
+    protected ViewControl view;
 
-    protected abstract void InitialConnects(ViewControl view);
-    protected abstract void Process(ViewControl view, object model);
+    protected abstract void InitialConnects();
+    protected abstract void Process();
 
     internal void SendUICommand(UICommand command)
     {
@@ -54,7 +54,7 @@ public abstract partial class Present : Control
         {
             isDirty = false;
 
-            Process(view, model);
+            Process();
         }
     }
 
@@ -66,26 +66,16 @@ public abstract partial class Present : Control
         }
 
         this.view = view;
-        InitialConnects(view);
+        InitialConnects();
     }
 }
 
 public abstract partial class Present<TView, TModel> : Present
     where TView : ViewControl
-    where TModel : class
+    where TModel : class, ISession
 {
-    public abstract TModel MockModel { get; }
+    protected abstract TModel MockModel { get; }
 
-    protected override void Process(ViewControl view, object model)
-    {
-        Refresh(view as TView, (model ?? MockModel) as TModel);
-    }
-
-    protected override void InitialConnects(ViewControl view)
-    {
-        InitialConnects(view as TView);
-    }
-
-    protected abstract void Refresh(TView view, TModel model);
-    protected abstract void InitialConnects(TView view);
+    protected new TView view => base.view as TView;
+    protected new TModel model => (Present.model ??= MockModel) as TModel;
 }

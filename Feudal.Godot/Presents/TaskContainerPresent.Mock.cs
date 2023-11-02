@@ -7,7 +7,7 @@ using System.Linq;
 namespace Feudal.Godot.Presents;
 
 [Tool]
-internal partial class TaskContainerPresent : Present.Template<TaskContainerView, ISession>
+internal partial class TaskContainerPresent : Present<TaskContainerView, ISession>
 {
     [Export]
     public int taskCount
@@ -21,7 +21,7 @@ internal partial class TaskContainerPresent : Present.Template<TaskContainerView
             var list = MockModel.tasks as List<TaskMock>;
             if (value > list.Count())
             {
-                list.AddRange(Enumerable.Range(0, value - list.Count()).Select(_ => new TaskMock() { Id = Guid.NewGuid().ToString() }));
+                list.AddRange(Enumerable.Range(0, value - list.Count()).Select(_ => new TaskMock()));
             }
             while (value < list.Count())
             {
@@ -32,18 +32,12 @@ internal partial class TaskContainerPresent : Present.Template<TaskContainerView
         }
     }
 
-    public override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel { get; } = new SessionMock()
     {
         tasks = new List<TaskMock>()
         {
-            new TaskMock()
-            {
-                Id = "TASK1"
-            },
-            new TaskMock()
-            {
-                Id = "TASK2"
-            },
+            new TaskMock(),
+            new TaskMock(),
         }
     };
 }

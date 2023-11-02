@@ -5,30 +5,29 @@ using System.Linq;
 
 public partial class TaskContainerView : ViewControl
 {
-    public TaskView DefaultItem => GetNode<TaskView>("TaskContainer/DefaultItem");
+    public InstancePlaceholder ItemPlaceHolder => GetNode<InstancePlaceholder>("TaskContainer/DefaultItem");
 
-    public IEnumerable<TaskView> GetCurrentItems()
+    public IEnumerable<TaskItemView> GetCurrentItems()
     {
-        return DefaultItem.GetParent().GetChildren().Select(x => x.GetNodeOrNull<TaskView>("."))
+        return ItemPlaceHolder.GetParent().GetChildren().Select(x => x.GetNodeOrNull<TaskItemView>("."))
             .Where(x => x != null);
     }
 
-    public TaskView GenerateItem(string taskId)
+    public TaskItemView GenerateItem(string taskId)
     {
-        var item = DefaultItem.Duplicate().GetNode<TaskView>(".");
+        var item = ItemPlaceHolder.CreateInstance() as TaskItemView;
         item.taskId = taskId;
 
-        DefaultItem.GetParent().AddChild(item);
         item.SetHidden(false);
 
         return item;
     }
 
-    public void RemoveItem(TaskView item)
+    public void RemoveItem(TaskItemView item)
     {
-        if(!DefaultItem.GetParent().GetChildren().Contains(item))
+        if(!ItemPlaceHolder.GetParent().GetChildren().Contains(item))
         {
-            throw new Exception("!DefaultItem.GetParent().GetChildren().Contains(item)");
+            throw new Exception("!this.GetChildren().Contains(item)");
         }
 
         item.SetHidden(true);

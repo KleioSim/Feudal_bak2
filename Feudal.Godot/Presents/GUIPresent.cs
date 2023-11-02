@@ -6,7 +6,7 @@ namespace Feudal.Godot.Presents;
 
 public partial class GUIPresent : Present<GUIView, ISession>
 {
-    public override ISession MockModel => new SessionMock()
+    protected override ISession MockModel => new SessionMock()
     {
         PlayerClanName = "Mock",
         PlayerClanPopCount = 0,
@@ -24,12 +24,12 @@ public partial class GUIPresent : Present<GUIView, ISession>
         }
     };
 
-    protected override void InitialConnects(GUIView view)
+    protected override void InitialConnects()
     {
         view.NextTurn.ButtonDown += () => SendUICommand(new NextTurnCommand());
     }
 
-    protected override void Refresh(GUIView view, ISession model)
+    protected override void Process()
     {
         view.PlayerClanName.Text = model.PlayerClanName;
         view.PlayerClanPopCount.Text = model.PlayerClanPopCount.ToString();

@@ -8,9 +8,6 @@ using System.Xml.Linq;
 [Tool]
 public partial class ViewControl : Control
 {
-    [Export]
-    public int tests;
-
     public static Dictionary<Type, Type> dict { get; } = Assembly.GetExecutingAssembly().GetTypes()
         .Where(x => x.BaseType.IsGenericType
              && x.BaseType.GetGenericTypeDefinition() == typeof(Present<,>))
@@ -26,8 +23,14 @@ public partial class ViewControl : Control
                 return;
             }
 
-            var present = Activator.CreateInstance(presentType) as Present;
-            AddChild(present);
+            var present = GetNodeOrNull(nameof(Present)) as Present;
+            if (present == null)
+            {
+                present = Activator.CreateInstance(presentType) as Present;
+                present.Name = nameof(Present);
+
+                AddChild(present, false, InternalMode.Front);
+            }
 
             present.SetView(this);
         }

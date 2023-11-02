@@ -1,14 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpbxiuomdmabt"]
+[gd_scene load_steps=2 format=3 uid="uid://cpbxiuomdmabt"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/TaskContainerView.cs" id="1_piset"]
-[ext_resource type="Script" path="res://MainScene/GUI/TaskView.cs" id="2_g6tkf"]
 
 [node name="ViewControl" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 10.0
+offset_top = 7.0
 offset_right = 180.0
-offset_bottom = 926.0
+offset_bottom = 923.0
 size_flags_vertical = 3
 script = ExtResource("1_piset")
 
@@ -22,15 +21,6 @@ grow_vertical = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="DefaultItem" type="Control" parent="TaskContainer"]
+[node name="DefaultItem" parent="TaskContainer" instance_placeholder="res://MainScene/GUI/TaskItem.tscn"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-script = ExtResource("2_g6tkf")
-
-[node name="Button" type="Button" parent="TaskContainer/DefaultItem"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
