@@ -44,9 +44,29 @@ internal partial class TaskItemPresent : Present<TaskItemView, ISession>
 
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        tasks = new List<TaskMock>()
+        Tasks = new List<TaskMock>()
         {
             new TaskMock(){ Id = "TASK_DEFAULT" }
         }
     };
+}
+
+
+public class TaskMock : ITask
+{
+    public static int Count;
+
+    public string Id { get; set; }
+
+    public string Desc { get; set; }
+
+    public int Percent { get; set; }
+
+    public TaskMock()
+    {
+        Id = $"TASK{Count++}";
+
+        Desc = Id;
+        Percent = 33;
+    }
 }

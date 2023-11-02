@@ -14,11 +14,11 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
     {
         get
         {
-            return MockModel.tasks.Count();
+            return MockModel.Tasks.Count();
         }
         set
         {
-            var list = MockModel.tasks as List<TaskMock>;
+            var list = MockModel.Tasks as List<TaskMock>;
             if (value > list.Count())
             {
                 list.AddRange(Enumerable.Range(0, value - list.Count()).Select(_ => new TaskMock()));
@@ -34,7 +34,7 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
 
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        tasks = new List<TaskMock>()
+        Tasks = new List<TaskMock>()
         {
             new TaskMock(),
             new TaskMock(),

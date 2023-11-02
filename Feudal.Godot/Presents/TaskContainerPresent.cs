@@ -17,7 +17,7 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
         GD.Print($"{Engine.GetFramesDrawn()} TaskContainerPresent");
 
         var taskViewDict = view.GetCurrentItems().ToDictionary(x => x.taskId, x => x);
-        var taskObjDict = model.tasks.ToDictionary(x => x.Id, x => x);
+        var taskObjDict = model.Tasks.ToDictionary(x => x.Id, x => x);
 
         var needRemoves = new Queue<string>(taskViewDict.Keys.Except(taskObjDict.Keys));
         var needAdds = new Queue<string>(taskObjDict.Keys.Except(taskViewDict.Keys));
@@ -41,25 +41,5 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
         {
             view.RemoveItem(taskViewDict[key]);
         }
-    }
-}
-
-
-public class TaskMock : ITask
-{
-    public static int Count;
-
-    public string Id { get; set; }
-
-    public string Desc { get; set; }
-
-    public int Percent { get; set; }
-
-    public TaskMock()
-    {
-        Id = $"TASK{Count++}";
-
-        Desc = Id;
-        Percent = 33;
     }
 }

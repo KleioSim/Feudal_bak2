@@ -1,29 +1,11 @@
 using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
 public partial class GUIPresent : Present<GUIView, ISession>
 {
-    protected override ISession MockModel => new SessionMock()
-    {
-        PlayerClanName = "Mock",
-        PlayerClanPopCount = 0,
-
-        tasks = new List<TaskMock>()
-        {
-            new TaskMock()
-            {
-                Id = "TASK1"
-            },
-            new TaskMock()
-            {
-                Id = "TASK2"
-            },
-        }
-    };
-
     protected override void InitialConnects()
     {
         view.NextTurn.ButtonDown += () => SendUICommand(new NextTurnCommand());
@@ -31,20 +13,19 @@ public partial class GUIPresent : Present<GUIView, ISession>
 
     protected override void Process()
     {
-        view.PlayerClanName.Text = model.PlayerClanName;
-        view.PlayerClanPopCount.Text = model.PlayerClanPopCount.ToString();
+        view.PlayerClanName.Text = model.PlayerClan.Name;
+        view.PlayerClanPopCount.Text = model.PlayerClan.PopCount.ToString();
+
+        view.ClanCount.Text = model.Clans.Count().ToString();
     }
 }
 
-public class SessionMock : ISession
+
+public class ClanMock : IClan
 {
-    public string PlayerClanName { get; set; }
-    public int PlayerClanPopCount { get; set; }
+    public string Id { get; }
 
-    public IEnumerable<ITask> tasks { get; set; }
+    public string Name { get; set; }
 
-    public void ProcessUICommand(UICommand command)
-    {
-        
-    }
+    public int PopCount { get; set; }
 }

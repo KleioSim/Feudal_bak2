@@ -7,7 +7,7 @@ namespace Feudal.Godot.Presents;
 
 internal partial class TaskItemPresent : Present<TaskItemView, ISession>
 {
-    private ITask taskObj => model.tasks.Single(x => x.Id == view.taskId);
+    private ITask taskObj => model.Tasks.Single(x => x.Id == view.taskId);
 
     protected override void InitialConnects()
     {

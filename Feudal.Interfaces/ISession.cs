@@ -4,9 +4,10 @@ namespace Feudal.Interfaces;
 
 public interface ISession
 {
-    string PlayerClanName { get; }
-    int PlayerClanPopCount { get; }
+    IClan PlayerClan { get; }
 
-    IEnumerable<ITask> tasks { get; }
+    IEnumerable<IClan> Clans { get; }
+    IEnumerable<ITask> Tasks { get; }
+
     void ProcessUICommand(UICommand command);
 }
