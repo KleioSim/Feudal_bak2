@@ -16,7 +16,7 @@ public partial class GUIPresent : Present<GUIView, ISession>
         view.PlayerClanName.Text = model.PlayerClan.Name;
         view.PlayerClanPopCount.Text = model.PlayerClan.PopCount.ToString();
 
-        view.ClanCount.Text = model.Clans.Count().ToString();
+        view.ClansCount.Text = model.Clans.Count().ToString();
     }
 }
 

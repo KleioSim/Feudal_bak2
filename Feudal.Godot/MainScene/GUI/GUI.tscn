@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bke6fnpqcxp0j"]
+[gd_scene load_steps=4 format=3 uid="uid://bke6fnpqcxp0j"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/GUIView.cs" id="1_gbelf"]
 [ext_resource type="PackedScene" uid="uid://cpbxiuomdmabt" path="res://MainScene/GUI/TaskContainer.tscn" id="2_eaeb3"]
-[ext_resource type="PackedScene" uid="uid://b47lswfbp45i" path="res://MainScene/GUI/Left.tscn" id="3_jvwno"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56pkw"]
 font_size = 18
@@ -62,11 +61,11 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="Clan" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
+[node name="Clans" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Top/VBoxContainer/TopInfoContainer/Clan"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/VBoxContainer/TopInfoContainer/Clans"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfoContainer/Clan/HBoxContainer"]
+[node name="Label" type="Label" parent="Top/VBoxContainer/TopInfoContainer/Clans/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -83,7 +82,7 @@ text = "氏族"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfoContainer/Clan/HBoxContainer"]
+[node name="Value" type="Label" parent="Top/VBoxContainer/TopInfoContainer/Clans/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -138,9 +137,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="Left" parent="." instance=ExtResource("3_jvwno")]
+[node name="LeftPlaceHolder" parent="." instance_placeholder="res://MainScene/GUI/Left.tscn"]
 layout_mode = 1
-offset_top = -180.0
-offset_bottom = 420.0
-
-[editable path="Left"]
+offset_top = 350.0
+offset_bottom = 950.0
