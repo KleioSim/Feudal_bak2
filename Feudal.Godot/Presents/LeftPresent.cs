@@ -13,7 +13,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
 
     }
 
-    protected override void Process()
+    protected override void Refresh()
     {
 
     }

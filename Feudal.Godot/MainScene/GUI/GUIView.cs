@@ -22,7 +22,7 @@ public partial class GUIView : ViewControl
 
         PlayerButton.Pressed += () =>
         {
-            var leftView = GetOrAddLeftView();
+            var leftView = ShowLeftView();
 
             var clanPanelView = leftView.ShowMainPanel<ClanPanelView>();
             clanPanelView.ClanId = PlayerClanId;
@@ -30,14 +30,13 @@ public partial class GUIView : ViewControl
 
         ClansButton.Pressed += () =>
         {
-            var leftView = GetOrAddLeftView();
+            var leftView = ShowLeftView();
 
-            var clanPanelView = leftView.ShowMainPanel<ClanPanelView>();
-            clanPanelView.ClanId = PlayerClanId;
+            var clanPanelView = leftView.ShowMainPanel<ClanArrayPanelView>();
         };
     }
 
-    private LeftView GetOrAddLeftView()
+    private LeftView ShowLeftView()
     {
         var leftView = LeftPlaceHolder.GetParent().GetNodeOrNull<LeftView>(nameof(LeftView));
         if (leftView == null)

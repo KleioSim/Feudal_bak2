@@ -9,7 +9,8 @@ using System.Xml.Linq;
 public partial class ViewControl : Control
 {
     public static Dictionary<Type, Type> dict { get; } = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(x => x.BaseType.IsGenericType
+        .Where(x => x.BaseType != null
+             && x.BaseType.IsGenericType
              && x.BaseType.GetGenericTypeDefinition() == typeof(Present<,>))
         .ToDictionary(x => x.BaseType.GetGenericArguments()[0], x => x);
 
@@ -17,7 +18,7 @@ public partial class ViewControl : Control
     {
         if (!Engine.IsEditorHint())
         {
-            if(!dict.TryGetValue(this.GetType(), out Type presentType))
+            if (!dict.TryGetValue(this.GetType(), out Type presentType))
             {
                 GD.PushWarning($"Can not find present for {this.GetType()}");
                 return;

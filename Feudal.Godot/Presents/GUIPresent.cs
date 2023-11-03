@@ -11,7 +11,7 @@ public partial class GUIPresent : Present<GUIView, ISession>
         view.NextTurn.ButtonDown += () => SendUICommand(new NextTurnCommand());
     }
 
-    protected override void Process()
+    protected override void Refresh()
     {
         view.PlayerClanId = model.PlayerClan.Id;
 

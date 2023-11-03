@@ -40,6 +40,11 @@ layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 
+[node name="ClanArrayPanel" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanArrayPanel.tscn"]
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
 [node name="ControlContainer" type="VBoxContainer" parent="HBoxContainer/Main/HBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2

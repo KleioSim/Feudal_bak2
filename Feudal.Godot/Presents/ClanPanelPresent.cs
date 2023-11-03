@@ -11,7 +11,7 @@ public partial class ClanPanelPresent : Present<ClanPanelView, ISession>
         
     }
 
-    protected override void Process()
+    protected override void Refresh()
     {
         var clan = model.Clans.Single(x => x.Id == view.ClanId);
         view.Title.Text = clan.Name;

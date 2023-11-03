@@ -12,7 +12,7 @@ public partial class MVPEditorPlugin : EditorPlugin
 	{
         // Initialization of the plugin goes here.
         // Add the new type with a name, a parent type, a script and an icon.
-        var script = GD.Load<Script>("res://addons/MVP/View.cs");
+        var script = GD.Load<Script>("res://addons/MVP/ViewControl.cs");
         var texture = GD.Load<Texture2D>("res://addons/MVP/Icon.png");
         AddCustomType("ViewControl", "Control", script, texture);
     }

@@ -25,7 +25,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
 
             mainPanelType = value;
 
-            view.ShowMainPanel(MainPanelView.DerivedTypes.Single(x => x.Name == mainPanelType));
+            view.ShowMainPanel(IMainPanelView.DerivedTypes.Single(x => x.Name == mainPanelType));
         }
     }
 
@@ -33,7 +33,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
     {
         var properties = new Array<Dictionary>();
 
-        var MainPanelTypes = MainPanelView.DerivedTypes.Select(x => x.Name).ToArray();
+        var MainPanelTypes = IMainPanelView.DerivedTypes.Select(x => x.Name).ToArray();
 
         properties.Add(new Dictionary()
         {
@@ -47,5 +47,13 @@ public partial class LeftPresent : Present<LeftView, ISession>
         return properties;
     }
 
-    protected override ISession MockModel => throw new System.NotImplementedException();
+    protected override ISession MockModel { get; } = new SessionMock()
+    {
+        Clans = new List<IClan>()
+        {
+            new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000  },
+            new ClanMock(),
+            new ClanMock(),
+        }
+    };
 }

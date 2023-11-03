@@ -76,6 +76,15 @@ public abstract partial class Present<TView, TModel> : Present
 {
     protected abstract TModel MockModel { get; }
 
+    protected new TModel model { get; private set; }
     protected new TView view => base.view as TView;
-    protected new TModel model => (Present.model ??= MockModel) as TModel;
+
+    protected abstract void Refresh();
+
+    protected override void Process()
+    {
+        model = (Present.model ??= MockModel) as TModel;
+
+        Refresh();
+    }
 }

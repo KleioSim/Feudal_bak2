@@ -6,7 +6,8 @@ public partial class LeftView : ViewControl
 {
     public Button Close => GetNode<Button>("HBoxContainer/Main/HBoxContainer/ControlContainer/XButton");
 
-    public InstancePlaceholder ClanPanlPlaceHolder => GetNode<InstancePlaceholder>("HBoxContainer/Main/HBoxContainer/Content/ClanPanel");
+    public InstancePlaceholder ClanPanelPlaceHolder => GetNode<InstancePlaceholder>("HBoxContainer/Main/HBoxContainer/Content/ClanPanel");
+    public InstancePlaceholder ClanArrayPanelPlaceHolder => GetNode<InstancePlaceholder>("HBoxContainer/Main/HBoxContainer/Content/ClanArrayPanel");
 
     public override void _Ready()
     {
@@ -19,28 +20,42 @@ public partial class LeftView : ViewControl
     }
 
 
-    internal T ShowMainPanel<T>() where T:MainPanelView
+    internal T ShowMainPanel<T>() where T : ViewControl, IMainPanelView
     {
-        return ShowMainPanel(typeof(T)) as T;
+        return (T)ShowMainPanel(typeof(T));
     }
 
-    internal MainPanelView ShowMainPanel(Type type)
+    internal ViewControl ShowMainPanel(Type type)
     {
         InstancePlaceholder placeHolder = null;
 
         if (type == typeof(ClanPanelView))
         {
-            placeHolder = ClanPanlPlaceHolder;
+            placeHolder = ClanPanelPlaceHolder;
+        }
+        else if(type == typeof(ClanArrayPanelView))
+        {
+            placeHolder = ClanArrayPanelPlaceHolder;
         }
         else
         {
             throw new Exception();
         }
 
-        var mainPanelView = placeHolder.GetParent().GetNodeOrNull(type.Name) as MainPanelView;
+        var childCount = placeHolder.GetParent().GetChildCount();
+        for(int i = 0; i<childCount; i++)
+        {
+            var child = placeHolder.GetParent().GetChild(i);
+            if(!(child is InstancePlaceholder))
+            {
+                child.QueueFree();
+            }
+        }
+
+        var mainPanelView = placeHolder.GetParent().GetNodeOrNull(type.Name) as ViewControl;
         if (mainPanelView == null)
         {
-            mainPanelView = placeHolder.CreateInstance() as MainPanelView;
+            mainPanelView = placeHolder.CreateInstance() as ViewControl;
             mainPanelView.Name = type.Name;
         }
 

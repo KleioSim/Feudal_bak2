@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-//[LeftMainPanel(MainPanel.ClanPanel)]
-public partial class ClanPanelView : MainPanelView
+public partial class ClanPanelView : ViewControl, IMainPanelView
 {
     public Label Title => GetNode<Label>("DataContainer/VBoxContainer/Title");
 
-    public string ClanId { get; set; } = "Clan_Mock";
+    public string ClanId { get; set; } = "Clan_DEFAULT";
 }
 
-public partial class MainPanelView : ViewControl
+public interface IMainPanelView
 {
     internal static Type[] DerivedTypes { get; } = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(x => x.BaseType == typeof(MainPanelView))
+        .Where(x =>x.IsAssignableTo(typeof(IMainPanelView)) 
+            && x.IsClass && !x.IsAbstract)
         .ToArray();
 }
