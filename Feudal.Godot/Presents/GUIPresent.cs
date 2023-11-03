@@ -13,19 +13,11 @@ public partial class GUIPresent : Present<GUIView, ISession>
 
     protected override void Process()
     {
+        view.PlayerClanId = model.PlayerClan.Id;
+
         view.PlayerClanName.Text = model.PlayerClan.Name;
         view.PlayerClanPopCount.Text = model.PlayerClan.PopCount.ToString();
 
         view.ClansCount.Text = model.Clans.Count().ToString();
     }
-}
-
-
-public class ClanMock : IClan
-{
-    public string Id { get; }
-
-    public string Name { get; set; }
-
-    public int PopCount { get; set; }
 }

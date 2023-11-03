@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class LeftView : ViewControl
 {
@@ -17,19 +18,32 @@ public partial class LeftView : ViewControl
         base._Ready();
     }
 
-    internal void ShowClans()
+
+    internal T ShowMainPanel<T>() where T:MainPanelView
     {
-        //throw new NotImplementedException();
+        return ShowMainPanel(typeof(T)) as T;
     }
 
-    internal void ShowPlayerClan()
+    internal MainPanelView ShowMainPanel(Type type)
     {
-        var clanPanelView = ClanPanlPlaceHolder.GetParent().GetNode<ClanPanelView>(nameof(ClanPanelView));
-        if(clanPanelView == null)
+        InstancePlaceholder placeHolder = null;
+
+        if (type == typeof(ClanPanelView))
         {
-            clanPanelView = ClanPanlPlaceHolder.CreateInstance() as ClanPanelView;
+            placeHolder = ClanPanlPlaceHolder;
+        }
+        else
+        {
+            throw new Exception();
         }
 
-        //throw new NotImplementedException();
+        var mainPanelView = placeHolder.GetParent().GetNodeOrNull(type.Name) as MainPanelView;
+        if (mainPanelView == null)
+        {
+            mainPanelView = placeHolder.CreateInstance() as MainPanelView;
+            mainPanelView.Name = type.Name;
+        }
+
+        return mainPanelView;
     }
 }

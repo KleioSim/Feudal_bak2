@@ -14,6 +14,8 @@ public partial class GUIView : ViewControl
 
     public InstancePlaceholder LeftPlaceHolder => GetNode<InstancePlaceholder>("LeftPlaceHolder");
 
+    public string PlayerClanId { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -21,13 +23,17 @@ public partial class GUIView : ViewControl
         PlayerButton.Pressed += () =>
         {
             var leftView = GetOrAddLeftView();
-            leftView.ShowPlayerClan();
+
+            var clanPanelView = leftView.ShowMainPanel<ClanPanelView>();
+            clanPanelView.ClanId = PlayerClanId;
         };
 
         ClansButton.Pressed += () =>
         {
             var leftView = GetOrAddLeftView();
-            leftView.ShowClans();
+
+            var clanPanelView = leftView.ShowMainPanel<ClanPanelView>();
+            clanPanelView.ClanId = PlayerClanId;
         };
     }
 
