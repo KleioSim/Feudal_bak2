@@ -37,3 +37,47 @@ text = "ClanTitle"
 label_settings = SubResource("LabelSettings_a862c")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DataContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Pop" type="HBoxContainer" parent="DataContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Pop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "人口"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Pop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+vertical_alignment = 1
+
+[node name="Labor" type="HBoxContainer" parent="DataContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Labor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "劳力"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Labor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+vertical_alignment = 1

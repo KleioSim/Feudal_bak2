@@ -4,7 +4,15 @@
     {
         string Id { get; }
 
-        public string Name { get; }
+        string Name { get; }
+
         int PopCount { get; }
+
+        ILabor Labor { get; }
+    }
+
+    public interface ILabor
+    {
+        int TotalCount { get; }
     }
 }

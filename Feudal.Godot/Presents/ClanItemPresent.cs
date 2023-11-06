@@ -17,6 +17,8 @@ internal partial class ClanItemPresent : Present<ClanItemView, ISession>
     protected override void Refresh()
     {
         var clan = model.Clans.Single(x => x.Id == view.Id);
+
         view.Label.Text = clan.Name;
+        view.PopCount.Text = clan.PopCount.ToString();
     }
 }

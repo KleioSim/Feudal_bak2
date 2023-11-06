@@ -9,6 +9,8 @@ public partial class ClanPanelView : ViewControl, IMainPanelView
     internal const string DefaultId = "Clan_DEFAULT";
 
     public Label Title => GetNode<Label>("DataContainer/VBoxContainer/Title");
+    public Label PopCount => GetNode<Label>("DataContainer/VBoxContainer/HBoxContainer/Pop/Value");
+    public Label LaborCount => GetNode<Label>("DataContainer/VBoxContainer/HBoxContainer/Labor/Value");
 
     public string ClanId { get; set; } = DefaultId;
 }

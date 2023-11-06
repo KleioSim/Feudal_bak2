@@ -25,10 +25,22 @@ public class ClanMock : IClan
 
     public int PopCount { get; set; }
 
+    public ILabor Labor => labor;
+
+    private LaborMock labor;
+
     public ClanMock()
     {
         Id = $"Clan_{Count++}";
 
         Name = Id;
+        PopCount = Count * 1000;
+        labor = new LaborMock();
+        labor.TotalCount = Count;
     }
+}
+
+public class LaborMock : ILabor
+{
+    public int TotalCount { get; set; }
 }

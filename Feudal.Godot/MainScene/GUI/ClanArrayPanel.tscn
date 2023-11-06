@@ -41,5 +41,33 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="DataContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="DataContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ColumnHeader_Name" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColumnHeader_Type" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColumnHeader_PopCount" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DefaultItem" parent="DataContainer/VBoxContainer/VBoxContainer" instance_placeholder="res://MainScene/GUI/ClanItem.tscn"]
 layout_mode = 2
