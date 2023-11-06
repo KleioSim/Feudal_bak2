@@ -35,12 +35,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ClanPanel" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanPanel.tscn"]
+[node name="ClanPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanPanel.tscn"]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="ClanArrayPanel" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanArrayPanel.tscn"]
+[node name="ClanArrayPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanArrayPanel.tscn"]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -57,11 +57,13 @@ text = "X"
 [node name="<Button" type="Button" parent="HBoxContainer/Main/HBoxContainer/ControlContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+disabled = true
 text = "<"
 
 [node name=">Button" type="Button" parent="HBoxContainer/Main/HBoxContainer/ControlContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+disabled = true
 text = ">"
 
 [node name="Sub" type="Control" parent="HBoxContainer"]

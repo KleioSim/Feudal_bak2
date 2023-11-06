@@ -6,9 +6,11 @@ using System.Reflection;
 
 public partial class ClanPanelView : ViewControl, IMainPanelView
 {
+    internal const string DefaultId = "Clan_DEFAULT";
+
     public Label Title => GetNode<Label>("DataContainer/VBoxContainer/Title");
 
-    public string ClanId { get; set; } = "Clan_DEFAULT";
+    public string ClanId { get; set; } = DefaultId;
 }
 
 public interface IMainPanelView

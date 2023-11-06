@@ -24,15 +24,14 @@ public partial class GUIView : ViewControl
         {
             var leftView = ShowLeftView();
 
-            var clanPanelView = leftView.ShowMainPanel<ClanPanelView>();
-            clanPanelView.ClanId = PlayerClanId;
+            var clanPanelView = leftView.ShowClanPanel(PlayerClanId);
         };
 
         ClansButton.Pressed += () =>
         {
             var leftView = ShowLeftView();
 
-            var clanPanelView = leftView.ShowMainPanel<ClanArrayPanelView>();
+            var clanPanelView = leftView.ShowClanArrayPanel();
         };
     }
 

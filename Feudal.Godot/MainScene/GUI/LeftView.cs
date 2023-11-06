@@ -1,13 +1,18 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Security.Claims;
+using static System.Net.Mime.MediaTypeNames;
 
 public partial class LeftView : ViewControl
 {
     public Button Close => GetNode<Button>("HBoxContainer/Main/HBoxContainer/ControlContainer/XButton");
+    public Button Next => GetNode<Button>("HBoxContainer/Main/HBoxContainer/ControlContainer/>Button");
+    public Button Prev => GetNode<Button>("HBoxContainer/Main/HBoxContainer/ControlContainer/<Button");
 
-    public InstancePlaceholder ClanPanelPlaceHolder => GetNode<InstancePlaceholder>("HBoxContainer/Main/HBoxContainer/Content/ClanPanel");
-    public InstancePlaceholder ClanArrayPanelPlaceHolder => GetNode<InstancePlaceholder>("HBoxContainer/Main/HBoxContainer/Content/ClanArrayPanel");
+    public Control Container => GetNode<Control>("HBoxContainer/Main/HBoxContainer/Content");
 
     public override void _Ready()
     {
@@ -16,55 +21,84 @@ public partial class LeftView : ViewControl
             this.QueueFree();
         };
 
-        ClanItemView.ShowClan = (clanId) =>
+        Prev.Pressed += () =>
         {
-            var clanPanelView = ShowMainPanel<ClanPanelView>();
-            clanPanelView.ClanId = clanId;
+            var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToArray();
+            var index = Array.FindIndex(mainPanels, x => ((Control)x).Visible);
+
+            ((Control)mainPanels[index]).SetHidden(true);
+            ((Control)mainPanels[index-1]).SetHidden(false);
+
+            Prev.Disabled = index == 1;
+            Next.Disabled = false;
+
         };
+
+        Next.Pressed += () =>
+        {
+            var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToArray();
+            var index = Array.FindIndex(mainPanels, x => ((Control)x).Visible);
+
+            ((Control)mainPanels[index]).SetHidden(true);
+            ((Control)mainPanels[index + 1]).SetHidden(false);
+
+            Next.Disabled = index == mainPanels.Length - 2;
+            Prev.Disabled = false;
+        };
+
+        ClanItemView.ShowClan = (clanId) => ShowClanPanel(clanId);
 
         base._Ready();
     }
 
-
-    internal T ShowMainPanel<T>() where T : ViewControl, IMainPanelView
+    internal ClanPanelView ShowClanPanel(string clanId)
     {
-        return (T)ShowMainPanel(typeof(T));
+        var manPanel = AddOrFindMainPanel<ClanPanelView>(x => x.ClanId == clanId);
+        manPanel.ClanId = clanId;
+
+        return manPanel;
     }
 
-    internal ViewControl ShowMainPanel(Type type)
+    internal ClanArrayPanelView ShowClanArrayPanel()
     {
-        InstancePlaceholder placeHolder = null;
+        var manPanel = AddOrFindMainPanel<ClanArrayPanelView>();
 
-        if (type == typeof(ClanPanelView))
-        {
-            placeHolder = ClanPanelPlaceHolder;
-        }
-        else if(type == typeof(ClanArrayPanelView))
-        {
-            placeHolder = ClanArrayPanelPlaceHolder;
-        }
-        else
-        {
-            throw new Exception();
-        }
+        return manPanel;
+    }
 
-        var childCount = placeHolder.GetParent().GetChildCount();
-        for(int i = 0; i<childCount; i++)
+    private T AddOrFindMainPanel<T>(Predicate<T> predicate = null) where T : ViewControl, IMainPanelView
+    {
+        var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToList();
+        var index = mainPanels.FindIndex(x => ((Control)x).Visible);
+
+        if (index != -1)
         {
-            var child = placeHolder.GetParent().GetChild(i);
-            if(!(child is InstancePlaceholder))
+            var needRemoves = mainPanels.Skip(index + 1).ToArray();
+            foreach(var item in needRemoves)
             {
-                child.QueueFree();
+                mainPanels.Remove(item);
+
+                var control = item as Control;
+                Container.RemoveChild(control);
+                control.QueueFree();
             }
+
+            ((Control)mainPanels[index]).SetHidden(true);
         }
 
-        var mainPanelView = placeHolder.GetParent().GetNodeOrNull(type.Name) as ViewControl;
-        if (mainPanelView == null)
+        var manPanel = mainPanels.OfType<T>().SingleOrDefault(x => predicate != null ? predicate(x) : true);
+        if (manPanel == null)
         {
-            mainPanelView = placeHolder.CreateInstance() as ViewControl;
-            mainPanelView.Name = type.Name;
+            manPanel = Container.GetNode<InstancePlaceholder>(typeof(T).Name).CreateInstance() as T;
         }
 
-        return mainPanelView;
+        manPanel.SetHidden(false);
+
+        Container.MoveChild(manPanel, -1);
+
+        Next.Disabled = true;
+        Prev.Disabled = Container.GetChildren().OfType<IMainPanelView>().Count() <= 1;
+
+        return manPanel;
     }
 }

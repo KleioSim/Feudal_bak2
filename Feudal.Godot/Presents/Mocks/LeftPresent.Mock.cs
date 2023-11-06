@@ -25,7 +25,18 @@ public partial class LeftPresent : Present<LeftView, ISession>
 
             mainPanelType = value;
 
-            view.ShowMainPanel(IMainPanelView.DerivedTypes.Single(x => x.Name == mainPanelType));
+            if (mainPanelType == nameof(ClanArrayPanelView))
+            {
+                view.ShowClanArrayPanel();
+            }
+            else if (mainPanelType == nameof(ClanPanelView))
+            {
+                view.ShowClanPanel(ClanItemView.DefaultId);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 

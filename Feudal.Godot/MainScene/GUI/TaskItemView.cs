@@ -12,10 +12,13 @@ public partial class TaskItemView : ItemView
 public abstract partial class ItemView : ViewControl
 {
     public abstract string Id { get; set; }
+}
 
-    public void SetHidden(bool flag)
+public static class ControlExtension
+{
+    public static void SetHidden(this Control control, bool flag)
     {
-        SetProcess(!flag);
-        Visible = !flag;
+        control.SetProcess(!flag);
+        control.Visible = !flag;
     }
 }

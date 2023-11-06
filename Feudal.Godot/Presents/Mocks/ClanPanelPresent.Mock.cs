@@ -11,7 +11,7 @@ public partial class ClanPanelPresent : Present<ClanPanelView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Clans = new List<ClanMock>() { new ClanMock() }
+        Clans = new List<ClanMock>() { new ClanMock() { Id = ClanPanelView.DefaultId, Name = ClanPanelView.DefaultId} }
     };
 }
 
