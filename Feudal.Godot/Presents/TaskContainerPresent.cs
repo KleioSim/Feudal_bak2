@@ -31,7 +31,7 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
             }
             else
             {
-                view.GenerateItem(key);
+                view.AddItem(key);
             }
         }
 

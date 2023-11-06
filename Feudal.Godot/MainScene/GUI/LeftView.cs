@@ -16,6 +16,12 @@ public partial class LeftView : ViewControl
             this.QueueFree();
         };
 
+        ClanItemView.ShowClan = (clanId) =>
+        {
+            var clanPanelView = ShowMainPanel<ClanPanelView>();
+            clanPanelView.ClanId = clanId;
+        };
+
         base._Ready();
     }
 

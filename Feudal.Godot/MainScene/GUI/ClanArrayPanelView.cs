@@ -20,13 +20,12 @@ public abstract partial class ItemContainer<T> : ViewControl
             .Where(x => x != null);
     }
 
-    public T GenerateItem(string taskId)
+    public T AddItem(string taskId)
     {
         var item = ItemPlaceHolder.CreateInstance() as T;
         item.Id = taskId;
 
         item.SetHidden(false);
-
         return item;
     }
 

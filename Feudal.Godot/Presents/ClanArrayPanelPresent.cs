@@ -14,6 +14,8 @@ internal partial class ClanArrayPanelPresent : Present<ClanArrayPanelView, ISess
 
     protected override void Refresh()
     {
+        var dict = view.ItemPlaceHolder.GetSignalList();
+
         GD.Print($"{Engine.GetFramesDrawn()} TaskContainerPresent");
 
         var taskViewDict = view.GetCurrentItems().ToDictionary(x => x.Id, x => x);
@@ -33,7 +35,7 @@ internal partial class ClanArrayPanelPresent : Present<ClanArrayPanelView, ISess
             }
             else
             {
-                view.GenerateItem(key);
+                view.AddItem(key);
             }
         }
 
