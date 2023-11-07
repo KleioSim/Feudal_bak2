@@ -15,6 +15,9 @@ public partial class MVPEditorPlugin : EditorPlugin
         var script = GD.Load<Script>("res://addons/MVP/ViewControl.cs");
         var texture = GD.Load<Texture2D>("res://addons/MVP/Icon.png");
         AddCustomType("ViewControl", "Control", script, texture);
+
+        script = GD.Load<Script>("res://addons/MVP/ViewNode2D.cs");
+        AddCustomType("ViewNode2D", "Node2D", script, texture);
     }
 
 
@@ -23,7 +26,7 @@ public partial class MVPEditorPlugin : EditorPlugin
         // Clean-up of the plugin goes here.
         // Always remember to remove it from the engine when deactivated.
         RemoveCustomType("ViewControl");
-        //RemoveCustomType("ViewDataSet.PresentManager");
+        RemoveCustomType("ViewNode2D");
     }
 }
 #endif

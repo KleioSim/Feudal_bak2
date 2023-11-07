@@ -15,7 +15,7 @@ public abstract partial class Present : Control
 
     protected bool isDirty { get; set; } = true;
 
-    protected ViewControl view;
+    protected IView view;
 
     protected abstract void InitialConnects();
     protected abstract void Process();
@@ -58,7 +58,7 @@ public abstract partial class Present : Control
         }
     }
 
-    internal void SetView(ViewControl view)
+    internal void SetView(IView view)
     {
         if (this.view != null)
         {

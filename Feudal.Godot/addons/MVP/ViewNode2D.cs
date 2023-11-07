@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Xml.Linq;
 
 [Tool]
-public partial class ViewControl : Control, IView
+public partial class ViewNode2D : Node2D, IView
 {
     public static Dictionary<Type, Type> dict { get; } = Assembly.GetExecutingAssembly().GetTypes()
         .Where(x => x.BaseType != null
