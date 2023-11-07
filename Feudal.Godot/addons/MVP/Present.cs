@@ -71,7 +71,7 @@ public abstract partial class Present : Control
 }
 
 public abstract partial class Present<TView, TModel> : Present
-    where TView : ViewControl
+    where TView : class, IView
     where TModel : class, ISession
 {
     protected abstract TModel MockModel { get; }
