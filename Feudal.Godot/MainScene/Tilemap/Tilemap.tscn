@@ -1,12 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://boduitdph3re4"]
+[gd_scene load_steps=13 format=3 uid="uid://boduitdph3re4"]
 
 [ext_resource type="Texture2D" uid="uid://c3ndwun230sjg" path="res://MainScene/Tilemap/Images/Plain.png" id="1_6nsxg"]
 [ext_resource type="Script" path="res://MainScene/Tilemap/TilemapView.cs" id="1_k2637"]
+[ext_resource type="Texture2D" uid="uid://daxmhueptlmf6" path="res://MainScene/Tilemap/Images/Hill.png" id="3_cuqx2"]
+[ext_resource type="Texture2D" uid="uid://ccdo2niatkw6q" path="res://MainScene/Tilemap/Images/Mountion.png" id="4_isug7"]
+[ext_resource type="Texture2D" uid="uid://bqlcikp3eguje" path="res://MainScene/Tilemap/Images/Lake.png" id="5_eeee6"]
+[ext_resource type="Texture2D" uid="uid://cjtl48bojca3u" path="res://MainScene/Tilemap/Images/Marsh.png" id="6_6g8nd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fjh4"]
+resource_name = "Plain"
 texture = ExtResource("1_6nsxg")
 texture_region_size = Vector2i(512, 512)
 use_texture_padding = false
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gkmjq"]
+resource_name = "Hill"
+texture = ExtResource("3_cuqx2")
+texture_region_size = Vector2i(512, 512)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y0lwh"]
+resource_name = "Mountion"
+texture = ExtResource("4_isug7")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 112)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m68r6"]
+resource_name = "Lake"
+texture = ExtResource("5_eeee6")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_76vmu"]
+resource_name = "Marsh"
+texture = ExtResource("6_6g8nd")
+texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 113)
 
@@ -16,6 +50,10 @@ tile_layout = 4
 tile_offset_axis = 1
 tile_size = Vector2i(521, 292)
 sources/0 = SubResource("TileSetAtlasSource_8fjh4")
+sources/1 = SubResource("TileSetAtlasSource_gkmjq")
+sources/2 = SubResource("TileSetAtlasSource_y0lwh")
+sources/3 = SubResource("TileSetAtlasSource_m68r6")
+sources/4 = SubResource("TileSetAtlasSource_76vmu")
 
 [node name="ViewControl" type="Control"]
 layout_mode = 3

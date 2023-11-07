@@ -1,12 +1,13 @@
 ﻿using Feudal.Interfaces;
 using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
 [Tool]
-internal partial class TilemapPresent
+internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
@@ -37,6 +38,7 @@ internal partial class TilemapPresent
                 }
 
                 list[i].Position = ((int)value[i].X, (int)value[i].Y);
+                list[i].TerrainType = (TerrainType)(i % Enum.GetValues(typeof(TerrainType)).Length);
             }
 
             isDirty = true;
@@ -44,8 +46,9 @@ internal partial class TilemapPresent
     }
 }
 
-
 public class TerrainMock : ITerrain
 {
     public (int x, int y) Position { get; set; }
+
+    public TerrainType TerrainType { get; set; }
 }
