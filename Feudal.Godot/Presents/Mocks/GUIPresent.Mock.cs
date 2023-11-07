@@ -55,6 +55,7 @@ public class SessionMock : ISession
 
     public IEnumerable<IClan> Clans { get; init; }
     public IEnumerable<ITask> Tasks { get; init; }
+    public IEnumerable<ITerrain> Terrains { get; init; }
 
     public void ProcessUICommand(UICommand command)
     {

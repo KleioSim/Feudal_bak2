@@ -18,6 +18,8 @@ internal class Session : ISession
         new Clan(),
     };
 
+    public IEnumerable<ITerrain> Terrains => throw new NotImplementedException();
+
     public void ProcessUICommand(UICommand command)
     {
 

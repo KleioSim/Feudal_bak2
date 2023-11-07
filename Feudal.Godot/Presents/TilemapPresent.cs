@@ -1,17 +1,10 @@
 ﻿using Feudal.Interfaces;
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Feudal.Godot.Presents;
 
 internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
-    protected override ISession MockModel { get; } = new SessionMock();
-
     protected override void InitialConnects()
     {
 
@@ -19,6 +12,19 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
 
     protected override void Refresh()
     {
+        var count = view.Tilemap.TileSet.GetSourceCount();
+        GD.Print(count);
 
+        for (int i = 0; i < count; i++)
+        {
+            GD.Print(view.Tilemap.TileSet.GetSourceId(i));
+        }
+
+        view.Tilemap.Clear();
+
+        foreach (var terrain in model.Terrains)
+        {
+            view.Tilemap.SetCell(0, new Vector2I(terrain.Position.x, terrain.Position.y), 0, new Vector2I(0,0), 0);
+        }
     }
 }
