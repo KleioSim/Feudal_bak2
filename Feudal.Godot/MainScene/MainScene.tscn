@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhdl0mj0idlgh"]
+[gd_scene load_steps=5 format=3 uid="uid://bhdl0mj0idlgh"]
 
+[ext_resource type="Script" path="res://MainScene/MainSceneView.cs" id="1_2bdc7"]
 [ext_resource type="PackedScene" uid="uid://bke6fnpqcxp0j" path="res://MainScene/GUI/GUI.tscn" id="1_j8ujk"]
 [ext_resource type="PackedScene" uid="uid://boduitdph3re4" path="res://MainScene/Tilemap/Tilemap.tscn" id="2_gvdpb"]
+[ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://MainScene/MoveControl.tscn" id="4_07vus"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -10,9 +12,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2bdc7")
 
 [node name="Map" parent="." instance=ExtResource("2_gvdpb")]
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="GUI" parent="." instance=ExtResource("1_j8ujk")]
 layout_mode = 1
+
+[node name="MoveControl" parent="." instance=ExtResource("4_07vus")]
+layout_mode = 1
+
+[connection signal="CanvasMove" from="MoveControl" to="." method="OnCanvasMoved"]
