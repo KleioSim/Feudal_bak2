@@ -11,7 +11,7 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Terrains = new List<TerrainMock>()
+        Terrains = new List<TerrainMock>() { new TerrainMock() { Position = (0,0), TerrainType = TerrainType.Plain } }
     };
 
     [Export]

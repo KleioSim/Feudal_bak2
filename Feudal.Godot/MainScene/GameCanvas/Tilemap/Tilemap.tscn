@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://boduitdph3re4"]
+[gd_scene load_steps=14 format=3 uid="uid://droao4y6kuttb"]
 
-[ext_resource type="Texture2D" uid="uid://c3ndwun230sjg" path="res://MainScene/Tilemap/Images/Plain.png" id="1_6nsxg"]
-[ext_resource type="Script" path="res://MainScene/Tilemap/TilemapView.cs" id="1_k2637"]
-[ext_resource type="Texture2D" uid="uid://daxmhueptlmf6" path="res://MainScene/Tilemap/Images/Hill.png" id="3_cuqx2"]
-[ext_resource type="Texture2D" uid="uid://ccdo2niatkw6q" path="res://MainScene/Tilemap/Images/Mountion.png" id="4_isug7"]
-[ext_resource type="Texture2D" uid="uid://bqlcikp3eguje" path="res://MainScene/Tilemap/Images/Lake.png" id="5_eeee6"]
-[ext_resource type="Texture2D" uid="uid://cjtl48bojca3u" path="res://MainScene/Tilemap/Images/Marsh.png" id="6_6g8nd"]
+[ext_resource type="Script" path="res://MainScene/GameCanvas/Tilemap/TilemapView.cs" id="1_luwuq"]
+[ext_resource type="Texture2D" uid="uid://c3ndwun230sjg" path="res://MainScene/GameCanvas/Tilemap/Images/Plain.png" id="2_nod68"]
+[ext_resource type="Texture2D" uid="uid://daxmhueptlmf6" path="res://MainScene/GameCanvas/Tilemap/Images/Hill.png" id="3_ngq73"]
+[ext_resource type="Texture2D" uid="uid://ccdo2niatkw6q" path="res://MainScene/GameCanvas/Tilemap/Images/Mountion.png" id="4_bpvac"]
+[ext_resource type="Texture2D" uid="uid://bqlcikp3eguje" path="res://MainScene/GameCanvas/Tilemap/Images/Lake.png" id="5_ac4od"]
+[ext_resource type="Texture2D" uid="uid://cjtl48bojca3u" path="res://MainScene/GameCanvas/Tilemap/Images/Marsh.png" id="6_cskky"]
+[ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://addons/ScreenMoveControl/MoveControl.tscn" id="6_sbtl7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fjh4"]
 resource_name = "Plain"
-texture = ExtResource("1_6nsxg")
+texture = ExtResource("2_nod68")
 texture_region_size = Vector2i(512, 512)
 use_texture_padding = false
 0:0/0 = 0
@@ -17,7 +18,7 @@ use_texture_padding = false
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gkmjq"]
 resource_name = "Hill"
-texture = ExtResource("3_cuqx2")
+texture = ExtResource("3_ngq73")
 texture_region_size = Vector2i(512, 512)
 use_texture_padding = false
 0:0/0 = 0
@@ -25,29 +26,27 @@ use_texture_padding = false
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y0lwh"]
 resource_name = "Mountion"
-texture = ExtResource("4_isug7")
+texture = ExtResource("4_bpvac")
 texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 112)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m68r6"]
 resource_name = "Lake"
-texture = ExtResource("5_eeee6")
+texture = ExtResource("5_ac4od")
 texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 113)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_76vmu"]
 resource_name = "Marsh"
-texture = ExtResource("6_6g8nd")
+texture = ExtResource("6_cskky")
 texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 113)
 
 [sub_resource type="TileSet" id="TileSet_2glhd"]
 tile_shape = 1
-tile_layout = 4
-tile_offset_axis = 1
 tile_size = Vector2i(521, 292)
 sources/0 = SubResource("TileSetAtlasSource_8fjh4")
 sources/1 = SubResource("TileSetAtlasSource_gkmjq")
@@ -62,22 +61,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("1_k2637")
+script = ExtResource("1_luwuq")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TileMap" type="TileMap" parent="CenterContainer"]
+[node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-position = Vector2(-260, -146)
 tile_set = SubResource("TileSet_2glhd")
 format = 2
 layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-1, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="MoveControl" parent="CanvasLayer" instance=ExtResource("6_sbtl7")]
+
+[connection signal="CanvasMove" from="CanvasLayer/MoveControl" to="." method="OnScreenMoved"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daxmhueptlmf6"
-path="res://.godot/imported/Hill.png-0d7032f5f15b18a8fd495376cd36bb69.ctex"
+uid="uid://ccdo2niatkw6q"
+path="res://.godot/imported/Mountion.png-2cd8258cb4770d934417047539ab22de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainScene/Tilemap/Images/Hill.png"
-dest_files=["res://.godot/imported/Hill.png-0d7032f5f15b18a8fd495376cd36bb69.ctex"]
+source_file="res://MainScene/GameCanvas/Tilemap/Images/Mountion.png"
+dest_files=["res://.godot/imported/Mountion.png-2cd8258cb4770d934417047539ab22de.ctex"]
 
 [params]
 
