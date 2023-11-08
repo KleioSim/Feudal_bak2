@@ -28,7 +28,11 @@ public partial class MoveControl : Control
 
         if (@event is InputEventMouseMotion moveEvent)
         {
-            moveAngle = (Size / 2).AngleToPoint(moveEvent.Position);
+
+            moveAngle = (GlobalPosition + (Size/2)).AngleToPoint(moveEvent.GlobalPosition);
+
+            GD.Print($"{moveAngle})");
+
         }
     }
 
@@ -41,6 +45,6 @@ public partial class MoveControl : Control
 
         EmitSignal(SignalName.CanvasMove, moveAngle);
 
-        GD.Print($"EmitSignal(SignalName.CanvasMove, {moveAngle})");
+
     }
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnukaohmlm2bl"]
 
-[ext_resource type="Script" path="res://MainScene/MoveControl.cs" id="1_ko30a"]
+[ext_resource type="Script" path="res://addons/ScreenMoveControl/MoveControl.cs" id="1_jg1xk"]
 
 [node name="MoveControl" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_ko30a")
+script = ExtResource("1_jg1xk")
 
 [node name="Top" type="Panel" parent="."]
 custom_minimum_size = Vector2(3, 3)
