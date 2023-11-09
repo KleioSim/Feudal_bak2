@@ -47,6 +47,7 @@ texture_region_size = Vector2i(512, 512)
 
 [sub_resource type="TileSet" id="TileSet_2glhd"]
 tile_shape = 1
+tile_layout = 4
 tile_size = Vector2i(521, 292)
 sources/0 = SubResource("TileSetAtlasSource_8fjh4")
 sources/1 = SubResource("TileSetAtlasSource_gkmjq")
@@ -61,20 +62,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_luwuq")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="MoveControl" parent="UICanvasLayer" instance=ExtResource("6_sbtl7")]
+
+[node name="MapCanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="TileMap" type="TileMap" parent="MapCanvasLayer"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_2glhd")
 format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(-1, 0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="MapCanvasLayer"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="MoveControl" parent="CanvasLayer" instance=ExtResource("6_sbtl7")]
-
-[connection signal="CanvasMove" from="CanvasLayer/MoveControl" to="." method="OnScreenMoved"]
+[connection signal="CanvasMove" from="UICanvasLayer/MoveControl" to="." method="OnScreenMoved"]

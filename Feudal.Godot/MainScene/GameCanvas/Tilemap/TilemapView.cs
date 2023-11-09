@@ -3,8 +3,8 @@ using System;
 
 public partial class TilemapView : ViewControl
 {
-    public TileMap Tilemap => GetNode<TileMap>("TileMap");
-    public Camera2D Camera => GetNode<Camera2D>("Camera2D");
+    public TileMap Tilemap => GetNode<TileMap>("MapCanvasLayer/TileMap");
+    public Camera2D Camera => GetNode<Camera2D>("MapCanvasLayer/Camera2D");
 
     public override void _Ready()
     {
