@@ -20,7 +20,7 @@ public partial class TilemapView : ViewControl
             {
                 if (eventKey.ButtonIndex == MouseButton.Left)
                 {
-                    GD.Print(Tilemap.LocalToMap(Tilemap.ToLocal(eventKey.Position)));
+                    GD.Print(Tilemap.LocalToMap(GetGlobalMousePosition()));
                 }
                 else if (eventKey.ButtonIndex == MouseButton.WheelDown)
                 {
