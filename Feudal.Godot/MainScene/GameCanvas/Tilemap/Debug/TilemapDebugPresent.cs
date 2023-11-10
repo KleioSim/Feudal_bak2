@@ -17,10 +17,9 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
     };
 
     private List<ITerrain> Terrains => model.Terrains as List<ITerrain>;
+    private TerrainType MapType => Enum.Parse<TerrainType>(view.SelectedTerrainType);
 
     private (int x, int y) currPos;
-    private TerrainType mapType;
-
     private Dictionary<(int x, int y), TerrainType> dict = new Dictionary<(int x, int y), TerrainType>();
 
     protected override void InitialConnects()
@@ -33,7 +32,7 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
                 return;
             }
 
-            TerrainBuilder.Build(ref dict, mapType, currPos);
+            TerrainBuilder.Build(ref dict, MapType, currPos);
 
             Terrains.Add(new TerrainMock() { Position = currPos, TerrainType = dict[currPos] });
 
@@ -48,9 +47,23 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
             dict.Clear();
 
             currPos = (0, 0);
-            mapType = Enum.Parse<TerrainType>(view.SelectedTerrainType);
 
             view.Timer.Start();
+        };
+
+        view.TilemapView.ClickTile += (Vector2I index) =>
+        {
+            var pos = (index.X, index.Y);
+            if(dict.ContainsKey(pos))
+            {
+                return;
+            }
+
+            TerrainBuilder.Build(ref dict, MapType, pos);
+
+            Terrains.Add(new TerrainMock() { Position = pos, TerrainType = dict[pos] });
+
+            SendUICommand(new UICommand());
         };
     }
 
@@ -120,8 +133,8 @@ public static class TerrainBuilder
 {
     static Dictionary<TerrainType, (float min, float max)> dictTerrainHeight = new Dictionary<TerrainType, (float, float)>()
     {
-        {TerrainType.Lake, (-2f, -0.5f) },
-        {TerrainType.Marsh, (-0.5f, 0f) },
+        {TerrainType.Lake, (-2f, -0.4f) },
+        {TerrainType.Marsh, (-0.4f, 0f) },
         {TerrainType.Plain, (0f, 1f) },
         {TerrainType.Hill, (1f, 2f) },
         {TerrainType.Mountion, (2f, 3f)  },
@@ -234,7 +247,6 @@ public static class TerrainBuilder
         var mapTypeFactor = (dictTerrainHeight[mapType].max + dictTerrainHeight[mapType].min) / 2;
 
         var terrain = ConvertToTerrainType(randomFactor * 0.3f + nearbyFactor * 0.3f + mapTypeFactor * 0.4f);
-
 
         dict.Add(position, terrain);
     }

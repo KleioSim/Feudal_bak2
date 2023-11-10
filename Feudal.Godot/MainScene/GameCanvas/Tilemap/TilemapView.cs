@@ -3,6 +3,9 @@ using System;
 
 public partial class TilemapView : ViewControl
 {
+    [Signal]
+    public delegate void ClickTileEventHandler(Vector2I index);
+
     public TileMap Tilemap => GetNode<TileMap>("MapCanvasLayer/TileMap");
     public Camera2D Camera => GetNode<Camera2D>("MapCanvasLayer/Camera2D");
 
@@ -24,7 +27,9 @@ public partial class TilemapView : ViewControl
             {
                 if (eventKey.ButtonIndex == MouseButton.Left)
                 {
-                    GD.Print(Tilemap.LocalToMap(GetGlobalMousePosition()));
+                    var tileIndex = Tilemap.LocalToMap(GetGlobalMousePosition());
+                    GD.Print(tileIndex);
+                    EmitSignal(SignalName.ClickTile, tileIndex);
                 }
                 else if (eventKey.ButtonIndex == MouseButton.WheelDown)
                 {
