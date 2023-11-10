@@ -78,8 +78,8 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_2glhd")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-1, 0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="MapCanvasLayer"]
+zoom = Vector2(0.03, 0.03)
 
 [connection signal="CanvasMove" from="UICanvasLayer/MoveControl" to="." method="OnScreenMoved"]

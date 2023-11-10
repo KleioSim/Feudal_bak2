@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class TilemapDebugView : ViewControl
 {
@@ -24,4 +23,6 @@ public partial class TilemapDebugView : ViewControl
     public Button Generate => GetNode<Button>("UICanvasLayer/HBoxContainer/VBoxContainer2/Button");
 
     public TilemapView TilemapView => GetNode<TilemapView>("Tilemap");
+
+    public Timer Timer => GetNode<Timer>("Timer");
 }
