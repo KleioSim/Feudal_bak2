@@ -1,9 +1,11 @@
-﻿using Feudal.Interfaces;
+﻿using Feudal.Clans;
+using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
 using Feudal.MessageBuses;
 using Feudal.MessageBuses.Interfaces;
 using Feudal.Messages;
 using System;
+using System.Collections;
 
 namespace Feudal.Sessions;
 
@@ -16,11 +18,7 @@ internal class Session : ISession
         new Task(),
         new Task()
     };
-    public IEnumerable<IClan> Clans { get; } = new List<IClan>()
-    {
-        new Clan(),
-        new Clan(),
-    };
+    public IEnumerable<IClan> Clans => clanManager;
 
     public IEnumerable<ITerrain> Terrains { get; } = new List<ITerrain>()
     {
@@ -29,7 +27,9 @@ internal class Session : ISession
 
     public IDate Date { get; }
 
-    private IMessageBus messageBus = new MessageBus();
+    private IMessageBus messageBus;
+
+    private ClanManager clanManager;
 
     public void ProcessUICommand(UICommand command)
     {
@@ -38,42 +38,10 @@ internal class Session : ISession
 
     public Session()
     {
+        messageBus = new MessageBus();
+
         Date = new Date(messageBus);
-    }
-}
-
-class Clan : IClan
-{
-    public static int Count;
-
-    public string Id { get; }
-
-    public string Name { get; set; }
-
-    public int PopCount { get; set; }
-
-    public ILabor Labor => labor;
-
-    private readonly LaborImp labor;
-
-    public Clan()
-    {
-        Id = $"CLAN_{Count++}";
-        Name = Id;
-
-        labor = new LaborImp(this);
-    }
-
-    public class LaborImp : ILabor
-    {
-        private readonly Clan clan;
-
-        public LaborImp(Clan clan)
-        {
-            this.clan = clan;
-        }
-
-        public int TotalCount => clan.PopCount / 100;
+        clanManager = new ClanManager(messageBus);
     }
 }
 

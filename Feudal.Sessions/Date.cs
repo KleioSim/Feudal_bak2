@@ -40,5 +40,7 @@ class Date : IDate
             Year += 1;
             Month = 1;
         }
+
+        messageBus.PostMessage(new MESSAGE_DayInc(Year, Month, Day));
     }
 }
