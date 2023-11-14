@@ -1,5 +1,9 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using Feudal.MessageBuses;
+using Feudal.MessageBuses.Interfaces;
+using Feudal.Messages;
+using System;
 
 namespace Feudal.Sessions;
 
@@ -23,11 +27,18 @@ internal class Session : ISession
 
     };
 
-    public IDate Date { get; } = new Date();
+    public IDate Date { get; }
+
+    private IMessageBus messageBus = new MessageBus();
 
     public void ProcessUICommand(UICommand command)
     {
+        messageBus.PostMessage(new MESSAGE_NextTurn());
+    }
 
+    public Session()
+    {
+        Date = new Date(messageBus);
     }
 }
 
@@ -82,21 +93,5 @@ class Task : ITask
 
         Desc = Id;
         Percent = 0;
-    }
-}
-
-class Date : IDate
-{
-    public int Year { get; private set; }
-
-    public int Month { get; private set; }
-
-    public int Day { get; private set; }
-
-    public Date()
-    {
-        Year = 1;
-        Month = 1;
-        Day = 1;
     }
 }

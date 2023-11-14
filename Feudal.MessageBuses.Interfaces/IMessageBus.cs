@@ -3,7 +3,7 @@
 public interface IMessageBus
 {
     void Register(object obj);
-    IPost PostMessage(Message message);
+    IPost PostMessage(IMessage message);
 
     public interface IPost
     {

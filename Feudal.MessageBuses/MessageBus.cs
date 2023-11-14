@@ -1,3 +1,4 @@
+using Feudal.MessageBuses.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,31 +6,11 @@ using System.Reflection;
 
 namespace Feudal.MessageBuses;
 
-public interface Message
-{
-
-}
-
-public interface IMessageBus
-{
-    void Register(object obj);
-    IPost PostMessage(Message message);
-
-    public interface IPost
-    {
-        T WaitAck<T>() where T : class;
-    }
-}
-
-public class MessageProcessAttribute : Attribute
-{
-}
-
 public class MessageBus : IMessageBus
 {
     private Dictionary<Type, List<(object target, MethodInfo method)>> dict = new Dictionary<Type, List<(object target, MethodInfo method)>>();
 
-    public IMessageBus.IPost PostMessage(Message message)
+    public IMessageBus.IPost PostMessage(IMessage message)
     {
         var postRequest = new PostRequest();
 
@@ -64,7 +45,7 @@ public class MessageBus : IMessageBus
             }
 
             var parmeters = method.GetParameters();
-            if (parmeters.Length != 1 || !typeof(Message).IsAssignableFrom(parmeters[0].ParameterType))
+            if (parmeters.Length != 1 || !typeof(IMessage).IsAssignableFrom(parmeters[0].ParameterType))
             {
                 throw new Exception();
             }

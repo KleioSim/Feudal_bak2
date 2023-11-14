@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
-    <ProjectReference Include="..\Feudal.MessageBuses\Feudal.MessageBuses.csproj" />
     <ProjectReference Include="..\Feudal.Sessions\Feudal.Sessions.csproj" />
   </ItemGroup>
 
