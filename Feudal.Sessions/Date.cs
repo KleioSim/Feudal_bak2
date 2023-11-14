@@ -27,7 +27,9 @@ class Date : IDate
     [MessageProcess]
     void OnMESSAGE_NextTurn(MESSAGE_NextTurn msg)
     {
-        if (++Day > 30)
+        Day += 10;
+
+        if (Day > 30)
         {
             Month += 1;
             Day = 1;

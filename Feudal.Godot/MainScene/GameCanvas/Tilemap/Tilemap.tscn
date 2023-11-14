@@ -81,5 +81,3 @@ layer_0/y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="MapCanvasLayer"]
 zoom = Vector2(0.03, 0.03)
-
-[connection signal="CanvasMove" from="UICanvasLayer/MoveControl" to="." method="OnScreenMoved"]

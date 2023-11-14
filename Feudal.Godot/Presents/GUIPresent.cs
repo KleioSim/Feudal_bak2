@@ -1,4 +1,4 @@
-using Feudal.Interfaces;
+﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
 using System.Linq;
 
@@ -15,7 +15,19 @@ public partial class GUIPresent : Present<GUIView, ISession>
     {
         view.Year.Text = model.Date.Year.ToString();
         view.Month.Text = model.Date.Month.ToString();
-        view.Day.Text = model.Date.Day.ToString();
+
+        if (model.Date.Day > 20)
+        {
+            view.Day.Text = "下";
+        }
+        else if (model.Date.Day > 10)
+        {
+            view.Day.Text = "中";
+        }
+        else
+        {
+            view.Day.Text = "上";
+        }
 
         view.PlayerClanId = model.PlayerClan.Id;
 
