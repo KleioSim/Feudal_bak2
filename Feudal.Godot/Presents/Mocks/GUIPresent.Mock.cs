@@ -45,6 +45,13 @@ public partial class GUIPresent : Present<GUIView, ISession>
             new ClanMock(){ Name = "PlayerClan_Mock", PopCount = 1000  },
             new ClanMock(),
             new ClanMock(),
+        },
+
+        Date = new DateMock()
+        {
+            Year = 1,
+            Month = 1,
+            Day = 1
         }
     };
 }
@@ -56,9 +63,19 @@ public class SessionMock : ISession
     public IEnumerable<IClan> Clans { get; init; }
     public IEnumerable<ITask> Tasks { get; init; }
     public IEnumerable<ITerrain> Terrains { get; init; }
+    public IDate Date { get; init; }
 
     public void ProcessUICommand(UICommand command)
     {
         GD.Print($"ProcessUICommand {command.GetType().Name}");
     }
+}
+
+public class DateMock : IDate
+{
+    public int Year { get; init; }
+
+    public int Month { get; init; }
+
+    public int Day { get; init; }
 }

@@ -3,6 +3,10 @@ using System;
 
 public partial class GUIView : ViewControl
 {
+    public Label Year => GetNode<Label>("Top/VBoxContainer/TopInfoContainer/Date/HBoxContainer/Year/Value");
+    public Label Month => GetNode<Label>("Top/VBoxContainer/TopInfoContainer/Date/HBoxContainer/Month/Value");
+    public Label Day => GetNode<Label>("Top/VBoxContainer/TopInfoContainer/Date/HBoxContainer/Day/Value");
+
     public Button PlayerButton => GetNode<Button>("Top/Player");
     public Label PlayerClanName => GetNode<Label>("Top/Player/VBoxContainer/PlayerClanName");
     public Label PlayerClanPopCount => GetNode<Label>("Top/Player/VBoxContainer/PlayerClanPopCount");

@@ -18,7 +18,12 @@ internal class Session : ISession
         new Clan(),
     };
 
-    public IEnumerable<ITerrain> Terrains => throw new NotImplementedException();
+    public IEnumerable<ITerrain> Terrains { get; } = new List<ITerrain>()
+    {
+
+    };
+
+    public IDate Date { get; } = new Date();
 
     public void ProcessUICommand(UICommand command)
     {
@@ -77,5 +82,21 @@ class Task : ITask
 
         Desc = Id;
         Percent = 0;
+    }
+}
+
+class Date : IDate
+{
+    public int Year { get; private set; }
+
+    public int Month { get; private set; }
+
+    public int Day { get; private set; }
+
+    public Date()
+    {
+        Year = 1;
+        Month = 1;
+        Day = 1;
     }
 }

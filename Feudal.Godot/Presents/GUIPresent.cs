@@ -13,6 +13,10 @@ public partial class GUIPresent : Present<GUIView, ISession>
 
     protected override void Refresh()
     {
+        view.Year.Text = model.Date.Year.ToString();
+        view.Month.Text = model.Date.Month.ToString();
+        view.Day.Text = model.Date.Day.ToString();
+
         view.PlayerClanId = model.PlayerClan.Id;
 
         view.PlayerClanName.Text = model.PlayerClan.Name;
