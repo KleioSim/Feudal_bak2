@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="Feudal.Sessions.Builders" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
     <ProjectReference Include="..\Feudal.MessageBuses.Interfaces\Feudal.MessageBuses.Interfaces.csproj" />
   </ItemGroup>
 
