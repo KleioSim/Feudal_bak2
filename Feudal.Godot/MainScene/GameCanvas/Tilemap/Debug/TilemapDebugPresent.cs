@@ -136,8 +136,8 @@ public static class TerrainBuilder
         {TerrainType.Lake, (-2f, -0.4f) },
         {TerrainType.Marsh, (-0.4f, 0f) },
         {TerrainType.Plain, (0f, 1f) },
-        {TerrainType.Hill, (1f, 2f) },
-        {TerrainType.Mountion, (2f, 3f)  },
+        {TerrainType.Hill, (1f, 1.5f) },
+        {TerrainType.Mountion, (1.5f, 3f)  },
     };
 
     private static Random random = new Random();
@@ -202,30 +202,52 @@ public static class TerrainBuilder
 
     public static void Build(ref Dictionary<(int x, int y), TerrainType> dict, TerrainType mapType, (int x, int y) position)
     {
+
+
         if (position.x == 0 && position.y == 0)
         {
             dict.Add(position, TerrainType.Plain);
             return;
         }
-        else if (Math.Abs(position.x) == 1 || Math.Abs(position.x) == 1)
+
+        var randomValue = random.Next(1, 101);
+
+        if (Math.Abs(position.x) <= 1 && Math.Abs(position.y) <= 1)
         {
-            if(random.Next(1, 101) > 30)
-            {
-                dict.Add(position, TerrainType.Plain);
-                return;
-            }
-        }
-        else
-        {
-            if (random.Next(1, 101) > 90)
+            if(randomValue > 30)
             {
                 dict.Add(position, TerrainType.Plain);
                 return;
             }
         }
 
-        var randomFactor = random.Next((int)(dictTerrainHeight.Values.Select(x => x.min).Min() * 1000),
-            (int)((dictTerrainHeight.Values.Select(x => x.max).Max()) * 1000)) / 1000f;
+        if (dict.Values.Count(x => x == mapType) * 100 / dict.Count < 30)
+        {
+            if (randomValue > 80)
+            {
+                dict.Add(position, mapType);
+                return;
+            }
+        }
+
+        if (randomValue >= 99)
+        {
+            var terrainTypes = Enum.GetValues<TerrainType>();
+            dict.Add(position, terrainTypes[random.Next(0, terrainTypes.Length)]);
+
+            return;
+        }
+        else if (randomValue > 96)
+        {
+            dict.Add(position, TerrainType.Plain);
+            return;
+        }
+
+
+        var min = dictTerrainHeight.Values.Select(x => x.min).Min();
+        var max = dictTerrainHeight.Values.Select(x => x.max).Max();
+
+        var randomFactor = min + (max - min) * randomValue / 100f;
 
         var nears = GetNearby(position).ToArray();
 
@@ -246,7 +268,7 @@ public static class TerrainBuilder
 
         var mapTypeFactor = (dictTerrainHeight[mapType].max + dictTerrainHeight[mapType].min) / 2;
 
-        var terrain = ConvertToTerrainType(randomFactor * 0.3f + nearbyFactor * 0.3f + mapTypeFactor * 0.4f);
+        var terrain = ConvertToTerrainType(randomFactor * 0.3f + nearbyFactor * 0.45f + mapTypeFactor * 0.25f);
 
         dict.Add(position, terrain);
     }
