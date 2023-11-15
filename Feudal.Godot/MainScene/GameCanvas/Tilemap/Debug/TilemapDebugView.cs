@@ -1,9 +1,9 @@
-using Godot;
+﻿using Godot;
 
 public partial class TilemapDebugView : ViewControl
 {
-    public string SelectedTerrainType 
-    { 
+    public string SelectedTerrainType
+    {
         get
         {
             var checkBox = GetNode<CheckBox>("UICanvasLayer/HBoxContainer/VBoxContainer/Plain/CheckBox");
