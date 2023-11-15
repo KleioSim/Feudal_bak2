@@ -11,11 +11,11 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Terrains = new List<TerrainMock>() { new TerrainMock() { Position = (0,0), TerrainType = TerrainType.Plain } }
+        Terrains = new List<TerrainMock>() { new TerrainMock() { Position = (0, 0), TerrainType = TerrainType.Plain } }
     };
 
     [Export]
-    public Vector2[] Positions 
+    public Vector2[] Positions
     {
         get
         {
@@ -25,14 +25,14 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
         {
             var list = model.Terrains as List<TerrainMock>;
 
-            if(value.Length < list.Count)
+            if (value.Length < list.Count)
             {
                 list.RemoveRange(0, list.Count - value.Length);
             }
 
-            for(int i=0; i< value.Length; i++)
+            for (int i = 0; i < value.Length; i++)
             {
-                if(list.Count <= i)
+                if (list.Count <= i)
                 {
                     list.Add(new TerrainMock());
                 }

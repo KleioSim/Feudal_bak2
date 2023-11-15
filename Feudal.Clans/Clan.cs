@@ -14,6 +14,8 @@ internal class Clan : IClan
 
     public ILabor Labor => labor;
 
+    public Dictionary<ProductType, IProduct> Products { get; }
+
     private readonly LaborImp labor;
 
     public Clan()
@@ -21,7 +23,10 @@ internal class Clan : IClan
         Id = $"CLAN_{Count++}";
         Name = Id;
 
+        Products = Enum.GetValues<ProductType>().ToDictionary(e => e, e => new Product(this, e) as IProduct);
+
         labor = new LaborImp(this);
+
     }
 
     public class LaborImp : ILabor

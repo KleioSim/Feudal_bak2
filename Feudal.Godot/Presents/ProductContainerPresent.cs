@@ -1,24 +1,25 @@
 ﻿using Feudal.Interfaces;
-using Godot;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
-internal partial class TaskContainerPresent : Present<TaskContainerView, ISession>
+public partial class ProductContainerPresent : Present<ProductContainerView, ISession>
 {
     protected override void InitialConnects()
     {
-        //throw new System.NotImplementedException();
+
     }
 
     protected override void Refresh()
     {
-        var taskViewDict = view.GetCurrentItems().ToDictionary(x => x.Id, x => x);
-        var taskObjDict = model.Tasks.ToDictionary(x => x.Id, x => x);
+        var dict = view.ItemPlaceHolder.GetSignalList();
 
-        var needRemoves = new Queue<object>(taskViewDict.Keys.Except(taskObjDict.Keys));
-        var needAdds = new Queue<object>(taskObjDict.Keys.Except(taskViewDict.Keys));
+        var taskViewDict = view.GetCurrentItems().ToDictionary(x => x.Id, x => x);
+        var taskObjDict = model.PlayerClan.Products;
+
+        var needRemoves = new Queue<object>(taskViewDict.Keys.Except(taskObjDict.Keys.OfType<object>()));
+        var needAdds = new Queue<object>(taskObjDict.Keys.OfType<object>().Except(taskViewDict.Keys));
 
         while (needAdds.TryDequeue(out object key))
         {

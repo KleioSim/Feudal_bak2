@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bke6fnpqcxp0j"]
+[gd_scene load_steps=5 format=3 uid="uid://bke6fnpqcxp0j"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/GUIView.cs" id="1_gbelf"]
+[ext_resource type="PackedScene" uid="uid://ccqmb3h1m1otu" path="res://MainScene/GUI/ProductContainter.tscn" id="2_dp3sd"]
 [ext_resource type="PackedScene" uid="uid://cpbxiuomdmabt" path="res://MainScene/GUI/TaskContainer.tscn" id="2_eaeb3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_56pkw"]
@@ -19,11 +20,8 @@ script = ExtResource("1_gbelf")
 
 [node name="Top" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = -696.0
-offset_bottom = 144.0
-grow_horizontal = 2
+offset_right = 1408.0
+offset_bottom = 150.0
 
 [node name="Player" type="Button" parent="Top"]
 custom_minimum_size = Vector2(120, 150)
@@ -94,16 +92,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
-[node name="Button3" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-
-[node name="Button5" type="Button" parent="Top/VBoxContainer/TopInfoContainer"]
-custom_minimum_size = Vector2(180, 0)
+[node name="ProductContainter" parent="Top/VBoxContainer/TopInfoContainer" instance=ExtResource("2_dp3sd")]
 layout_mode = 2
 
 [node name="Date" type="Panel" parent="Top/VBoxContainer/TopInfoContainer"]

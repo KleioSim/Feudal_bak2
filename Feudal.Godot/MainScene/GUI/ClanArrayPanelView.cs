@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ public abstract partial class ItemContainer<T> : ViewControl
             .Where(x => x != null);
     }
 
-    public T AddItem(string taskId)
+    public T AddItem(object taskId)
     {
         var item = ItemPlaceHolder.CreateInstance() as T;
         item.Id = taskId;

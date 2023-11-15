@@ -11,7 +11,7 @@ public partial class ClanPanelPresent : Present<ClanPanelView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Clans = new List<ClanMock>() { new ClanMock() { Id = ClanPanelView.DefaultId, Name = ClanPanelView.DefaultId} }
+        Clans = new List<ClanMock>() { new ClanMock() { Id = ClanPanelView.DefaultId, Name = ClanPanelView.DefaultId } }
     };
 }
 
@@ -26,6 +26,8 @@ public class ClanMock : IClan
     public int PopCount { get; set; }
 
     public ILabor Labor => labor;
+
+    public Dictionary<ProductType, IProduct> Products { get; set; } = Enum.GetValues<ProductType>().ToDictionary(e => e, e => new ProductMock() { Type = e } as IProduct);
 
     private LaborMock labor;
 
@@ -43,4 +45,29 @@ public class ClanMock : IClan
 public class LaborMock : ILabor
 {
     public int TotalCount { get; set; }
+}
+
+public class ProductMock : IProduct
+{
+    public ProductType Type { get; set; }
+
+    public float Current { get; set; }
+
+    public float Income { get; set; }
+
+    public float Output { get; set; }
+
+    public float Surplus { get; set; }
+
+    public IEnumerable<(string desc, float value)> IncomeDetails { get; } = new (string, float)[]
+    {
+        ("Income1", 0.1f),
+        ("Income2", 0.2f)
+    };
+
+    public IEnumerable<(string desc, float value)> OutputDetails { get; } = new (string, float)[]
+    {
+        ("Output1", 0.3f),
+        ("Output2", 0.4f)
+    };
 }

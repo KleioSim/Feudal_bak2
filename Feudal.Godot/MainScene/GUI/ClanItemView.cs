@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 
 public partial class ClanItemView : ItemView
@@ -13,11 +13,11 @@ public partial class ClanItemView : ItemView
 
     public Button Button => GetNode<Button>("Button");
 
-    public override string Id { get; set; } = DefaultId;
+    public override object Id { get; set; } = DefaultId;
 
     public override void _Ready()
     {
-        Button.Pressed += ()=> ShowClan(Id);
+        Button.Pressed += () => ShowClan(Id as string);
 
         base._Ready();
     }
