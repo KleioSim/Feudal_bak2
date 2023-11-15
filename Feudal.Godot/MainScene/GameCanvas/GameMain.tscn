@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://brma2tipao2q0"]
+[gd_scene load_steps=2 format=3 uid="uid://biathltfxvxxy"]
 
 [ext_resource type="PackedScene" uid="uid://droao4y6kuttb" path="res://MainScene/GameCanvas/Tilemap/Tilemap.tscn" id="1_6mbbm"]
 

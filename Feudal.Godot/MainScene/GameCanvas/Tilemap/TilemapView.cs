@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 
 public partial class TilemapView : ViewControl
@@ -6,8 +6,8 @@ public partial class TilemapView : ViewControl
     [Signal]
     public delegate void ClickTileEventHandler(Vector2I index);
 
-    public TileMap Tilemap => GetNode<TileMap>("MapCanvasLayer/TileMap");
-    public Camera2D Camera => GetNode<Camera2D>("MapCanvasLayer/Camera2D");
+    public TileMap Tilemap => GetNode<TileMap>("TileMap");
+    public Camera2D Camera => GetNode<Camera2D>("Camera2D");
 
     private Vector2 zoomStep = new Vector2(0.02f, 0.02f);
     private Vector2 maxZoom = new Vector2(0.8f, 0.8f);
@@ -33,14 +33,14 @@ public partial class TilemapView : ViewControl
                 }
                 else if (eventKey.ButtonIndex == MouseButton.WheelDown)
                 {
-                    if(Camera.Zoom + zoomStep <= maxZoom)
+                    if (Camera.Zoom + zoomStep <= maxZoom)
                     {
                         Camera.Zoom += zoomStep;
                     }
                 }
                 else if (eventKey.ButtonIndex == MouseButton.WheelUp)
                 {
-                    if(Camera.Zoom - zoomStep >= minZoom)
+                    if (Camera.Zoom - zoomStep >= minZoom)
                     {
                         Camera.Zoom -= zoomStep;
                     }

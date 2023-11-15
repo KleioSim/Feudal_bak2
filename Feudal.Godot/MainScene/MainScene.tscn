@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://MainScene/MainSceneView.cs" id="1_2bdc7"]
 [ext_resource type="PackedScene" uid="uid://bke6fnpqcxp0j" path="res://MainScene/GUI/GUI.tscn" id="1_j8ujk"]
-[ext_resource type="PackedScene" uid="uid://brma2tipao2q0" path="res://MainScene/GameCanvas/GameCanvas.tscn" id="3_hysmu"]
+[ext_resource type="PackedScene" uid="uid://biathltfxvxxy" path="res://MainScene/GameCanvas/GameMain.tscn" id="3_hysmu"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -13,10 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2bdc7")
 
-[node name="GameCanvas" parent="." instance=ExtResource("3_hysmu")]
-layout_mode = 1
-
-[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUICanvasLayer" type="CanvasLayer" parent="."]
 layer = 99
 
-[node name="GUI" parent="UICanvasLayer" instance=ExtResource("1_j8ujk")]
+[node name="GUI" parent="GUICanvasLayer" instance=ExtResource("1_j8ujk")]
+
+[node name="GameCanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="GameMain" parent="GameCanvasLayer" instance=ExtResource("3_hysmu")]

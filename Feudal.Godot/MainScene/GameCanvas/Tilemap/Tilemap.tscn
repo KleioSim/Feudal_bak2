@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://droao4y6kuttb"]
+[gd_scene load_steps=13 format=3 uid="uid://droao4y6kuttb"]
 
 [ext_resource type="Script" path="res://MainScene/GameCanvas/Tilemap/TilemapView.cs" id="1_luwuq"]
 [ext_resource type="Texture2D" uid="uid://c3ndwun230sjg" path="res://MainScene/GameCanvas/Tilemap/Images/Plain.png" id="2_nod68"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ccdo2niatkw6q" path="res://MainScene/GameCanvas/Tilemap/Images/Mountion.png" id="4_bpvac"]
 [ext_resource type="Texture2D" uid="uid://bqlcikp3eguje" path="res://MainScene/GameCanvas/Tilemap/Images/Lake.png" id="5_ac4od"]
 [ext_resource type="Texture2D" uid="uid://cjtl48bojca3u" path="res://MainScene/GameCanvas/Tilemap/Images/Marsh.png" id="6_cskky"]
-[ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://addons/ScreenMoveControl/MoveControl.tscn" id="6_sbtl7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8fjh4"]
 resource_name = "Plain"
@@ -65,19 +64,11 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_luwuq")
 
-[node name="UICanvasLayer" type="CanvasLayer" parent="."]
-layer = 99
-
-[node name="MoveControl" parent="UICanvasLayer" instance=ExtResource("6_sbtl7")]
-
-[node name="MapCanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="TileMap" type="TileMap" parent="MapCanvasLayer"]
+[node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_2glhd")
 format = 2
 layer_0/y_sort_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="MapCanvasLayer"]
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.03, 0.03)

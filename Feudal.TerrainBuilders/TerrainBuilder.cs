@@ -89,7 +89,7 @@ public static class TerrainBuilder
             }
         }
 
-        if (dict.Values.Count(x => x == mapType) * 100 / dict.Count < 30)
+        if (dict.Count > 0 && dict.Values.Count(x => x == mapType) * 100 / dict.Count < 30)
         {
             if (randomValue > 80)
             {
