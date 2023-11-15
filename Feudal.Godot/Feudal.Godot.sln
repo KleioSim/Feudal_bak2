@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.Messages", "..\Feuda
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Clans", "..\Feudal.Clans\Feudal.Clans.csproj", "{B36CB9C4-1082-4CD7-A050-D04404799127}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Terrains", "..\Feudal.Terrains\Feudal.Terrains.csproj", "{C56AC85E-0431-4058-BF06-7159F8A81F59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.TerrainBuilders", "..\Feudal.TerrainBuilders\Feudal.TerrainBuilders.csproj", "{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,22 @@ Global
 		{B36CB9C4-1082-4CD7-A050-D04404799127}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
 		{B36CB9C4-1082-4CD7-A050-D04404799127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B36CB9C4-1082-4CD7-A050-D04404799127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56AC85E-0431-4058-BF06-7159F8A81F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFC438B-EE3A-4128-87F6-F6F2D0FA82FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

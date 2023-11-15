@@ -4,6 +4,7 @@ using Feudal.Interfaces.UICommands;
 using Feudal.MessageBuses;
 using Feudal.MessageBuses.Interfaces;
 using Feudal.Messages;
+using Feudal.Terrains;
 using System;
 using System.Collections;
 
@@ -20,16 +21,14 @@ internal class Session : ISession
     };
     public IEnumerable<IClan> Clans => clanManager;
 
-    public IEnumerable<ITerrain> Terrains { get; } = new List<ITerrain>()
-    {
-
-    };
+    public IEnumerable<ITerrain> Terrains => terrainManager;
 
     public IDate Date { get; }
 
     private IMessageBus messageBus;
 
     private ClanManager clanManager;
+    private TerrainManager terrainManager;
 
     public void ProcessUICommand(UICommand command)
     {
@@ -42,6 +41,7 @@ internal class Session : ISession
 
         Date = new Date(messageBus);
         clanManager = new ClanManager(messageBus);
+        terrainManager = new TerrainManager(messageBus);
     }
 }
 
