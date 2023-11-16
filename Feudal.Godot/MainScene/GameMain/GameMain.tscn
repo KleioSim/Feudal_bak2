@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://biathltfxvxxy"]
+
+[ext_resource type="Script" path="res://MainScene/GameMain/GameMainView.cs" id="1_ghnen"]
+[ext_resource type="PackedScene" uid="uid://droao4y6kuttb" path="res://MainScene/GameMain/Tilemap/Tilemap.tscn" id="1_ppyuh"]
+
+[node name="ViewControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ghnen")
+
+[node name="Tilemap" parent="." instance=ExtResource("1_ppyuh")]
+layout_mode = 1

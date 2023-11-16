@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhdl0mj0idlgh"]
+[gd_scene load_steps=5 format=3 uid="uid://bhdl0mj0idlgh"]
 
 [ext_resource type="Script" path="res://MainScene/MainSceneView.cs" id="1_2bdc7"]
 [ext_resource type="PackedScene" uid="uid://bke6fnpqcxp0j" path="res://MainScene/GUI/GUI.tscn" id="1_j8ujk"]
-[ext_resource type="PackedScene" uid="uid://biathltfxvxxy" path="res://MainScene/GameCanvas/GameMain.tscn" id="3_hysmu"]
+[ext_resource type="PackedScene" uid="uid://biathltfxvxxy" path="res://MainScene/GameMain/GameMain.tscn" id="3_hysmu"]
+[ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://addons/ScreenMoveControl/MoveControl.tscn" id="3_o2hnf"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -18,7 +19,11 @@ layer = 99
 
 [node name="GUI" parent="GUICanvasLayer" instance=ExtResource("1_j8ujk")]
 
+[node name="MoveControl" parent="GUICanvasLayer" instance=ExtResource("3_o2hnf")]
+
 [node name="GameCanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
 [node name="GameMain" parent="GameCanvasLayer" instance=ExtResource("3_hysmu")]
+
+[connection signal="CanvasMove" from="GUICanvasLayer/MoveControl" to="GameCanvasLayer/GameMain" method="OnCanvasMoved"]

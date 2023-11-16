@@ -49,15 +49,4 @@ public partial class TilemapView : ViewControl
             return;
         }
     }
-
-    public void OnScreenMoved(float angle)
-    {
-        GD.Print($"OnCanvasMoved {angle}");
-
-        //GD.Print($"MapControl.Position {MapControl.Position}");
-
-        Camera.Position = Camera.Position + (Vector2.Right * 10).Rotated(angle);
-
-        //MapControl.Position.MoveToward
-    }
 }
