@@ -26,7 +26,7 @@ internal partial class MainScenePresent : Present<MainSceneView, ISession>
 
         Terrains = new List<TerrainMock>()
         {
-            new TerrainMock(){ Position = (0,0), TerrainType = TerrainType.Plain }
+            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Plain }
         },
 
         Date = new DateMock()

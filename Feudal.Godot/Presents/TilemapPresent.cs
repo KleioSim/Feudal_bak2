@@ -14,7 +14,7 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
     protected override void Refresh()
     {
         var dictTileSource = new Dictionary<string, int>();
-        
+
         var count = view.Tilemap.TileSet.GetSourceCount();
         for (int i = 0; i < count; i++)
         {
@@ -28,7 +28,7 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
 
         foreach (var terrain in model.Terrains)
         {
-            view.Tilemap.SetCell(0, new Vector2I(terrain.Position.x, terrain.Position.y), dictTileSource[terrain.TerrainType.ToString()], new Vector2I(0,0), 0);
+            view.Tilemap.SetCell(0, new Vector2I(terrain.Position.x, terrain.Position.y), dictTileSource[terrain.TerrainType.ToString()], new Vector2I(0, 0), 0);
         }
     }
 }

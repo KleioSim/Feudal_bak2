@@ -29,7 +29,11 @@ public partial class TilemapView : ViewControl
                 {
                     var tileIndex = Tilemap.LocalToMap(GetGlobalMousePosition());
                     GD.Print(tileIndex);
-                    EmitSignal(SignalName.ClickTile, tileIndex);
+
+                    if (Tilemap.GetCellSourceId(0, tileIndex) != -1)
+                    {
+                        EmitSignal(SignalName.ClickTile, tileIndex);
+                    }
                 }
                 else if (eventKey.ButtonIndex == MouseButton.WheelDown)
                 {

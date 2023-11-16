@@ -35,6 +35,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TerrainPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/TerrainPanel.tscn"]
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
 [node name="ClanPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanPanel.tscn"]
 layout_mode = 1
 offset_right = 0.0

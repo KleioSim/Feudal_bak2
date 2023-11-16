@@ -33,6 +33,10 @@ public partial class LeftPresent : Present<LeftView, ISession>
             {
                 view.ShowClanPanel(ClanItemView.DefaultId);
             }
+            else if (mainPanelType == nameof(TerrainPanelView))
+            {
+                view.ShowTerrainPanel(TerrainPanelView.DefaultPos);
+            }
             else
             {
                 throw new NotImplementedException();
@@ -65,6 +69,10 @@ public partial class LeftPresent : Present<LeftView, ISession>
             new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000  },
             new ClanMock(),
             new ClanMock(),
+        },
+        Terrains = new[]
+        {
+            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill }
         }
     };
 }

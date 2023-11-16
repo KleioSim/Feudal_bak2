@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ public partial class ClanPanelView : ViewControl, IMainPanelView
 public interface IMainPanelView
 {
     internal static Type[] DerivedTypes { get; } = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(x =>x.IsAssignableTo(typeof(IMainPanelView)) 
+        .Where(x => x.IsAssignableTo(typeof(IMainPanelView))
             && x.IsClass && !x.IsAbstract)
         .ToArray();
 }

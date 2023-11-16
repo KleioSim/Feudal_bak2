@@ -12,12 +12,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_2bdc7")
 
 [node name="GUICanvasLayer" type="CanvasLayer" parent="."]
 layer = 99
 
 [node name="GUI" parent="GUICanvasLayer" instance=ExtResource("1_j8ujk")]
+mouse_filter = 2
 
 [node name="MoveControl" parent="GUICanvasLayer" instance=ExtResource("3_o2hnf")]
 
@@ -27,3 +29,6 @@ follow_viewport_enabled = true
 [node name="GameMain" parent="GameCanvasLayer" instance=ExtResource("3_hysmu")]
 
 [connection signal="CanvasMove" from="GUICanvasLayer/MoveControl" to="GameCanvasLayer/GameMain" method="OnCanvasMoved"]
+[connection signal="ClickTile" from="GameCanvasLayer/GameMain/Tilemap" to="GUICanvasLayer/GUI" method="ShowLeftView_Terrain"]
+
+[editable path="GameCanvasLayer/GameMain"]

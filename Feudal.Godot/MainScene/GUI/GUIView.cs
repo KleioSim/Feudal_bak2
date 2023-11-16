@@ -39,6 +39,13 @@ public partial class GUIView : ViewControl
         };
     }
 
+    public void ShowLeftView_Terrain(Vector2I pos)
+    {
+        var leftView = ShowLeftView();
+
+        var mainPanelView = leftView.ShowTerrainPanel(pos);
+    }
+
     private LeftView ShowLeftView()
     {
         var leftView = LeftPlaceHolder.GetParent().GetNodeOrNull<LeftView>(nameof(LeftView));

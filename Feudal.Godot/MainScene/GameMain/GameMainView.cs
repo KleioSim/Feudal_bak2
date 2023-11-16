@@ -15,4 +15,6 @@ public partial class GameMainView : ViewControl
 
         //MapControl.Position.MoveToward
     }
+
+
 }

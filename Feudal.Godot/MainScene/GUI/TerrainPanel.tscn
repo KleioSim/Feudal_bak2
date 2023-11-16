@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://iqtdd7cucgyx"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/TerrainPanelView.cs" id="1_icp7x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a862c"]
+font_size = 20
+
+[node name="ViewControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1566.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_icp7x")
+
+[node name="DataContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DataContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="DataContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+text = "TerrainTitle"
+label_settings = SubResource("LabelSettings_a862c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DataContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Pop" type="HBoxContainer" parent="DataContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Pop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "人口"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Pop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+vertical_alignment = 1
+
+[node name="Labor" type="HBoxContainer" parent="DataContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Labor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "劳力"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="DataContainer/VBoxContainer/HBoxContainer/Labor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+vertical_alignment = 1

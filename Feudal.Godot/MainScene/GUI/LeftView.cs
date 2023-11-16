@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ public partial class LeftView : ViewControl
             var index = Array.FindIndex(mainPanels, x => ((Control)x).Visible);
 
             ((Control)mainPanels[index]).SetHidden(true);
-            ((Control)mainPanels[index-1]).SetHidden(false);
+            ((Control)mainPanels[index - 1]).SetHidden(false);
 
             Prev.Disabled = index == 1;
             Next.Disabled = false;
@@ -66,6 +66,14 @@ public partial class LeftView : ViewControl
         return manPanel;
     }
 
+    internal TerrainPanelView ShowTerrainPanel(Vector2I pos)
+    {
+        var manPanel = AddOrFindMainPanel<TerrainPanelView>(x => x.TerrainPosition == pos);
+        manPanel.TerrainPosition = pos;
+
+        return manPanel;
+    }
+
     private T AddOrFindMainPanel<T>(Predicate<T> predicate = null) where T : ViewControl, IMainPanelView
     {
         var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToList();
@@ -74,7 +82,7 @@ public partial class LeftView : ViewControl
         if (index != -1)
         {
             var needRemoves = mainPanels.Skip(index + 1).ToArray();
-            foreach(var item in needRemoves)
+            foreach (var item in needRemoves)
             {
                 mainPanels.Remove(item);
 
