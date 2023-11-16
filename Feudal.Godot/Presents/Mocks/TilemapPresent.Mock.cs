@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,69 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Terrains = new List<TerrainMock>() { new TerrainMock() { Position = (0, 0), TerrainType = TerrainType.Plain } }
+        Terrains = new List<TerrainMock>() { new TerrainMock() { Position = (0, 0), TerrainType = Interfaces.TerrainType.Plain } }
     };
+
+    private string terrainType = nameof(Interfaces.TerrainType.Plain);
+    public string TerrainType
+    {
+        get => terrainType;
+        set
+        {
+            if (terrainType == value)
+            {
+                return;
+            }
+
+            terrainType = value;
+
+            var list = model.Terrains as List<TerrainMock>;
+            foreach (var terrain in list)
+            {
+                terrain.TerrainType = Enum.Parse<Interfaces.TerrainType>(terrainType);
+            }
+
+            isDirty = true;
+        }
+    }
+
+    public override Array<Dictionary> _GetPropertyList()
+    {
+        var properties = new Array<Dictionary>();
+
+        properties.Add(new Dictionary()
+        {
+            { "name", nameof(TerrainType) },
+            { "type", (int)Variant.Type.String },
+            { "usage", (int)PropertyUsageFlags.Default }, // See above assignment.
+            { "hint", (int)PropertyHint.Enum },
+            { "hint_string", string.Join(",", Enum.GetNames<Interfaces.TerrainType>()) }
+        });
+
+        return properties;
+    }
+
+    private bool isDiscovered = true;
+    [Export]
+    public bool IsDiscovered
+    {
+        get
+        {
+            return isDiscovered;
+        }
+        set
+        {
+            isDiscovered = value;
+
+            var list = model.Terrains as List<TerrainMock>;
+            foreach (var terrain in list)
+            {
+                terrain.IsDiscoverd = isDiscovered;
+            }
+
+            isDirty = true;
+        }
+    }
 
     [Export]
     public Vector2[] Positions
@@ -38,7 +100,8 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
                 }
 
                 list[i].Position = ((int)value[i].X, (int)value[i].Y);
-                list[i].TerrainType = (TerrainType)(i % Enum.GetValues(typeof(TerrainType)).Length);
+                list[i].TerrainType = Enum.Parse<Interfaces.TerrainType>(terrainType);
+                list[i].IsDiscoverd = isDiscovered;
             }
 
             isDirty = true;
@@ -51,4 +114,6 @@ public class TerrainMock : ITerrain
     public (int x, int y) Position { get; set; }
 
     public TerrainType TerrainType { get; set; }
+
+    public bool IsDiscoverd { get; set; } = true;
 }

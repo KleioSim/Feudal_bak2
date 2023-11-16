@@ -29,5 +29,12 @@ internal class TerrainManager : IEnumerable<ITerrain>
 
         list = TerrainBuilder.Build(3, TerrainType.Hill).Select(p => new Terrain() { Position = p.Key, TerrainType = p.Value }).ToList();
 
+        foreach (var terrain in list)
+        {
+            if (Math.Abs(terrain.Position.x) <= 1 && Math.Abs(terrain.Position.y) <= 1)
+            {
+                terrain.IsDiscoverd = true;
+            }
+        }
     }
 }
