@@ -116,4 +116,6 @@ public class TerrainMock : ITerrain
     public TerrainType TerrainType { get; set; }
 
     public bool IsDiscoverd { get; set; } = true;
+
+    public IWorkHood WorkHood { get; set; }
 }

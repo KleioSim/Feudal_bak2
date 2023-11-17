@@ -7,6 +7,8 @@ public interface ITerrain
     TerrainType TerrainType { get; }
 
     bool IsDiscoverd { get; }
+
+    IWorkHood WorkHood { get; }
 }
 
 public enum TerrainType
@@ -16,4 +18,14 @@ public enum TerrainType
     Mountion,
     Lake,
     Marsh
+}
+
+public interface IWorkHood
+{
+    ITask Task { get; }
+}
+
+public interface IDiscoverWorkHood : IWorkHood
+{
+    int DiscoverdPercent { get; }
 }
