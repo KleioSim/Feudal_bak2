@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using Feudal.MessageBuses.Interfaces;
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +77,7 @@ public class SessionMock : ISession
     public IEnumerable<ITerrain> Terrains { get; init; }
     public IEnumerable<IWorkHood> WorkHoods { get; init; }
 
-    public void ProcessUICommand(UICommand command)
+    public void ProcessUICommand(IMessage command)
     {
         GD.Print($"ProcessUICommand {command.GetType().Name}");
     }

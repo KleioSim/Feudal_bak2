@@ -1,18 +1,14 @@
 ﻿namespace Feudal.Interfaces.UICommands;
 
+public class UICommand
+{
+
+}
+
 public class NextTurnCommand : UICommand
 {
 }
 
-public class Message
-{
-
-}
-
-public class UICommand : Message
-{
-
-}
 
 public class DiscoverTerrainCommand : UICommand
 {

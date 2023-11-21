@@ -36,8 +36,6 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
             Terrains.Add(new TerrainMock() { Position = currPos, TerrainType = dict[currPos] });
 
             currPos = GetNextPosition(currPos);
-
-            SendUICommand(new UICommand());
         };
 
         view.Generate.Pressed += () =>
@@ -61,8 +59,6 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
             TerrainBuilder.Build(ref dict, MapType, pos);
 
             Terrains.Add(new TerrainMock() { Position = pos, TerrainType = dict[pos] });
-
-            SendUICommand(new UICommand());
         };
     }
 

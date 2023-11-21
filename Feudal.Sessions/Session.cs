@@ -5,6 +5,7 @@ using Feudal.MessageBuses;
 using Feudal.MessageBuses.Interfaces;
 using Feudal.Messages;
 using Feudal.Terrains;
+using Feudal.WorkHoods;
 using System;
 using System.Collections;
 
@@ -12,6 +13,8 @@ namespace Feudal.Sessions;
 
 internal class Session : ISession
 {
+    public IDate Date { get; }
+
     public IClan PlayerClan => Clans.First();
 
     public IEnumerable<ITask> Tasks { get; } = new List<ITask>()
@@ -19,22 +22,20 @@ internal class Session : ISession
         new Task(),
         new Task()
     };
+
     public IEnumerable<IClan> Clans => clanManager;
-
     public IEnumerable<ITerrain> Terrains => terrainManager;
-
-    public IDate Date { get; }
-
-    public IEnumerable<IWorkHood> WorkHoods => throw new NotImplementedException();
+    public IEnumerable<IWorkHood> WorkHoods => workHoodManager;
 
     private IMessageBus messageBus;
 
     private ClanManager clanManager;
     private TerrainManager terrainManager;
+    private WorkHoodManager workHoodManager;
 
-    public void ProcessUICommand(UICommand command)
+    public void ProcessUICommand(IMessage message)
     {
-        messageBus.PostMessage(new MESSAGE_NextTurn());
+        messageBus.PostMessage(message);
     }
 
     public Session()
@@ -44,6 +45,9 @@ internal class Session : ISession
         Date = new Date(messageBus);
         clanManager = new ClanManager(messageBus);
         terrainManager = new TerrainManager(messageBus);
+        workHoodManager = new WorkHoodManager(messageBus);
+
+        terrainManager.GenerateMap();
     }
 }
 

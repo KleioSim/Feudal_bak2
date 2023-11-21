@@ -20,3 +20,19 @@ public class MESSAGE_DayInc : IMessage
         this.day = day;
     }
 }
+
+public class MESSAGE_AddDiscoverWorkHood : IMessage
+{
+    public (int x, int y) Position { get; init; }
+}
+
+public class MESSAGE_StartDiscover : IMessage
+{
+    public string WorkHoodId { get; init; }
+    public (int x, int y) Position { get; init; }
+}
+
+public class MESSAGE_RemoveWorkHood : IMessage
+{
+    public string Id { get; init; }
+}

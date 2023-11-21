@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using Feudal.Messages;
 using System;
 using System.Linq;
 
@@ -18,8 +19,9 @@ public partial class WorkHoodPanelPresent : Present<WorkHoodPanelView, ISession>
             {
                 case IDiscoverWorkHood discoverWorkHood:
                     {
-                        SendUICommand(new DiscoverTerrainCommand()
+                        SendUICommand(new MESSAGE_StartDiscover()
                         {
+                            WorkHoodId = discoverWorkHood.Id,
                             Position = discoverWorkHood.Position
                         });
                     }

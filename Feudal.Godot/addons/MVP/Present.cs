@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using Feudal.MessageBuses.Interfaces;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ public abstract partial class Present : Control
     protected abstract void InitialConnects();
     protected abstract void Process();
 
-    internal void SendUICommand(UICommand command)
+    internal void SendUICommand(IMessage command)
     {
         model.ProcessUICommand(command);
 

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,17 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="Feudal.Sessions.Builders" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Feudal.Clans\Feudal.Clans.csproj" />
     <ProjectReference Include="..\Feudal.Interfaces\Feudal.Interfaces.csproj" />
     <ProjectReference Include="..\Feudal.MessageBuses.Interfaces\Feudal.MessageBuses.Interfaces.csproj" />
-    <ProjectReference Include="..\Feudal.MessageBuses\Feudal.MessageBuses.csproj" />
     <ProjectReference Include="..\Feudal.Messages\Feudal.Messages.csproj" />
-    <ProjectReference Include="..\Feudal.Terrains\Feudal.Terrains.csproj" />
-    <ProjectReference Include="..\Feudal.WorkHoods\Feudal.WorkHoods.csproj" />
   </ItemGroup>
 
 </Project>

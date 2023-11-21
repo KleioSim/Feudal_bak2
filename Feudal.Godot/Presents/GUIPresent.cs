@@ -1,5 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using Feudal.Messages;
 using Godot;
 using System.Linq;
 
@@ -9,7 +10,7 @@ public partial class GUIPresent : Present<GUIView, ISession>
 {
     protected override void InitialConnects()
     {
-        view.NextTurn.ButtonDown += () => SendUICommand(new NextTurnCommand());
+        view.NextTurn.ButtonDown += () => SendUICommand(new MESSAGE_NextTurn());
     }
 
     protected override void Refresh()

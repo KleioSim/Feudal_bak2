@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Feudal.MessageBuses.Interfaces\Feudal.MessageBuses.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

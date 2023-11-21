@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces.UICommands;
+using Feudal.MessageBuses.Interfaces;
 
 namespace Feudal.Interfaces;
 
@@ -13,7 +14,7 @@ public interface ISession
     IEnumerable<ITerrain> Terrains { get; }
     IEnumerable<IWorkHood> WorkHoods { get; }
 
-    void ProcessUICommand(UICommand command);
+    void ProcessUICommand(IMessage command);
 }
 
 
