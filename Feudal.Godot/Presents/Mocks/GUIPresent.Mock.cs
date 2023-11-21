@@ -47,6 +47,16 @@ public partial class GUIPresent : Present<GUIView, ISession>
             new ClanMock(),
         },
 
+        Terrains = new[]
+        {
+            new TerrainMock()
+            {
+                Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
+                TerrainType = Interfaces.TerrainType.Plain,
+                IsDiscoverd = false,
+            }
+        },
+
         Date = new DateMock()
         {
             Year = 1,
@@ -59,11 +69,12 @@ public partial class GUIPresent : Present<GUIView, ISession>
 public class SessionMock : ISession
 {
     public IClan PlayerClan => Clans.First();
+    public IDate Date { get; init; }
 
     public IEnumerable<IClan> Clans { get; init; }
     public IEnumerable<ITask> Tasks { get; init; }
     public IEnumerable<ITerrain> Terrains { get; init; }
-    public IDate Date { get; init; }
+    public IEnumerable<IWorkHood> WorkHoods { get; init; }
 
     public void ProcessUICommand(UICommand command)
     {

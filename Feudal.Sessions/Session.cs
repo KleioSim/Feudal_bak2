@@ -25,6 +25,8 @@ internal class Session : ISession
 
     public IDate Date { get; }
 
+    public IEnumerable<IWorkHood> WorkHoods => throw new NotImplementedException();
+
     private IMessageBus messageBus;
 
     private ClanManager clanManager;

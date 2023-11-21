@@ -1,17 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://iqtdd7cucgyx"]
+[gd_scene load_steps=5 format=3 uid="uid://iqtdd7cucgyx"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanelView.cs" id="1_icp7x"]
+[ext_resource type="PackedScene" uid="uid://yxpn5kuss6oj" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodPanel.tscn" id="2_mtmnr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a862c"]
 font_size = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osr01"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fr58u"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pegvo"]
-bg_color = Color(0.109804, 0.109804, 0.109804, 1)
 
 [node name="ViewControl" type="Control"]
 layout_mode = 3
@@ -47,39 +43,18 @@ label_settings = SubResource("LabelSettings_a862c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffersPanel" type="PanelContainer" parent="DataContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DiscoverProgressBar" type="ProgressBar" parent="DataContainer/VBoxContainer/BuffersPanel"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-value = 80.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="DataContainer/VBoxContainer/BuffersPanel/DiscoverProgressBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "探索"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BufferContainer" type="PanelContainer" parent="DataContainer/VBoxContainer/BuffersPanel"]
-visible = false
+[node name="BufferContainer" type="PanelContainer" parent="DataContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_osr01")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="DataContainer/VBoxContainer/BuffersPanel/BufferContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="DataContainer/VBoxContainer/BufferContainer"]
 layout_mode = 2
 
-[node name="Item" type="Panel" parent="DataContainer/VBoxContainer/BuffersPanel/BufferContainer/HFlowContainer"]
+[node name="Item" type="Panel" parent="DataContainer/VBoxContainer/BufferContainer/HFlowContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DataContainer/VBoxContainer/BuffersPanel/BufferContainer/HFlowContainer/Item"]
+[node name="Label" type="Label" parent="DataContainer/VBoxContainer/BufferContainer/HFlowContainer/Item"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,118 +65,5 @@ text = "T1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WorkPanel" type="PanelContainer" parent="DataContainer/VBoxContainer"]
+[node name="WorkPanel" parent="DataContainer/VBoxContainer" instance=ExtResource("2_mtmnr")]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DataContainer/VBoxContainer/WorkPanel"]
-layout_mode = 2
-
-[node name="LaborPanel" type="Panel" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 160)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_fr58u")
-
-[node name="SelectLabor" type="Panel" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel"]
-custom_minimum_size = Vector2(95, 110)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.5
-offset_top = -55.0
-offset_right = 47.5
-offset_bottom = 55.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pegvo")
-
-[node name="Button" type="Button" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel/SelectLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel/SelectLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CurrentLabor" type="Panel" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel"]
-visible = false
-custom_minimum_size = Vector2(95, 110)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.5
-offset_top = -55.0
-offset_right = 47.5
-offset_bottom = 55.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pegvo")
-
-[node name="Button" type="Button" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel/CurrentLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel/CurrentLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CancelLabor" type="Button" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/LaborPanel/CurrentLabor"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1.0
-offset_right = 31.0
-offset_bottom = 32.0
-grow_horizontal = 0
-text = "x"
-
-[node name="Product" type="HBoxContainer" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-
-[node name="Type" type="Label" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/Product"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Value" type="Label" parent="DataContainer/VBoxContainer/WorkPanel/VBoxContainer/Product"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1

@@ -12,7 +12,22 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Terrains = new List<TerrainMock>() { new TerrainMock() { Position = (0, 0), TerrainType = Interfaces.TerrainType.Plain } }
+        Terrains = new List<TerrainMock>()
+        {
+            new TerrainMock()
+            {
+                Position = (0, 0),
+                TerrainType = Interfaces.TerrainType.Plain
+            }
+        },
+
+        WorkHoods = new List<IWorkHood>
+        {
+            new DiscoverWorkHood_Mock()
+            {
+                Id = WorkHoodPanelView.DefaultId
+            }
+        }
     };
 
     private string terrainType = nameof(Interfaces.TerrainType.Plain);
@@ -118,4 +133,6 @@ public class TerrainMock : ITerrain
     public bool IsDiscoverd { get; set; } = true;
 
     public IWorkHood WorkHood { get; set; }
+
+    public string WorkHoodId { get; set; }
 }

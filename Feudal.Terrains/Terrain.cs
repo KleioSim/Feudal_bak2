@@ -10,19 +10,7 @@ class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    private IWorkHood workHood;
-    public IWorkHood WorkHood
-    {
-        get
-        {
-            if (!IsDiscoverd && !(workHood is DiscoverWorkHood))
-            {
-                workHood = new DiscoverWorkHood();
-            }
-
-            return workHood;
-        }
-    }
+    public string WorkHoodId { get; private set; }
 }
 
 class DiscoverWorkHood : IDiscoverWorkHood
@@ -30,4 +18,8 @@ class DiscoverWorkHood : IDiscoverWorkHood
     public int DiscoverdPercent { get; set; }
 
     public ITask Task { get; set; }
+
+    public string Id { get; }
+
+    public (int x, int y) Position => throw new NotImplementedException();
 }

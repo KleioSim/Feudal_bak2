@@ -71,7 +71,7 @@ public abstract partial class Present : Control
 }
 
 public abstract partial class Present<TView, TModel> : Present
-    where TView : class, IView
+    where TView : CanvasItem, IView
     where TModel : class, ISession
 {
     protected abstract TModel MockModel { get; }
@@ -84,6 +84,11 @@ public abstract partial class Present<TView, TModel> : Present
     protected override void Process()
     {
         model = (Present.model ??= MockModel) as TModel;
+
+        if (!view.IsVisibleInTree())
+        {
+            return;
+        }
 
         Refresh();
     }

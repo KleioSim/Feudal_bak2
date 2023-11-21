@@ -17,74 +17,39 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
             new TerrainMock()
             {
                 Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
-                TerrainType = TerrainType.Plain,
+                TerrainType = Interfaces.TerrainType.Plain,
                 IsDiscoverd = false,
-                WorkHood = new DiscoverWorkHood_Mock()
+                WorkHoodId = WorkHoodPanelView.DefaultId
+            }
+        },
+        WorkHoods = new List<IWorkHood>
+        {
+            new DiscoverWorkHood_Mock()
+            {
+                Id = WorkHoodPanelView.DefaultId
             }
         }
     };
 
-    [Export]
-    public bool IsHaveTask
+    private string terrainType = nameof(Interfaces.TerrainType.Plain);
+    public string TerrainType
     {
-        get
-        {
-            return model.Terrains.First().WorkHood != null && model.Terrains.First().WorkHood.Task != null;
-        }
+        get => terrainType;
         set
         {
-            if (model.Terrains.First().WorkHood == null)
+            if (terrainType == value)
             {
                 return;
             }
 
-            var workHood = model.Terrains.First().WorkHood as WorkHood_Mock;
-            if (value && workHood.Task == null)
-            {
-                workHood.Task = new TaskMock();
-            }
-            if (!value && workHood.Task != null)
-            {
-                workHood.Task = null;
-            }
-
-            isDirty = true;
-        }
-    }
-
-    private string workHoodType = nameof(DiscoverWorkHood_Mock);
-    public string WorkHoodType
-    {
-        get => workHoodType;
-        set
-        {
-            if (workHoodType == value)
-            {
-                return;
-            }
-
-            workHoodType = value;
+            terrainType = value;
 
             var terrain = model.Terrains.First() as TerrainMock;
-
-            if (workHoodType == "NULL")
-            {
-                terrain.WorkHood = null;
-            }
-            else
-            {
-                terrain.WorkHood = Activator.CreateInstance(WorkHoodTypeDict[workHoodType]) as IWorkHood;
-            }
+            terrain.TerrainType = Enum.Parse<Interfaces.TerrainType>(terrainType);
 
             isDirty = true;
         }
     }
-
-
-
-    private System.Collections.Generic.Dictionary<string, Type> WorkHoodTypeDict { get; } = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(x => x.BaseType == typeof(WorkHood_Mock))
-        .ToDictionary(x => x.Name, x => x);
 
     public override Array<Dictionary> _GetPropertyList()
     {
@@ -92,35 +57,45 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
 
         properties.Add(new Dictionary()
         {
-            { "name", nameof(WorkHoodType) },
+            { "name", nameof(TerrainType) },
             { "type", (int)Variant.Type.String },
             { "usage", (int)PropertyUsageFlags.Default }, // See above assignment.
             { "hint", (int)PropertyHint.Enum },
-            { "hint_string", string.Join(",", WorkHoodTypeDict.Keys.Append("NULL")) }
+            { "hint_string", string.Join(",", Enum.GetNames<Interfaces.TerrainType>()) }
         });
 
-        //if (workHoodType != null)
-        //{
-        //    properties.Add(new Dictionary()
-        //    {
-        //        { "name", nameof(IsHaveTask) },
-        //        { "type", (int)Variant.Type.Bool },
-        //        { "usage", (int)PropertyUsageFlags.Default }, // See above assignment.
-        //        { "hint", (int)PropertyHint.Enum },
-        //        { "hint_string", string.Join(",", WorkHoodTypeDict.Keys.Append("NULL")) }
-        //    });
-        //}
-
         return properties;
+    }
+
+    private bool isDiscovered = true;
+    [Export]
+    public bool IsDiscovered
+    {
+        get
+        {
+            return isDiscovered;
+        }
+        set
+        {
+            isDiscovered = value;
+
+            var terrain = model.Terrains.First() as TerrainMock;
+            terrain.IsDiscoverd = isDiscovered;
+
+            isDirty = true;
+        }
     }
 }
 
 public class WorkHood_Mock : IWorkHood
 {
+    public string Id { get; set; }
     public ITask Task { get; set; }
 }
 
 public class DiscoverWorkHood_Mock : WorkHood_Mock, IDiscoverWorkHood
 {
     public int DiscoverdPercent { get; set; }
+
+    public (int x, int y) Position { get; set; }
 }

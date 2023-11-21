@@ -8,7 +8,7 @@ public interface ITerrain
 
     bool IsDiscoverd { get; }
 
-    IWorkHood WorkHood { get; }
+    string WorkHoodId { get; }
 }
 
 public enum TerrainType
@@ -22,10 +22,12 @@ public enum TerrainType
 
 public interface IWorkHood
 {
+    string Id { get; }
     ITask Task { get; }
 }
 
 public interface IDiscoverWorkHood : IWorkHood
 {
+    (int x, int y) Position { get; }
     int DiscoverdPercent { get; }
 }
