@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b47lswfbp45i"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/LeftView.cs" id="1_76rag"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/LeftView.cs" id="1_76rag"]
 
 [node name="ViewControl" type="Control"]
 layout_mode = 3
@@ -35,17 +35,17 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TerrainPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/TerrainPanel.tscn"]
+[node name="TerrainPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanel.tscn"]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="ClanPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanPanel.tscn"]
+[node name="ClanPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/ClanPanel/ClanPanel.tscn"]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="ClanArrayPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/ClanArrayPanel.tscn"]
+[node name="ClanArrayPanelView" parent="HBoxContainer/Main/HBoxContainer/Content" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/ClanArrayPanel/ClanArrayPanel.tscn"]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -75,7 +75,7 @@ text = ">"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" parent="HBoxContainer/Sub" instance_placeholder="res://MainScene/GUI/LeftSub.tscn"]
+[node name="HBoxContainer" parent="HBoxContainer/Sub" instance_placeholder="res://MainScene/GUI/LeftPanel/Sub/LeftSub.tscn"]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

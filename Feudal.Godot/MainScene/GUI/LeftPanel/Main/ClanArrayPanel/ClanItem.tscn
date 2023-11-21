@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vvxrdlhcip6e"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/ClanItemView.cs" id="1_vgrpy"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/ClanArrayPanel/ClanItemView.cs" id="1_vgrpy"]
 
 [node name="ViewControl" type="Control"]
 custom_minimum_size = Vector2(0, 50)

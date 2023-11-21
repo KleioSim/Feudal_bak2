@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://binf5gb7x4ry8"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/ClanPanelView.cs" id="1_db2dq"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/ClanPanel/ClanPanelView.cs" id="1_db2dq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a862c"]
 font_size = 20

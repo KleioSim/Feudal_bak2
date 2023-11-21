@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://iqtdd7cucgyx"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/TerrainPanelView.cs" id="1_icp7x"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanelView.cs" id="1_icp7x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a862c"]
 font_size = 20

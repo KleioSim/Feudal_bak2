@@ -237,7 +237,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="LeftPlaceHolder" parent="." instance_placeholder="res://MainScene/GUI/Left.tscn"]
+[node name="LeftPlaceHolder" parent="." instance_placeholder="res://MainScene/GUI/LeftPanel/Left.tscn"]
 layout_mode = 1
 offset_top = 350.0
 offset_bottom = 950.0
