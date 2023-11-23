@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System;
 
-public partial class TerrainPanelView : ViewControl, IMainPanelView
+public partial class TerrainPanelView : MainPanelView
 {
     public static readonly Vector2I DefaultPos = new Vector2I(0, 0);
 

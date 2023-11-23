@@ -48,7 +48,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
     {
         var properties = new Array<Dictionary>();
 
-        var MainPanelTypes = IMainPanelView.DerivedTypes.Select(x => x.Name).ToArray();
+        var MainPanelTypes = MainPanelView.DerivedTypes.Select(x => x.Name).ToArray();
 
         properties.Add(new Dictionary()
         {

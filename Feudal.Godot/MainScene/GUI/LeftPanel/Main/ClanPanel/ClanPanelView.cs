@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-public partial class ClanPanelView : ViewControl, IMainPanelView
+public partial class ClanPanelView : MainPanelView
 {
     internal const string DefaultId = "Clan_DEFAULT";
 
@@ -13,12 +13,4 @@ public partial class ClanPanelView : ViewControl, IMainPanelView
     public Label LaborCount => GetNode<Label>("DataContainer/VBoxContainer/HBoxContainer/Labor/Value");
 
     public string ClanId { get; set; } = DefaultId;
-}
-
-public interface IMainPanelView
-{
-    internal static Type[] DerivedTypes { get; } = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(x => x.IsAssignableTo(typeof(IMainPanelView))
-            && x.IsClass && !x.IsAbstract)
-        .ToArray();
 }

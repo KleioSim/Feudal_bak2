@@ -7,7 +7,7 @@ using System.Linq;
 namespace Feudal.Godot.Presents;
 
 [Tool]
-internal partial class TaskContainerPresent : Present<TaskContainerView, ISession>
+internal partial class TaskRightPanelPresent : Present<TaskRightPanelView, ISession>
 {
     [Export]
     public int taskCount

@@ -3,13 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class ClanArrayPanelView : ItemContainer<ClanItemView>, IMainPanelView
+public partial class ClanArrayPanelView : MainPanelView
 {
-    public override InstancePlaceholder ItemPlaceHolder => GetNode<InstancePlaceholder>("DataContainer/VBoxContainer/VBoxContainer/DefaultItem");
+    public ClanContainer clanContainer => GetNode<ClanContainer>("DataContainer/VBoxContainer/VBoxContainer");
 }
 
-
-public abstract partial class ItemContainer<T> : ViewControl
+public abstract partial class ItemContainer<T> : Control
     where T : ItemView
 {
     public abstract InstancePlaceholder ItemPlaceHolder { get; }

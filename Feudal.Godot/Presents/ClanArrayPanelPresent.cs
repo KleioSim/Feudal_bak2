@@ -14,11 +14,11 @@ internal partial class ClanArrayPanelPresent : Present<ClanArrayPanelView, ISess
 
     protected override void Refresh()
     {
-        var dict = view.ItemPlaceHolder.GetSignalList();
+        var dict = view.clanContainer.ItemPlaceHolder.GetSignalList();
 
         GD.Print($"{Engine.GetFramesDrawn()} TaskContainerPresent");
 
-        var taskViewDict = view.GetCurrentItems().ToDictionary(x => x.Id, x => x);
+        var taskViewDict = view.clanContainer.GetCurrentItems().ToDictionary(x => x.Id, x => x);
         var taskObjDict = model.Clans.ToDictionary(x => x.Id, x => x);
 
         var needRemoves = new Queue<object>(taskViewDict.Keys.Except(taskObjDict.Keys));
@@ -35,13 +35,13 @@ internal partial class ClanArrayPanelPresent : Present<ClanArrayPanelView, ISess
             }
             else
             {
-                view.AddItem(key);
+                view.clanContainer.AddItem(key);
             }
         }
 
         while (needRemoves.TryDequeue(out object key))
         {
-            view.RemoveItem(taskViewDict[key]);
+            view.clanContainer.RemoveItem(taskViewDict[key]);
         }
     }
 }

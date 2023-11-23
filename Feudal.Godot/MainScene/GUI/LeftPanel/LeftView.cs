@@ -23,7 +23,7 @@ public partial class LeftView : ViewControl
 
         Prev.Pressed += () =>
         {
-            var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToArray();
+            var mainPanels = Container.GetChildren().OfType<MainPanelView>().ToArray();
             var index = Array.FindIndex(mainPanels, x => ((Control)x).Visible);
 
             ((Control)mainPanels[index]).SetHidden(true);
@@ -36,7 +36,7 @@ public partial class LeftView : ViewControl
 
         Next.Pressed += () =>
         {
-            var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToArray();
+            var mainPanels = Container.GetChildren().OfType<MainPanelView>().ToArray();
             var index = Array.FindIndex(mainPanels, x => ((Control)x).Visible);
 
             ((Control)mainPanels[index]).SetHidden(true);
@@ -74,10 +74,10 @@ public partial class LeftView : ViewControl
         return manPanel;
     }
 
-    private T AddOrFindMainPanel<T>(Predicate<T> predicate = null) where T : ViewControl, IMainPanelView
+    private T AddOrFindMainPanel<T>(Predicate<T> predicate = null) where T : MainPanelView
     {
-        var mainPanels = Container.GetChildren().OfType<IMainPanelView>().ToList();
-        var index = mainPanels.FindIndex(x => ((Control)x).Visible);
+        var mainPanels = Container.GetChildren().OfType<MainPanelView>().ToList();
+        var index = mainPanels.FindIndex(x => x.Visible);
 
         if (index != -1)
         {
@@ -105,7 +105,7 @@ public partial class LeftView : ViewControl
         Container.MoveChild(manPanel, -1);
 
         Next.Disabled = true;
-        Prev.Disabled = Container.GetChildren().OfType<IMainPanelView>().Count() <= 1;
+        Prev.Disabled = Container.GetChildren().OfType<MainPanelView>().Count() <= 1;
 
         return manPanel;
     }

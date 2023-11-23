@@ -2,7 +2,7 @@
 
 namespace Feudal.Godot.Presents;
 
-public partial class ProductContainerPresent
+public partial class ProductTopInfoPresent
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {

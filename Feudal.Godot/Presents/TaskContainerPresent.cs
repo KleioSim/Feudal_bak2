@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Feudal.Godot.Presents;
 
-internal partial class TaskContainerPresent : Present<TaskContainerView, ISession>
+internal partial class TaskRightPanelPresent : Present<TaskRightPanelView, ISession>
 {
     protected override void InitialConnects()
     {
@@ -14,7 +14,7 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
 
     protected override void Refresh()
     {
-        var taskViewDict = view.GetCurrentItems().ToDictionary(x => x.Id, x => x);
+        var taskViewDict = view.Container.GetCurrentItems().ToDictionary(x => x.Id, x => x);
         var taskObjDict = model.Tasks.ToDictionary(x => x.Id, x => x);
 
         var needRemoves = new Queue<object>(taskViewDict.Keys.Except(taskObjDict.Keys));
@@ -31,13 +31,13 @@ internal partial class TaskContainerPresent : Present<TaskContainerView, ISessio
             }
             else
             {
-                view.AddItem(key);
+                view.Container.AddItem(key);
             }
         }
 
         while (needRemoves.TryDequeue(out object key))
         {
-            view.RemoveItem(taskViewDict[key]);
+            view.Container.RemoveItem(taskViewDict[key]);
         }
     }
 }
