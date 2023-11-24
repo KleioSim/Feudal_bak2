@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Messages;
 using System;
 using System.Linq;
 using System.Reflection.Emit;
@@ -9,7 +10,6 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
 {
     protected override void InitialConnects()
     {
-
     }
 
     protected override void Refresh()

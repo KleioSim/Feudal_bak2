@@ -18,6 +18,8 @@ public partial class WorkHoodPanelView : ViewControl
     public Control CurrentLabor => GetNode<Control>("VBoxContainer/LaborPanel/CurrentLabor");
     public Button CancelLaborButton => CurrentLabor.GetNode<Button>("CancelLabor");
 
+    internal Action<string> AssignLabor;
+
     internal void SetWorkHoodId(string Id)
     {
         this.Id = Id;

@@ -24,12 +24,14 @@ public partial class SubPanelContainer : Control
         return subPanel;
     }
 
-    internal void Clear()
+    internal void ClosePanel()
     {
         var subPanels = Content.GetChildren().OfType<SubPanelView>().ToList();
         foreach (var panel in subPanels)
         {
             panel.QueueFree();
         }
+
+        this.SetHidden(true);
     }
 }

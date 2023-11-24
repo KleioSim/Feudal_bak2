@@ -78,12 +78,14 @@ public partial class MainPanelContainer : Control
         return manPanel;
     }
 
-    internal void Clear()
+    internal void ClosePanel()
     {
         var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToList();
         foreach (var panel in mainPanels)
         {
             panel.QueueFree();
         }
+
+        this.SetHidden(true);
     }
 }

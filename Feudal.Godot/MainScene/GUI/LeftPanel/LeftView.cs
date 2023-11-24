@@ -1,10 +1,6 @@
-﻿using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Security.Claims;
-using static System.Net.Mime.MediaTypeNames;
+﻿using Feudal.Interfaces;
+using Feudal.Messages;
+using Godot;
 
 public partial class LeftView : ViewControl
 {
@@ -16,10 +12,10 @@ public partial class LeftView : ViewControl
     public override void _Ready()
     {
         MainPanelContainer.Close.Pressed += CloseAllPanel;
-        MainPanelContainer.Next.Pressed += CloseSubPanel;
-        MainPanelContainer.Prev.Pressed += CloseSubPanel;
 
-        SubPanelContainer.Close.Pressed += CloseSubPanel;
+        MainPanelContainer.Next.Pressed += () => SubPanelContainer.ClosePanel();
+        MainPanelContainer.Prev.Pressed += () => SubPanelContainer.ClosePanel();
+        SubPanelContainer.Close.Pressed += () => SubPanelContainer.ClosePanel();
 
         SubPanelContainer.SetHidden(true);
 
@@ -49,6 +45,12 @@ public partial class LeftView : ViewControl
         manPanel.SelectLabor += () =>
         {
             var subPanel = SubPanelContainer.AddSubPanel<SelectLaborPanelView>();
+            subPanel.SelectedLabor += (Id) =>
+            {
+                SubPanelContainer.ClosePanel();
+
+                manPanel.WorkPanel.AssignLabor(Id);
+            };
         };
 
         return manPanel;
@@ -56,16 +58,7 @@ public partial class LeftView : ViewControl
 
     internal void CloseAllPanel()
     {
-        MainPanelContainer.Clear();
-        SubPanelContainer.Clear();
-
-        MainPanelContainer.SetHidden(true);
-        SubPanelContainer.SetHidden(true);
-    }
-
-    private void CloseSubPanel()
-    {
-        SubPanelContainer.Clear();
-        SubPanelContainer.SetHidden(true);
+        MainPanelContainer.ClosePanel();
+        SubPanelContainer.ClosePanel();
     }
 }

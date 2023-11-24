@@ -10,9 +10,8 @@ public partial class WorkHoodPanelPresent : Present<WorkHoodPanelView, ISession>
 {
     protected override void InitialConnects()
     {
-        view.SelectLaborButton.Pressed += () =>
+        view.AssignLabor = (LaborId) =>
         {
-
             var workHood = model.WorkHoods.SingleOrDefault(x => x.Id == view.Id);
 
             switch (workHood)

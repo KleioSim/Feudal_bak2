@@ -69,48 +69,5 @@ text = "人力"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefaultItem" type="Control" parent="DataContainer/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="DefaultItem" parent="DataContainer/VBoxContainer/VBoxContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Sub/SelectLaborPanel/LaborItem.tscn"]
 layout_mode = 2
-
-[node name="Button" type="Button" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "ClanName"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 1
-
-[node name="Type" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Pop" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
