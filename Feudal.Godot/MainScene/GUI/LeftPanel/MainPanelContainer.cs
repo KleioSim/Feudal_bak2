@@ -1,0 +1,83 @@
+﻿using Godot;
+using System;
+using System.Linq;
+
+public partial class MainPanelContainer : Control
+{
+    public Button Close => GetNode<Button>("ControlContainer/XButton");
+    public Button Next => GetNode<Button>("ControlContainer/>Button");
+    public Button Prev => GetNode<Button>("ControlContainer/<Button");
+    public Control Content => GetNode<Control>("Content");
+
+    public override void _Ready()
+    {
+        Close.Pressed += () =>
+        {
+            this.QueueFree();
+        };
+
+        Prev.Pressed += () =>
+        {
+            var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToArray();
+            var index = Array.FindIndex(mainPanels, x => x.Visible);
+
+            mainPanels[index].SetHidden(true);
+            mainPanels[index - 1].SetHidden(false);
+
+            Prev.Disabled = index == 1;
+            Next.Disabled = false;
+
+        };
+
+        Next.Pressed += () =>
+        {
+            var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToArray();
+            var index = Array.FindIndex(mainPanels, x => x.Visible);
+
+            mainPanels[index].SetHidden(true);
+            mainPanels[index + 1].SetHidden(false);
+
+            Next.Disabled = index == mainPanels.Length - 2;
+            Prev.Disabled = false;
+        };
+
+
+        base._Ready();
+    }
+
+    internal T AddOrFindMainPanel<T>(Predicate<T> predicate = null) where T : MainPanelView
+    {
+        var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToList();
+        var index = mainPanels.FindIndex(x => x.Visible);
+
+        if (index != -1)
+        {
+            var needRemoves = mainPanels.Skip(index + 1).ToArray();
+            foreach (var item in needRemoves)
+            {
+                mainPanels.Remove(item);
+
+                var control = item as Control;
+                Content.RemoveChild(control);
+                control.QueueFree();
+            }
+
+            mainPanels[index].SetHidden(true);
+        }
+
+        var manPanel = mainPanels.OfType<T>().SingleOrDefault(x => predicate != null ? predicate(x) : true);
+        if (manPanel == null)
+        {
+            manPanel = Content.GetNode<InstancePlaceholder>(typeof(T).Name).CreateInstance() as T;
+        }
+
+        manPanel.SetHidden(false);
+
+        Content.MoveChild(manPanel, -1);
+
+        Next.Disabled = true;
+        Prev.Disabled = Content.GetChildren().OfType<MainPanelView>().Count() <= 1;
+
+        return manPanel;
+    }
+}

@@ -12,4 +12,18 @@ public partial class TerrainPanelView : MainPanelView
     public Control BufferContainer => GetNode<Control>("DataContainer/VBoxContainer/BufferContainer");
 
     public WorkHoodPanelView WorkPanel => GetNode<WorkHoodPanelView>("DataContainer/VBoxContainer/WorkPanel");
+
+    [Signal]
+    public delegate void SelectLaborEventHandler();
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        WorkPanel.SelectLaborButton.Pressed += () =>
+        {
+            EmitSignal(SignalName.SelectLabor);
+        };
+    }
+
 }

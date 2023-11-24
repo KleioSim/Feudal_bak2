@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpbxiuomdmabt"]
+[gd_scene load_steps=2 format=3 uid="uid://cpbxiuomdmabt"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/TaskRightPanelView.cs" id="1_2g4jg"]
-[ext_resource type="Script" path="res://MainScene/GUI/TaskContainer.cs" id="2_8cpyx"]
 
 [node name="ViewControl" type="Control"]
 layout_mode = 3
@@ -21,7 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 alignment = 1
-script = ExtResource("2_8cpyx")
 
 [node name="DefaultItem" parent="TaskContainer" instance_placeholder="res://MainScene/GUI/TaskItem.tscn"]
 custom_minimum_size = Vector2(0, 100)

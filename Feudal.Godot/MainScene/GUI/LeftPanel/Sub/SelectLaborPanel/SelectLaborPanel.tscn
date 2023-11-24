@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://h5osxlqwk3ae"]
+[gd_scene load_steps=3 format=3 uid="uid://bq4gxbp8sykdy"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/ClanArrayPanel/ClanArrayPanelView.cs" id="1_jomqu"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Sub/SelectLaborPanel/SelectLaborPanelView.cs" id="1_vmki6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_idqx8"]
 font_size = 20
 
-[node name="ViewControl" type="Control"]
+[node name="SelectLaborPanelView" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ offset_right = -1566.0
 offset_bottom = -480.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jomqu")
+script = ExtResource("1_vmki6")
 
 [node name="DataContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -33,7 +33,7 @@ size_flags_vertical = 0
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_vertical = 3
-text = "氏族"
+text = "请选择人力"
 label_settings = SubResource("LabelSettings_idqx8")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -57,7 +57,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "名称"
+text = "类型"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -65,9 +65,52 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "名称"
+text = "人力"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefaultItem" parent="DataContainer/VBoxContainer/VBoxContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/ClanArrayPanel/ClanItem.tscn"]
+[node name="DefaultItem" type="Control" parent="DataContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+
+[node name="Button" type="Button" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ClanName"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Type" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pop" type="Label" parent="DataContainer/VBoxContainer/VBoxContainer/DefaultItem/Button/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "--"
+horizontal_alignment = 1
+vertical_alignment = 1

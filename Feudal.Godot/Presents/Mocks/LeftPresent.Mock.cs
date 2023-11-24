@@ -12,7 +12,7 @@ namespace Feudal.Godot.Presents;
 [Tool]
 public partial class LeftPresent : Present<LeftView, ISession>
 {
-    private string mainPanelType;
+    private string mainPanelType = "NULL";
     public string MainPanelType
     {
         get => mainPanelType;
@@ -37,6 +37,10 @@ public partial class LeftPresent : Present<LeftView, ISession>
             {
                 view.ShowTerrainPanel(TerrainPanelView.DefaultPos);
             }
+            else if (mainPanelType == "NULL")
+            {
+                view.SetHidden(true);
+            }
             else
             {
                 throw new NotImplementedException();
@@ -56,7 +60,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
             { "type", (int)Variant.Type.String },
             { "usage", (int)PropertyUsageFlags.Default }, // See above assignment.
             { "hint", (int)PropertyHint.Enum },
-            { "hint_string", string.Join(",", MainPanelTypes) }
+            { "hint_string", string.Join(",", MainPanelTypes.Append("NULL")) }
         });
 
         return properties;
@@ -64,15 +68,19 @@ public partial class LeftPresent : Present<LeftView, ISession>
 
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Clans = new List<IClan>()
+        Clans = new[]
         {
-            new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000  },
+            new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000 },
             new ClanMock(),
             new ClanMock(),
         },
         Terrains = new[]
         {
-            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill }
+            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill, WorkHoodId = WorkHoodPanelView.DefaultId }
+        },
+        WorkHoods = new[]
+        {
+            new DiscoverWorkHood_Mock(){ Id = WorkHoodPanelView.DefaultId }
         }
     };
 }
