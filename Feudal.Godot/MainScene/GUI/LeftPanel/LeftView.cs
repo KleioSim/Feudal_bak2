@@ -15,9 +15,15 @@ public partial class LeftView : ViewControl
 
     public override void _Ready()
     {
-        ClanItemView.ShowClan = (clanId) => ShowClanPanel(clanId);
+        MainPanelContainer.Close.Pressed += CloseAllPanel;
+        MainPanelContainer.Next.Pressed += CloseSubPanel;
+        MainPanelContainer.Prev.Pressed += CloseSubPanel;
+
+        SubPanelContainer.Close.Pressed += CloseSubPanel;
+
         SubPanelContainer.SetHidden(true);
 
+        ClanItemView.ShowClan = (clanId) => ShowClanPanel(clanId);
         base._Ready();
     }
 
@@ -46,5 +52,20 @@ public partial class LeftView : ViewControl
         };
 
         return manPanel;
+    }
+
+    internal void CloseAllPanel()
+    {
+        MainPanelContainer.Clear();
+        SubPanelContainer.Clear();
+
+        MainPanelContainer.SetHidden(true);
+        SubPanelContainer.SetHidden(true);
+    }
+
+    private void CloseSubPanel()
+    {
+        SubPanelContainer.Clear();
+        SubPanelContainer.SetHidden(true);
     }
 }

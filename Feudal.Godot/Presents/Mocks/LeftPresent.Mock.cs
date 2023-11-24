@@ -39,7 +39,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
             }
             else if (mainPanelType == "NULL")
             {
-                view.SetHidden(true);
+                view.CloseAllPanel();
             }
             else
             {

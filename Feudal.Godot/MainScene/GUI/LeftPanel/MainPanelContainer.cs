@@ -11,11 +11,6 @@ public partial class MainPanelContainer : Control
 
     public override void _Ready()
     {
-        Close.Pressed += () =>
-        {
-            this.QueueFree();
-        };
-
         Prev.Pressed += () =>
         {
             var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToArray();
@@ -47,6 +42,8 @@ public partial class MainPanelContainer : Control
 
     internal T AddOrFindMainPanel<T>(Predicate<T> predicate = null) where T : MainPanelView
     {
+        this.SetHidden(false);
+
         var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToList();
         var index = mainPanels.FindIndex(x => x.Visible);
 
@@ -79,5 +76,14 @@ public partial class MainPanelContainer : Control
         Prev.Disabled = Content.GetChildren().OfType<MainPanelView>().Count() <= 1;
 
         return manPanel;
+    }
+
+    internal void Clear()
+    {
+        var mainPanels = Content.GetChildren().OfType<MainPanelView>().ToList();
+        foreach (var panel in mainPanels)
+        {
+            panel.QueueFree();
+        }
     }
 }
