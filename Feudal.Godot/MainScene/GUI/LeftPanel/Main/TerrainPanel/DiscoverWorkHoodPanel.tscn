@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlycvjqbcb4bp"]
+
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/DiscoverWorkHoodPanelView.cs" id="1_vpbqt"]
+[ext_resource type="PackedScene" uid="uid://c5avwopucttjg" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/LaborInWorkHood.tscn" id="2_gm11g"]
+
+[node name="WorkPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(354, 0)
+script = ExtResource("1_vpbqt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DiscoverProgressBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 80.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/DiscoverProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "探索"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LaborPanel" parent="VBoxContainer" instance=ExtResource("2_gm11g")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2

@@ -1,15 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://yxpn5kuss6oj"]
+[gd_scene load_steps=3 format=3 uid="uid://yr68jiwi1ac0"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodPanelView.cs" id="1_g4hch"]
+[ext_resource type="PackedScene" uid="uid://c5avwopucttjg" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/LaborInWorkHood.tscn" id="2_difx1"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fr58u"]
+[sub_resource type="CSharpScript" id="CSharpScript_1aust"]
+script/source = "using Godot;
+using System;
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pegvo"]
-bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+public partial class WorkHoodPanelView : ViewControl
+{
+    public const string DefaultId = \"DefaultId\";
+
+    public string Id { get; private set; } = DefaultId;
+
+    public Control Product => GetNode<Control>(\"VBoxContainer/Product\");
+
+    public ProgressBar DiscoverProgress => GetNode<ProgressBar>(\"VBoxContainer/DiscoverProgressBar\");
+    public Label DiscoverLabel => DiscoverProgress.GetNode<Label>(\"Label\");
+
+    public Control SelectLabor => GetNode<Control>(\"VBoxContainer/LaborPanel/SelectLabor\");
+    public Button SelectLaborButton => SelectLabor.GetNode<Button>(\"Button\");
+
+    public Control CurrentLabor => GetNode<Control>(\"VBoxContainer/LaborPanel/CurrentLabor\");
+    public Button CancelLaborButton => CurrentLabor.GetNode<Button>(\"CancelLabor\");
+
+    internal Action<string> AssignLabor;
+
+    internal void SetWorkHoodId(string Id)
+    {
+        this.Id = Id;
+        this.SetHidden(Id == null);
+    }
+}
+"
 
 [node name="WorkPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(354, 0)
-script = ExtResource("1_g4hch")
+script = SubResource("CSharpScript_1aust")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -31,93 +57,9 @@ text = "探索"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LaborPanel" type="Panel" parent="VBoxContainer"]
+[node name="LaborPanel" parent="VBoxContainer" instance=ExtResource("2_difx1")]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_fr58u")
-
-[node name="SelectLabor" type="Panel" parent="VBoxContainer/LaborPanel"]
-custom_minimum_size = Vector2(95, 110)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.5
-offset_top = -55.0
-offset_right = 47.5
-offset_bottom = 55.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pegvo")
-
-[node name="Button" type="Button" parent="VBoxContainer/LaborPanel/SelectLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/LaborPanel/SelectLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CurrentLabor" type="Panel" parent="VBoxContainer/LaborPanel"]
-visible = false
-custom_minimum_size = Vector2(95, 110)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.5
-offset_top = -55.0
-offset_right = 47.5
-offset_bottom = 55.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pegvo")
-
-[node name="Button" type="Button" parent="VBoxContainer/LaborPanel/CurrentLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/LaborPanel/CurrentLabor"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "--"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CancelLabor" type="Button" parent="VBoxContainer/LaborPanel/CurrentLabor"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1.0
-offset_right = 31.0
-offset_bottom = 32.0
-grow_horizontal = 0
-text = "x"
 
 [node name="Product" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)

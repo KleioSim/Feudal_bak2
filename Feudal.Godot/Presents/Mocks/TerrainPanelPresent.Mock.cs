@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Messages;
 using Godot;
 using Godot.Collections;
 using System;
@@ -19,16 +20,27 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
                 Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
                 TerrainType = Interfaces.TerrainType.Plain,
                 IsDiscoverd = false,
-                WorkHoodId = WorkHoodPanelView.DefaultId
+                WorkHoodId = DiscoverWorkHoodPanelView.DefaultId
             }
         },
         WorkHoods = new List<IWorkHood>
         {
             new DiscoverWorkHood_Mock()
             {
-                Id = WorkHoodPanelView.DefaultId
+                Id = DiscoverWorkHoodPanelView.DefaultId
             }
-        }
+        },
+        Tasks = new List<ITask>
+        {
+
+        },
+        Clans = new List<IClan>()
+        {
+            new ClanMock()
+            {
+                Id = ClanPanelView.DefaultId
+            }
+        },
     };
 
     private string terrainType = nameof(Interfaces.TerrainType.Plain);
@@ -47,7 +59,7 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
             var terrain = model.Terrains.First() as TerrainMock;
             terrain.TerrainType = Enum.Parse<Interfaces.TerrainType>(terrainType);
 
-            isDirty = true;
+            SendUICommand(new MESSAGE_MockUpdate());
         }
     }
 
@@ -82,7 +94,7 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
             var terrain = model.Terrains.First() as TerrainMock;
             terrain.IsDiscoverd = isDiscovered;
 
-            isDirty = true;
+            SendUICommand(new MESSAGE_MockUpdate());
         }
     }
 }

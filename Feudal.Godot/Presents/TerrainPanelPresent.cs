@@ -20,6 +20,20 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
 
         view.BufferContainer.SetHidden(!terrain.IsDiscoverd);
 
-        view.WorkPanel.SetWorkHoodId(terrain.WorkHoodId);
+        if (terrain.WorkHoodId == null)
+        {
+            view.ClearWorkHoodPanel();
+            return;
+        }
+
+        var workHood = model.WorkHoods.Single(x => x.Id == terrain.WorkHoodId);
+        switch (workHood)
+        {
+            case IDiscoverWorkHood:
+                view.AddWorkHoodPanel<DiscoverWorkHoodPanelView>(workHood.Id);
+                break;
+            default:
+                throw new Exception();
+        }
     }
 }

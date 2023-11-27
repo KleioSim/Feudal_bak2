@@ -76,11 +76,11 @@ public partial class LeftPresent : Present<LeftView, ISession>
         },
         Terrains = new[]
         {
-            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill, WorkHoodId = WorkHoodPanelView.DefaultId }
+            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill, WorkHoodId = DiscoverWorkHoodPanelView.DefaultId }
         },
         WorkHoods = new[]
         {
-            new DiscoverWorkHood_Mock(){ Id = WorkHoodPanelView.DefaultId }
+            new DiscoverWorkHood_Mock(){ Id = DiscoverWorkHoodPanelView.DefaultId }
         }
     };
 }

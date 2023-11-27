@@ -25,7 +25,7 @@ internal partial class TilemapPresent : Present<TilemapView, ISession>
         {
             new DiscoverWorkHood_Mock()
             {
-                Id = WorkHoodPanelView.DefaultId
+                Id = DiscoverWorkHoodPanelView.DefaultId
             }
         }
     };

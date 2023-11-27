@@ -1,5 +1,5 @@
 ﻿using Godot;
-using System;
+using System.Linq;
 
 public partial class TerrainPanelView : MainPanelView
 {
@@ -11,19 +11,29 @@ public partial class TerrainPanelView : MainPanelView
 
     public Control BufferContainer => GetNode<Control>("DataContainer/VBoxContainer/BufferContainer");
 
-    public WorkHoodPanelView WorkPanel => GetNode<WorkHoodPanelView>("DataContainer/VBoxContainer/WorkPanel");
+    public Control WorkHoodContainer => GetNode<Control>("DataContainer/VBoxContainer/WorkHoodContainer");
 
-    [Signal]
-    public delegate void SelectLaborEventHandler();
+    public IWorkHoodPanel WorkHoodPanel => WorkHoodContainer.GetChildren().SingleOrDefault(x => x is IWorkHoodPanel) as IWorkHoodPanel;
 
-    public override void _Ready()
+    internal void ClearWorkHoodPanel()
     {
-        base._Ready();
-
-        WorkPanel.SelectLaborButton.Pressed += () =>
+        if (WorkHoodPanel != null)
         {
-            EmitSignal(SignalName.SelectLabor);
-        };
+            ((Control)WorkHoodPanel).QueueFree();
+        }
     }
 
+    internal void AddWorkHoodPanel<T>(string Id)
+        where T : class, IWorkHoodPanel
+    {
+        if (WorkHoodPanel != null)
+        {
+            WorkHoodPanel.Id = Id;
+            return;
+        }
+
+        var placeHolder = WorkHoodContainer.GetNode<InstancePlaceholder>(typeof(T).Name);
+        var workHoodPanel = placeHolder.CreateInstance() as T;
+        workHoodPanel.Id = Id;
+    }
 }

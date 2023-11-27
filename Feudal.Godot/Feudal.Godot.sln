@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.TerrainBuilders", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.WorkHoods", "..\Feudal.WorkHoods\Feudal.WorkHoods.csproj", "{81F63078-BC53-485C-8ED2-BA5262DAB749}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "..\Tasks\Tasks.csproj", "{07E86580-8743-431D-9E79-82289A37EE66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,14 @@ Global
 		{81F63078-BC53-485C-8ED2-BA5262DAB749}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
 		{81F63078-BC53-485C-8ED2-BA5262DAB749}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F63078-BC53-485C-8ED2-BA5262DAB749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.ExportRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.ExportRelease|Any CPU.Build.0 = Release|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E86580-8743-431D-9E79-82289A37EE66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

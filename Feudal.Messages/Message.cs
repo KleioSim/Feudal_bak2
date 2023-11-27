@@ -26,13 +26,30 @@ public class MESSAGE_AddDiscoverWorkHood : IMessage
     public (int x, int y) Position { get; init; }
 }
 
-public class MESSAGE_StartDiscover : IMessage
-{
-    public string WorkHoodId { get; init; }
-    public (int x, int y) Position { get; init; }
-}
+//public class MESSAGE_StartDiscover : IMessage
+//{
+//    public string WorkHoodId { get; init; }
+//    public string LaborId { get; init; }
+//    public (int x, int y) Position { get; init; }
+//}
 
 public class MESSAGE_RemoveWorkHood : IMessage
+{
+    public string Id { get; init; }
+}
+
+public class MESSAGE_StartTask : IMessage
+{
+    public string WorkHoodId { get; init; }
+    public string LaborId { get; init; }
+}
+
+public class MESSAGE_MockUpdate : IMessage
+{
+
+}
+
+public class MESSAGE_CancelTask : IMessage
 {
     public string Id { get; init; }
 }

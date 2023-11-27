@@ -62,6 +62,10 @@ public class TaskMock : ITask
 
     public int Percent { get; set; }
 
+    public string WorkHoodId { get; set; }
+
+    public string ClanId { get; set; }
+
     public TaskMock()
     {
         Id = $"TASK{Count++}";
