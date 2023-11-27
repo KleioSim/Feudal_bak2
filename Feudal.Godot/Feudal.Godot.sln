@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feudal.TerrainBuilders", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.WorkHoods", "..\Feudal.WorkHoods\Feudal.WorkHoods.csproj", "{81F63078-BC53-485C-8ED2-BA5262DAB749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "..\Tasks\Tasks.csproj", "{07E86580-8743-431D-9E79-82289A37EE66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feudal.Tasks", "..\Feudal.Tasks\Feudal.Tasks.csproj", "{07E86580-8743-431D-9E79-82289A37EE66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

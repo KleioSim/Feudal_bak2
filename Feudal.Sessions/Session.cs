@@ -1,13 +1,10 @@
 ﻿using Feudal.Clans;
 using Feudal.Interfaces;
-using Feudal.Interfaces.UICommands;
 using Feudal.MessageBuses;
 using Feudal.MessageBuses.Interfaces;
-using Feudal.Messages;
 using Feudal.Terrains;
 using Feudal.WorkHoods;
-using System;
-using System.Collections;
+using Tasks;
 
 namespace Feudal.Sessions;
 
@@ -17,11 +14,7 @@ internal class Session : ISession
 
     public IClan PlayerClan => Clans.First();
 
-    public IEnumerable<ITask> Tasks { get; } = new List<ITask>()
-    {
-        new Task(),
-        new Task()
-    };
+    public IEnumerable<ITask> Tasks => taskManager;
 
     public IEnumerable<IClan> Clans => clanManager;
     public IEnumerable<ITerrain> Terrains => terrainManager;
@@ -32,6 +25,7 @@ internal class Session : ISession
     private ClanManager clanManager;
     private TerrainManager terrainManager;
     private WorkHoodManager workHoodManager;
+    private TaskManager taskManager;
 
     public void ProcessUICommand(IMessage message)
     {
@@ -46,26 +40,8 @@ internal class Session : ISession
         clanManager = new ClanManager(messageBus);
         terrainManager = new TerrainManager(messageBus);
         workHoodManager = new WorkHoodManager(messageBus);
+        taskManager = new TaskManager(messageBus);
 
         terrainManager.GenerateMap();
-    }
-}
-
-class Task : ITask
-{
-    public static int Count;
-
-    public string Id { get; set; }
-
-    public string Desc { get; set; }
-
-    public int Percent { get; set; }
-
-    public Task()
-    {
-        Id = $"TASK_{Count++}";
-
-        Desc = Id;
-        Percent = 0;
     }
 }
