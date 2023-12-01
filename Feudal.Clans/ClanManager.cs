@@ -31,11 +31,22 @@ internal class ClanManager : IEnumerable<IClan>
     }
 
     [MessageProcess]
-    void OnMESSAGE_DayInc(MESSAGE_DayInc msg)
+    void OnMESSAGE_NextTurn(MESSAGE_NextTurn msg)
     {
         foreach (var clan in list)
         {
             clan.PopCount++;
+            foreach (Product product in clan.Products.Values)
+            {
+                product.Update();
+            }
         }
+    }
+
+
+    [MessageProcess]
+    IClan OnMESSAGE_FindClan(MESSAGE_FindClan message)
+    {
+        return list.SingleOrDefault(x => x.Id == message.Id);
     }
 }

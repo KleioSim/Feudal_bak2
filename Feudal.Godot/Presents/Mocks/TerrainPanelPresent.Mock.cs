@@ -103,6 +103,11 @@ public class WorkHood_Mock : IWorkHood
 {
     public string Id { get; set; }
     public ITask Task { get; set; }
+
+    public void Run()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class DiscoverWorkHood_Mock : WorkHood_Mock, IDiscoverWorkHood

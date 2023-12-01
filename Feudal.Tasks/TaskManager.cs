@@ -14,6 +14,16 @@ namespace Tasks
         {
             this.messageBus = messageBus;
             messageBus.Register(this);
+
+            Task.FindClan = (Id) =>
+            {
+                return messageBus.PostMessage(new MESSAGE_FindClan() { Id = Id }).WaitAck<IClan>();
+            };
+
+            Task.FindWorkHood = (Id) =>
+            {
+                return messageBus.PostMessage(new MESSAGE_FindWorkHood() { Id = Id }).WaitAck<IWorkHood>();
+            };
         }
 
         public IEnumerator<ITask> GetEnumerator()
@@ -42,6 +52,17 @@ namespace Tasks
         void OnMESSAGE_CancelTask(MESSAGE_CancelTask message)
         {
             list.RemoveAll(x => x.Id == message.Id);
+        }
+
+        [MessageProcess]
+        void OnMESSAGE_NextTurn(MESSAGE_NextTurn message)
+        {
+            foreach (var task in list)
+            {
+                task.OnNextTurn();
+            }
+
+            list.RemoveAll(x => x.Percent >= 100);
         }
     }
 }

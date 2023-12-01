@@ -73,4 +73,9 @@ public class TaskMock : ITask
         Desc = Id;
         Percent = 33;
     }
+
+    public void OnNextTurn()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -4,11 +4,26 @@ namespace Feudal.WorkHoods;
 
 class DiscoverWorkHood : IDiscoverWorkHood
 {
+    public static Action<DiscoverWorkHood> TerrainDiscovered;
+
     public static int Count = 0;
 
-    public int DiscoverdPercent { get; set; }
-
-    public ITask Task { get; set; }
+    private int discoverdPercent;
+    public int DiscoverdPercent
+    {
+        get
+        {
+            return discoverdPercent;
+        }
+        set
+        {
+            discoverdPercent = value;
+            if (discoverdPercent >= 100)
+            {
+                TerrainDiscovered.Invoke(this);
+            }
+        }
+    }
 
     public string Id { get; } = $"WorkHood_{Count++}";
 

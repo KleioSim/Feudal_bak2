@@ -53,3 +53,18 @@ public class MESSAGE_CancelTask : IMessage
 {
     public string Id { get; init; }
 }
+
+public class MESSAGE_FindClan : IMessage
+{
+    public string Id { get; init; }
+}
+
+public class MESSAGE_FindWorkHood : IMessage
+{
+    public string Id { get; init; }
+}
+
+public class MESSAGE_TerrainDiscoverd : IMessage
+{
+    public (int x, int y) Position { get; init; }
+}

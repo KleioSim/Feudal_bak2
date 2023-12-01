@@ -4,6 +4,9 @@ namespace Tasks
 {
     class Task : ITask
     {
+        public static Func<string, IWorkHood> FindWorkHood;
+        public static Func<string, IClan> FindClan;
+
         public static int Count;
 
         public string Id { get; set; }
@@ -22,6 +25,22 @@ namespace Tasks
 
             Desc = Id;
             Percent = 0;
+        }
+
+        public void OnNextTurn()
+        {
+            var workHood = FindWorkHood(WorkHoodId);
+            var clan = FindClan(ClanId);
+
+            switch (workHood)
+            {
+                case IDiscoverWorkHood discoverWorkHood:
+                    discoverWorkHood.DiscoverdPercent += 10;
+                    Percent = discoverWorkHood.DiscoverdPercent;
+                    break;
+                default:
+                    throw new Exception();
+            }
         }
     }
 }

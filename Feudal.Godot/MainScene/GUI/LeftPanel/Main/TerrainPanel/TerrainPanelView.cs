@@ -19,7 +19,7 @@ public partial class TerrainPanelView : MainPanelView
     {
         if (WorkHoodPanel != null)
         {
-            ((Control)WorkHoodPanel).QueueFree();
+            ((Control)WorkHoodPanel).Free();
         }
     }
 

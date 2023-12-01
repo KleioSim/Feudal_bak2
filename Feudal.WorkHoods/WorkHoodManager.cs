@@ -23,6 +23,16 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
 
     public WorkHoodManager(IMessageBus messageBus)
     {
+        DiscoverWorkHood.TerrainDiscovered = (workHood) =>
+        {
+            messageBus.PostMessage(new MESSAGE_TerrainDiscoverd()
+            {
+                Position = workHood.Position
+            });
+
+            list.Remove(workHood);
+        };
+
         this.messageBus = messageBus;
         messageBus.Register(this);
     }
@@ -40,8 +50,14 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
     }
 
     [MessageProcess]
-    void MESSAGE_RemoveWorkHood(MESSAGE_RemoveWorkHood message)
+    void OnMESSAGE_RemoveWorkHood(MESSAGE_RemoveWorkHood message)
     {
         list.RemoveAll(x => x.Id == message.Id);
+    }
+
+    [MessageProcess]
+    IWorkHood OnMESSAGE_FindWorkHood(MESSAGE_FindWorkHood message)
+    {
+        return list.SingleOrDefault(x => x.Id == message.Id);
     }
 }
