@@ -19,15 +19,16 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
             {
                 Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
                 TerrainType = Interfaces.TerrainType.Plain,
+                Resources = new []{ Interfaces.Resource.FatSoild },
                 IsDiscoverd = false,
-                WorkHoodId = DiscoverWorkHoodPanelView.DefaultId
             }
         },
         WorkHoods = new List<IWorkHood>
         {
             new DiscoverWorkHood_Mock()
             {
-                Id = DiscoverWorkHoodPanelView.DefaultId
+                Id = DiscoverWorkHoodPanelView.DefaultId,
+                Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
             }
         },
         Tasks = new List<ITask>

@@ -10,5 +10,5 @@ class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public string WorkHoodId { get; internal set; }
+    public IEnumerable<Resource> Resources => throw new NotImplementedException();
 }

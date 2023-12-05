@@ -8,7 +8,13 @@ public interface ITerrain
 
     bool IsDiscoverd { get; }
 
-    string WorkHoodId { get; }
+    IEnumerable<Resource> Resources { get; }
+}
+
+public enum Resource
+{
+    FatSoild,
+    CopperLode
 }
 
 public enum TerrainType

@@ -132,5 +132,5 @@ public class TerrainMock : ITerrain
 
     public bool IsDiscoverd { get; set; } = true;
 
-    public string WorkHoodId { get; set; }
+    public IEnumerable<Interfaces.Resource> Resources { get; set; }
 }

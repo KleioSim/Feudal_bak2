@@ -18,7 +18,7 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
 
         view.Title.Text = terrain.TerrainType.ToString();
 
-        view.BufferContainer.SetHidden(!terrain.IsDiscoverd);
+        view.ResourceContainer.SetHidden(!terrain.IsDiscoverd);
 
         var workHood = model.WorkHoods.OfType<IDiscoverWorkHood>()
             .SingleOrDefault(x => x.Position == terrain.Position);

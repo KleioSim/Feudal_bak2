@@ -9,7 +9,7 @@ public partial class TerrainPanelView : MainPanelView
 
     public Label Title => GetNode<Label>("DataContainer/VBoxContainer/Title");
 
-    public Control BufferContainer => GetNode<Control>("DataContainer/VBoxContainer/BufferContainer");
+    public Control ResourceContainer => GetNode<Control>("DataContainer/VBoxContainer/ResourceContainer");
 
     public Control WorkHoodContainer => GetNode<Control>("DataContainer/VBoxContainer/WorkHoodContainer");
 
