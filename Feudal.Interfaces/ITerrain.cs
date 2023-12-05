@@ -25,14 +25,3 @@ public enum TerrainType
     Lake,
     Marsh
 }
-
-public interface IWorkHood
-{
-    string Id { get; }
-}
-
-public interface IDiscoverWorkHood : IWorkHood
-{
-    (int x, int y) Position { get; }
-    int DiscoverdPercent { get; set; }
-}

@@ -10,7 +10,7 @@ namespace Feudal.Terrains;
 internal class TerrainManager : IEnumerable<ITerrain>
 {
     private List<Terrain> list = new List<Terrain>();
-    private Dictionary<(int x, int y), TerrainType> dict = null;
+    private TerrainBuilder builder = null;
 
     public IEnumerator<ITerrain> GetEnumerator()
     {
@@ -26,21 +26,18 @@ internal class TerrainManager : IEnumerable<ITerrain>
     {
         list.Clear();
 
-        list.AddRange(dict.Select(p => new Terrain() { Position = p.Key, TerrainType = p.Value }));
+        builder = new TerrainBuilder(TerrainType.Hill);
 
-        foreach (var terrain in list)
+        for (int i = 0; i < 3; i++)
         {
-            if (Math.Abs(terrain.Position.x) <= 1 && Math.Abs(terrain.Position.y) <= 1)
+            for (int j = 0; j < 3; j++)
             {
-                terrain.IsDiscoverd = true;
-                continue;
+                messageBus.PostMessage(new MESSAGE_AddTerrain()
+                {
+                    Position = (i, j),
+                    IsDiscovered = i <= 1 && j <= 1
+                });
             }
-
-            terrain.IsDiscoverd = false;
-            var post = messageBus.PostMessage(new MESSAGE_AddDiscoverWorkHood()
-            {
-                Position = terrain.Position
-            });
         }
     }
 
@@ -50,6 +47,19 @@ internal class TerrainManager : IEnumerable<ITerrain>
     {
         this.messageBus = messageBus;
         messageBus.Register(this);
+    }
+
+    [MessageProcess]
+    void OnMESSAGE_AddTerrain(MESSAGE_AddTerrain message)
+    {
+        var terrain = builder.Build(message.Position);
+        list.Add(new Terrain() { Position = message.Position, TerrainType = terrain, IsDiscoverd = message.IsDiscovered });
+
+        messageBus.PostMessage(new MESSAGE_AddedTerrain()
+        {
+            Position = message.Position,
+            IsDiscoverd = message.IsDiscovered
+        });
     }
 
     [MessageProcess]
@@ -68,15 +78,9 @@ internal class TerrainManager : IEnumerable<ITerrain>
                     continue;
                 }
 
-                TerrainBuilder.Build(ref dict, TerrainType.Hill, position);
-
-                var newTerrain = new Terrain() { Position = position, TerrainType = dict[position] };
-                newTerrain.IsDiscoverd = false;
-                list.Add(newTerrain);
-
-                var post = messageBus.PostMessage(new MESSAGE_AddDiscoverWorkHood()
+                messageBus.PostMessage(new MESSAGE_AddTerrain()
                 {
-                    Position = newTerrain.Position
+                    Position = terrain.Position
                 });
             }
         }

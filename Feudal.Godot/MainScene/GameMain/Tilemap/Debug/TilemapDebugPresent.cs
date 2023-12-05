@@ -1,10 +1,12 @@
 ﻿using Feudal.Godot.Presents;
 using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
+using Feudal.Messages;
 using Feudal.TerrainBuilders;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
 {
@@ -19,7 +21,7 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
     private TerrainType MapType => Enum.Parse<TerrainType>(view.SelectedTerrainType);
 
     private (int x, int y) currPos;
-    private Dictionary<(int x, int y), TerrainType> dict = new Dictionary<(int x, int y), TerrainType>();
+    private TerrainBuilder terrainBuilder;
 
     protected override void InitialConnects()
     {
@@ -31,17 +33,20 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
                 return;
             }
 
-            TerrainBuilder.Build(ref dict, MapType, currPos);
+            var terrainType = terrainBuilder.Build(currPos);
 
-            Terrains.Add(new TerrainMock() { Position = currPos, TerrainType = dict[currPos] });
+            Terrains.Add(new TerrainMock() { Position = currPos, TerrainType = terrainType });
 
             currPos = GetNextPosition(currPos);
+
+            SendUICommand(new MESSAGE_MockUpdate());
         };
 
         view.Generate.Pressed += () =>
         {
             Terrains.Clear();
-            dict.Clear();
+
+            terrainBuilder = new TerrainBuilder(MapType);
 
             currPos = (0, 0);
 
@@ -51,14 +56,16 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
         view.TilemapView.ClickTile += (Vector2I index) =>
         {
             var pos = (index.X, index.Y);
-            if (dict.ContainsKey(pos))
+            if (Terrains.Any(x => x.Position == pos))
             {
                 return;
             }
 
-            TerrainBuilder.Build(ref dict, MapType, pos);
+            var terrainType = terrainBuilder.Build(currPos);
 
-            Terrains.Add(new TerrainMock() { Position = pos, TerrainType = dict[pos] });
+            Terrains.Add(new TerrainMock() { Position = pos, TerrainType = terrainType });
+
+            SendUICommand(new MESSAGE_MockUpdate());
         };
     }
 

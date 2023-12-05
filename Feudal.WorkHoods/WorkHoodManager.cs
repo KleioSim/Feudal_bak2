@@ -38,26 +38,21 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
     }
 
     [MessageProcess]
-    string OnMESSAGE_AddDiscoverWorkHood(MESSAGE_AddDiscoverWorkHood msg)
-    {
-        var workHood = new DiscoverWorkHood()
-        {
-            Position = msg.Position
-        };
-
-        list.Add(workHood);
-        return workHood.Id;
-    }
-
-    [MessageProcess]
-    void OnMESSAGE_RemoveWorkHood(MESSAGE_RemoveWorkHood message)
-    {
-        list.RemoveAll(x => x.Id == message.Id);
-    }
-
-    [MessageProcess]
     IWorkHood OnMESSAGE_FindWorkHood(MESSAGE_FindWorkHood message)
     {
         return list.SingleOrDefault(x => x.Id == message.Id);
+    }
+
+    [MessageProcess]
+    void OnMESSAGE_AddedTerrain(MESSAGE_AddedTerrain message)
+    {
+        if (message.IsDiscoverd)
+        {
+
+        }
+        else
+        {
+            list.Add(new DiscoverWorkHood() { Position = message.Position });
+        }
     }
 }

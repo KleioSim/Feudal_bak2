@@ -68,3 +68,16 @@ public class MESSAGE_TerrainDiscoverd : IMessage
 {
     public (int x, int y) Position { get; init; }
 }
+
+public class MESSAGE_AddTerrain : IMessage
+{
+    public (int x, int y) Position { get; init; }
+    public bool IsDiscovered { get; init; }
+}
+
+
+public class MESSAGE_AddedTerrain : IMessage
+{
+    public (int x, int y) Position { get; init; }
+    public bool IsDiscoverd { get; init; }
+}

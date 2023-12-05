@@ -2,11 +2,9 @@
 
 namespace Feudal.WorkHoods;
 
-class DiscoverWorkHood : IDiscoverWorkHood
+class DiscoverWorkHood : WorkHood, IDiscoverWorkHood
 {
     public static Action<DiscoverWorkHood> TerrainDiscovered;
-
-    public static int Count = 0;
 
     private int discoverdPercent;
     public int DiscoverdPercent
@@ -25,7 +23,16 @@ class DiscoverWorkHood : IDiscoverWorkHood
         }
     }
 
-    public string Id { get; } = $"WorkHood_{Count++}";
-
     public (int x, int y) Position { get; init; }
+}
+
+class EstateWorkHood : WorkHood, ITerrainWorkHood
+{
+    public (int x, int y) Position { get; init; }
+}
+
+abstract class WorkHood : IWorkHood
+{
+    public static int Count = 0;
+    public string Id { get; } = $"WorkHood_{Count++}";
 }

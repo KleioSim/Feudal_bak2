@@ -100,4 +100,4 @@ text = "Generate"
 layout_mode = 1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.005
+wait_time = 0.1
