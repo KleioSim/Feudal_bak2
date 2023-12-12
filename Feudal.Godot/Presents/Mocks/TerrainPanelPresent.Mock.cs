@@ -103,12 +103,10 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
 public class WorkHood_Mock : IWorkHood
 {
     public string Id { get; set; }
-    public ITask Task { get; set; }
 
-    public void Run()
-    {
-        throw new NotImplementedException();
-    }
+    public IWorking CurrentWorking { get; set; }
+
+    public IEnumerable<IWorking> OptionWorkings { get; set; }
 }
 
 public class DiscoverWorkHood_Mock : WorkHood_Mock, IDiscoverWorkHood

@@ -31,6 +31,8 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
             });
 
             list.Remove(workHood);
+
+            UpdateTerrainWorkHoodByResource(workHood.Position);
         };
 
         this.messageBus = messageBus;
@@ -48,11 +50,17 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
     {
         if (message.IsDiscoverd)
         {
-
+            UpdateTerrainWorkHoodByResource(message.Position);
         }
         else
         {
             list.Add(new DiscoverWorkHood() { Position = message.Position });
         }
+    }
+
+
+    private void UpdateTerrainWorkHoodByResource((int x, int y) position)
+    {
+        var terrain = messageBus.PostMessage(new MESSAGE_FindTerrain() { Position = position }).WaitAck<ITerrain>();
     }
 }

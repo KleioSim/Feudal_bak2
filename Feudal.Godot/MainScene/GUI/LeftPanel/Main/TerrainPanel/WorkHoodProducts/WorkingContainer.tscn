@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6fu78arueip1"]
+
+[ext_resource type="PackedScene" uid="uid://bp7qx35iahofe" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodProducts/WorkingItem.tscn" id="1_gbco2"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodProducts/WorkingContainerView.cs" id="1_wsuud"]
+
+[node name="WorkingContainer" type="VBoxContainer"]
+offset_right = 345.0
+offset_bottom = 128.0
+script = ExtResource("1_wsuud")
+
+[node name="CurrentWorking" parent="." instance=ExtResource("1_gbco2")]
+layout_mode = 2
+
+[node name="OptionControl" type="Control" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionControl"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+scale = Vector2(0.85, 0.85)
+
+[node name="OptionWorkingItem" parent="OptionControl/VBoxContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodProducts/WorkingItem.tscn"]
+layout_mode = 2

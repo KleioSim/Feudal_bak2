@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://qiq0452ycsa5"]
+
+[ext_resource type="PackedScene" uid="uid://c5avwopucttjg" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/LaborInWorkHood.tscn" id="2_difx1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4f276"]
+
+[node name="WorkPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(354, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4f276")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="LaborPanel" parent="PanelContainer/VBoxContainer" instance=ExtResource("2_difx1")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2

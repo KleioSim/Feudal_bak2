@@ -18,7 +18,7 @@ public partial class ClanArrayPanelView : MainPanelView
     }
 }
 
-public class ItemContainer<T> where T : ItemView
+public class ItemContainer<T> where T : Control, IItemView
 {
     private Func<InstancePlaceholder> itemPlaceHolder;
 

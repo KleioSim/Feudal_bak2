@@ -9,9 +9,14 @@ public partial class TaskItemView : ItemView
     public override object Id { get; set; } = "TASK_DEFAULT";
 }
 
-public abstract partial class ItemView : ViewControl
+public abstract partial class ItemView : ViewControl, IItemView
 {
     public abstract object Id { get; set; }
+}
+
+public interface IItemView
+{
+    object Id { get; set; }
 }
 
 public static class ControlExtension

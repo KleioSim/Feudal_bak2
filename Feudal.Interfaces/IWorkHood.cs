@@ -3,6 +3,8 @@
 public interface IWorkHood
 {
     string Id { get; }
+    IWorking CurrentWorking { get; }
+    IEnumerable<IWorking> OptionWorkings { get; }
 }
 
 public interface ITerrainWorkHood : IWorkHood
@@ -18,4 +20,22 @@ public interface IDiscoverWorkHood : ITerrainWorkHood
 public interface IEstateWorkHood : ITerrainWorkHood
 {
     int BuildPercent { get; set; }
+}
+
+
+public interface IWorking
+{
+    string Key { get; }
+    string Name { get; }
+}
+
+public interface IProgressWorking : IWorking
+{
+    int Percent { get; }
+}
+
+public interface IProductWorking : IWorking
+{
+    ProductType ProductType { get; }
+    double ProductCount { get; }
 }
