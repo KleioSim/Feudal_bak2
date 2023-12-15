@@ -31,17 +31,17 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
                 Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
             }
         },
-        Tasks = new List<ITask>
-        {
+        //Tasks = new List<ITask>
+        //{
 
-        },
-        Clans = new List<IClan>()
-        {
-            new ClanMock()
-            {
-                Id = ClanPanelView.DefaultId
-            }
-        },
+        //},
+        //Clans = new List<IClan>()
+        //{
+        //    new ClanMock()
+        //    {
+        //        Id = ClanPanelView.DefaultId
+        //    }
+        //},
     };
 
     private string terrainType = nameof(Interfaces.TerrainType.Plain);
@@ -106,7 +106,9 @@ public class WorkHood_Mock : IWorkHood
 
     public IWorking CurrentWorking { get; set; }
 
-    public IEnumerable<IWorking> OptionWorkings { get; set; }
+    public IEnumerable<IWorking> OptionWorkings => OptionWorkingMocks;
+
+    public List<IWorking> OptionWorkingMocks { get; } = new List<IWorking>();
 }
 
 public class DiscoverWorkHood_Mock : WorkHood_Mock, IDiscoverWorkHood

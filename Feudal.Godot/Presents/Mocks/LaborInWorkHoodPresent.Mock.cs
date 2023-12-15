@@ -1,7 +1,6 @@
 ﻿using Feudal.Interfaces;
 using Feudal.Messages;
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,33 +8,32 @@ namespace Feudal.Godot.Presents;
 
 partial class LaborInWorkHoodPresent
 {
-    protected override ISession MockModel { get; } = new SessionMock()
+    private ClanMock clan;
+    private WorkHood_Mock workHood;
+
+
+    protected override ISession MockModel
     {
-        WorkHoods = new List<IWorkHood>
+        get
         {
-            new DiscoverWorkHood_Mock()
+            workHood = new WorkHood_Mock();
+            clan = new ClanMock();
+            var task = new TaskMock()
             {
-                Id = DiscoverWorkHoodPanelView.DefaultId
-            }
-        },
+                WorkHoodId = workHood.Id,
+                ClanId = clan.Id
+            };
 
-        Clans = new List<IClan>()
-        {
-            new ClanMock()
-            {
-                Id = ClanPanelView.DefaultId
-            }
-        },
+            view.WorkHoodId = workHood.Id;
 
-        Tasks = new List<ITask>
-        {
-            new TaskMock()
-            {
-                WorkHoodId = DiscoverWorkHoodPanelView.DefaultId,
-                ClanId = ClanPanelView.DefaultId
-            }
+            var mock = new SessionMock();
+            mock.ClanMocks.Add(clan);
+            mock.WorkHoodMocks.Add(workHood);
+            mock.TaskMocks.Add(task);
+            return mock;
         }
-    };
+    }
+
 
     [Export]
     public bool IsHaveTask
@@ -46,7 +44,7 @@ partial class LaborInWorkHoodPresent
         }
         set
         {
-            var tasks = model.Tasks as List<ITask>;
+            var tasks = model.Tasks as List<TaskMock>;
             if (value)
             {
                 if (tasks.Any(x => x.WorkHoodId == view.WorkHoodId))
@@ -57,7 +55,7 @@ partial class LaborInWorkHoodPresent
                 tasks.Add(new TaskMock()
                 {
                     WorkHoodId = view.WorkHoodId,
-                    ClanId = ClanPanelView.DefaultId
+                    ClanId = clan.Id
                 });
             }
             else

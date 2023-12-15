@@ -9,11 +9,11 @@ public partial class SelectLaborPanelPresent : Present<SelectLaborPanelView, ISe
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Clans = new List<ClanMock>()
-        {
-            new ClanMock(){ PopCount = 1000 },
-            new ClanMock(){ PopCount = 2000 },
-        }
+        //Clans = new List<ClanMock>()
+        //{
+        //    new ClanMock(){ PopCount = 1000 },
+        //    new ClanMock(){ PopCount = 2000 },
+        //}
     };
 
     protected override void InitialConnects()

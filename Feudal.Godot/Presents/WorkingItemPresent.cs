@@ -5,7 +5,6 @@ namespace Feudal.Godot.Presents;
 
 partial class WorkingItemPresent : Present<WorkingItemView, ISession>
 {
-
     protected override void InitialConnects()
     {
 

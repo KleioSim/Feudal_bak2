@@ -14,11 +14,11 @@ internal partial class TaskRightPanelPresent : Present<TaskRightPanelView, ISess
     {
         get
         {
-            return MockModel.Tasks.Count();
+            return model.Tasks.Count();
         }
         set
         {
-            var list = MockModel.Tasks as List<TaskMock>;
+            var list = model.Tasks as List<TaskMock>;
             if (value > list.Count())
             {
                 list.AddRange(Enumerable.Range(0, value - list.Count()).Select(_ => new TaskMock()));
@@ -32,12 +32,16 @@ internal partial class TaskRightPanelPresent : Present<TaskRightPanelView, ISess
         }
     }
 
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Tasks = new List<TaskMock>()
+        get
         {
-            new TaskMock(),
-            new TaskMock(),
+            var mock = new SessionMock();
+
+            mock.TaskMocks.Add(new TaskMock());
+            mock.TaskMocks.Add(new TaskMock());
+
+            return mock;
         }
-    };
+    }
 }

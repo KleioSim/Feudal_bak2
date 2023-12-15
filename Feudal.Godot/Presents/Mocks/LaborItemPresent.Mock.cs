@@ -1,9 +1,8 @@
 ﻿using Feudal.Interfaces;
-using System.Collections.Generic;
 
 namespace Feudal.Godot.Presents;
 
-internal partial class ClanItemPresent : Present<ClanItemView, ISession>
+public partial class LaborItemPresent
 {
     protected override ISession MockModel
     {

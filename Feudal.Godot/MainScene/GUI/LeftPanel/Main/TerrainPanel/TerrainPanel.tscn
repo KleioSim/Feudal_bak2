@@ -1,13 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://iqtdd7cucgyx"]
+[gd_scene load_steps=5 format=3 uid="uid://iqtdd7cucgyx"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanelView.cs" id="1_icp7x"]
-[ext_resource type="PackedScene" uid="uid://dlycvjqbcb4bp" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/DiscoverWorkHoodPanel.tscn" id="2_15375"]
 [ext_resource type="PackedScene" uid="uid://dbrjph471s1se" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceContainer.tscn" id="2_fhj3j"]
+[ext_resource type="PackedScene" uid="uid://qiq0452ycsa5" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodPanel2.tscn" id="3_67ot6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a862c"]
 font_size = 20
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r4jhh"]
 
 [node name="ViewControl" type="Control"]
 layout_mode = 3
@@ -47,9 +45,5 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="WorkHoodContainer" type="PanelContainer" parent="DataContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_r4jhh")
-
-[node name="DiscoverWorkHoodPanelView" parent="DataContainer/VBoxContainer/WorkHoodContainer" instance=ExtResource("2_15375")]
+[node name="WorkPanel" parent="DataContainer/VBoxContainer" instance=ExtResource("3_67ot6")]
 layout_mode = 2

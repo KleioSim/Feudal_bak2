@@ -9,10 +9,19 @@ namespace Feudal.Godot.Presents;
 
 public partial class ClanPanelPresent : Present<ClanPanelView, ISession>
 {
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Clans = new List<ClanMock>() { new ClanMock() { Id = ClanPanelView.DefaultId, Name = ClanPanelView.DefaultId } }
-    };
+        get
+        {
+            var clan = new ClanMock();
+            view.ClanId = clan.Id;
+
+            var mock = new SessionMock();
+            mock.ClanMocks.Add(clan);
+
+            return mock;
+        }
+    }
 }
 
 public class ClanMock : IClan

@@ -17,17 +17,13 @@ public partial class DiscoverWorkHoodPanelPresent
             }
         },
 
-        Clans = new List<IClan>()
-        {
-            new ClanMock()
-            {
-                Id = ClanPanelView.DefaultId
-            }
-        },
-
-        Tasks = new List<ITask>
-        {
-        }
+        //Clans = new List<IClan>()
+        //{
+        //    new ClanMock()
+        //    {
+        //        Id = ClanPanelView.DefaultId
+        //    }
+        //}
     };
 
     [Export]

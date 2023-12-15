@@ -4,7 +4,7 @@ using System;
 
 public partial class WorkingContainerView : ViewControl
 {
-    public string WorkHoodId { get; set; } = DiscoverWorkHoodPanelView.DefaultId;
+    public string WorkHoodId { get; set; }
 
     public WorkingItemView CurrentWorking => GetNode<WorkingItemView>("CurrentWorking");
 

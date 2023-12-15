@@ -6,11 +6,6 @@ namespace Feudal.Godot.Presents;
 
 public partial class LaborItemPresent : Present<LaborItemView, ISession>
 {
-    protected override ISession MockModel { get; } = new SessionMock()
-    {
-        Clans = new List<ClanMock>() { new ClanMock() { Id = LaborItemView.DefaultId, Name = "Clan_DEFAULT_Name", PopCount = 1000 } }
-    };
-
     protected override void InitialConnects()
     {
 

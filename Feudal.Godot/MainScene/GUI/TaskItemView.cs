@@ -6,7 +6,7 @@ public partial class TaskItemView : ItemView
     public Label Label => GetNode<Label>("VBoxContainer/Label");
     public ProgressBar Progress => GetNode<ProgressBar>("VBoxContainer/ProgressBar");
 
-    public override object Id { get; set; } = "TASK_DEFAULT";
+    public override object Id { get; set; }
 }
 
 public abstract partial class ItemView : ViewControl, IItemView

@@ -133,4 +133,11 @@ public class TerrainMock : ITerrain
     public bool IsDiscoverd { get; set; } = true;
 
     public IEnumerable<Interfaces.Resource> Resources { get; set; }
+
+    public List<Interfaces.Resource> ResourceList { get; } = new List<Interfaces.Resource>();
+
+    public TerrainMock()
+    {
+        Resources = ResourceList;
+    }
 }

@@ -67,10 +67,14 @@ partial class WorkingItemPresent
         return properties;
     }
 
-    public override void _Ready()
-    {
-        WorkingType = workingDict.Keys.First();
 
-        base._Ready();
+    protected override IView View
+    {
+        get => base.View;
+        set
+        {
+            base.View = value;
+            view.Id = workingDict.Values.First();
+        }
     }
 }

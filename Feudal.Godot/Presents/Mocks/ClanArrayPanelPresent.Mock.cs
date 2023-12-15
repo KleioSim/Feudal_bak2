@@ -10,15 +10,15 @@ namespace Feudal.Godot.Presents;
 internal partial class ClanArrayPanelPresent : Present<ClanArrayPanelView, ISession>
 {
     [Export]
-    public int TaskCount
+    public int ClanCount
     {
         get
         {
-            return MockModel.Clans.Count();
+            return model.Clans.Count();
         }
         set
         {
-            var list = MockModel.Clans as List<ClanMock>;
+            var list = model.Clans as List<ClanMock>;
             if (value > list.Count())
             {
                 list.AddRange(Enumerable.Range(0, value - list.Count()).Select(_ => new ClanMock()));
@@ -32,12 +32,15 @@ internal partial class ClanArrayPanelPresent : Present<ClanArrayPanelView, ISess
         }
     }
 
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Clans = new List<ClanMock>()
+        get
         {
-            new ClanMock(),
-            new ClanMock(),
+            var mock = new SessionMock();
+            mock.ClanMocks.Add(new ClanMock());
+            mock.ClanMocks.Add(new ClanMock());
+
+            return mock;
         }
-    };
+    }
 }

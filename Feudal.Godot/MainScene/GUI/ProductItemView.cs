@@ -2,7 +2,7 @@
 
 public partial class ProductItemView : ItemView
 {
-    public override object Id { get; set; } = Feudal.Interfaces.ProductType.Food;
+    public override object Id { get; set; }
 
     public Label Type => GetNode<Label>("Item/HBoxContainer/Type");
     public Label Value => GetNode<Label>("Item/HBoxContainer/Value");

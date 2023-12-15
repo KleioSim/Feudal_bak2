@@ -41,14 +41,20 @@ internal partial class TaskItemPresent : Present<TaskItemView, ISession>
         }
     }
 
-
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Tasks = new List<TaskMock>()
+        get
         {
-            new TaskMock(){ Id = "TASK_DEFAULT" }
+            var mock = new SessionMock();
+
+            var task = new TaskMock();
+            mock.TaskMocks.Add(task);
+
+            view.Id = task.Id;
+
+            return mock;
         }
-    };
+    }
 }
 
 

@@ -3,8 +3,6 @@ using System;
 
 public partial class ClanItemView : ItemView
 {
-    internal const string DefaultId = "Clan_DEFAULT";
-
     public static Action<string> ShowClan;
 
     public Label Label => GetNode<Label>("Button/HBoxContainer/Label");
@@ -13,7 +11,7 @@ public partial class ClanItemView : ItemView
 
     public Button Button => GetNode<Button>("Button");
 
-    public override object Id { get; set; } = DefaultId;
+    public override object Id { get; set; }
 
     public override void _Ready()
     {

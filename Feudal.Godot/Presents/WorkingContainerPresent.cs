@@ -1,4 +1,5 @@
 ﻿using Feudal.Interfaces;
+using Feudal.Messages;
 using System;
 using System.Linq;
 
@@ -19,7 +20,14 @@ internal partial class WorkingContainerPresent : Present<WorkingContainerView, I
 
             var workHood = model.WorkHoods.Single(x => x.Id == view.WorkHoodId);
 
-            view.OptionWorkings.Refresh(workHood.OptionWorkings.OfType<object>().ToHashSet());
+            var newItems = view.OptionWorkings.Refresh(workHood.OptionWorkings.OfType<object>().ToHashSet());
+            foreach (var item in newItems)
+            {
+                item.Button.Pressed += () =>
+                {
+                    SendUICommand(new MESSAGE_ChangeWorking() { WorkHoodId = view.WorkHoodId, Working = item.Id });
+                };
+            }
         };
     }
 

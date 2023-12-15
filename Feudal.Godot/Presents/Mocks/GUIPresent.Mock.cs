@@ -35,18 +35,18 @@ public partial class GUIPresent : Present<GUIView, ISession>
 
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Tasks = new List<TaskMock>()
-        {
-            new TaskMock(),
-            new TaskMock()
-        },
+        //Tasks = new List<TaskMock>()
+        //{
+        //    new TaskMock(),
+        //    new TaskMock()
+        //},
 
-        Clans = new List<IClan>()
-        {
-            new ClanMock(){ Name = "PlayerClan_Mock", PopCount = 1000  },
-            new ClanMock(),
-            new ClanMock(),
-        },
+        //Clans = new List<IClan>()
+        //{
+        //    new ClanMock(){ Name = "PlayerClan_Mock", PopCount = 1000  },
+        //    new ClanMock(),
+        //    new ClanMock(),
+        //},
 
         Terrains = new[]
         {
@@ -72,14 +72,25 @@ public class SessionMock : ISession
     public IClan PlayerClan => Clans.First();
     public IDate Date { get; init; }
 
-    public IEnumerable<IClan> Clans { get; init; }
-    public IEnumerable<ITask> Tasks { get; init; }
-    public IEnumerable<ITerrain> Terrains { get; init; }
-    public IEnumerable<IWorkHood> WorkHoods { get; init; }
+    public IEnumerable<IClan> Clans => ClanMocks;
+    public IEnumerable<ITask> Tasks => TaskMocks;
+    public IEnumerable<ITerrain> Terrains { get; set; }
+    public IEnumerable<IWorkHood> WorkHoods { get; set; }
+
+    internal List<WorkHood_Mock> WorkHoodMocks { get; } = new List<WorkHood_Mock>();
+    internal List<TaskMock> TaskMocks { get; } = new List<TaskMock>();
+    internal List<ClanMock> ClanMocks { get; } = new List<ClanMock>();
+    internal List<TerrainMock> TerrainMocks { get; } = new List<TerrainMock>();
 
     public void ProcessUICommand(IMessage command)
     {
         GD.Print($"ProcessUICommand {command.GetType().Name}");
+    }
+
+    public SessionMock()
+    {
+        WorkHoods = WorkHoodMocks;
+        Terrains = TerrainMocks;
     }
 }
 

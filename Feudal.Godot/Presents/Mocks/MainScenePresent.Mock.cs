@@ -11,18 +11,18 @@ internal partial class MainScenePresent : Present<MainSceneView, ISession>
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Tasks = new List<TaskMock>()
-        {
-            new TaskMock(),
-            new TaskMock()
-        },
+        //Tasks = new List<TaskMock>()
+        //{
+        //    new TaskMock(),
+        //    new TaskMock()
+        //},
 
-        Clans = new List<IClan>()
-        {
-            new ClanMock(){ Name = "PlayerClan_Mock", PopCount = 1000  },
-            new ClanMock(),
-            new ClanMock(),
-        },
+        //Clans = new List<IClan>()
+        //{
+        //    new ClanMock(){ Name = "PlayerClan_Mock", PopCount = 1000  },
+        //    new ClanMock(),
+        //    new ClanMock(),
+        //},
 
         Terrains = new List<TerrainMock>()
         {

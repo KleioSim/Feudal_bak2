@@ -5,23 +5,29 @@ namespace Feudal.Godot.Presents;
 
 partial class WorkingContainerPresent
 {
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        WorkHoods = new[]
+        get
         {
-            new WorkHood_Mock()
+            var optionWorkings = new IWorking[]
             {
-                Id = DiscoverWorkHoodPanelView.DefaultId,
-                CurrentWorking = new ProgressWorking_Mock(){ Percent = 10 },
-                OptionWorkings = new IWorking[]
-                {
-                    new ProgressWorking_Mock(){ Percent = 20 },
-                    new ProductWorking_Mock() { ProductType = ProductType.Food, ProductCount = 1.0 },
-                    new ProductWorking_Mock() { ProductType = ProductType.Bronze, ProductCount = 1.4 },
-                }
-            }
+                new ProgressWorking_Mock(){ Percent = 20 },
+                new ProductWorking_Mock() { ProductType = ProductType.Food, ProductCount = 1.0 },
+                new ProductWorking_Mock() { ProductType = ProductType.Bronze, ProductCount = 1.4 },
+            };
+
+            var workHood = new WorkHood_Mock();
+            workHood.CurrentWorking = optionWorkings[0];
+            workHood.OptionWorkingMocks.AddRange(optionWorkings);
+
+            view.WorkHoodId = workHood.Id;
+
+            var mock = new SessionMock();
+            mock.WorkHoodMocks.Add(workHood);
+
+            return mock;
         }
-    };
+    }
 }
 
 public class ProgressWorking_Mock : IProgressWorking

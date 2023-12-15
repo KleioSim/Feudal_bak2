@@ -85,3 +85,9 @@ public class MESSAGE_FindTerrain : IMessage
 {
     public (int x, int y) Position { get; init; }
 }
+
+public class MESSAGE_ChangeWorking : IMessage
+{
+    public string WorkHoodId { get; init; }
+    public object Working { get; init; }
+}

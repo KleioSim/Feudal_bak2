@@ -4,34 +4,16 @@ namespace Feudal.Godot.Presents;
 
 public partial class ProductTopInfoPresent
 {
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Clans = new IClan[]
+        get
         {
-            new ClanMock()
-            {
-                Products = new System.Collections.Generic.Dictionary<ProductType, IProduct>()
-                {
-                    {
-                        ProductType.Food,
-                        new ProductMock()
-                        {
-                            Type = ProductType.Food,
-                            Current = 10f,
-                            Surplus = 1.1f
-                        }
-                    },
-                    {
-                        ProductType.Bronze,
-                        new ProductMock()
-                        {
-                            Type = ProductType.Bronze,
-                            Current = 20f,
-                            Surplus = -2.235f
-                        }
-                    }
-                }
-            }
+            var clan = new ClanMock();
+
+            var mock = new SessionMock();
+            mock.ClanMocks.Add(clan);
+
+            return mock;
         }
-    };
+    }
 }

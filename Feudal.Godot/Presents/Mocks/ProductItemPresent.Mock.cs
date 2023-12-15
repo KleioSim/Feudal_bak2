@@ -9,7 +9,9 @@ namespace Feudal.Godot.Presents;
 [Tool]
 public partial class ProductItemPresent
 {
-    private string productType = nameof(Feudal.Interfaces.ProductType.Food);
+    private const ProductType defaultId = Feudal.Interfaces.ProductType.Food;
+
+    private string productType = Enum.GetName(defaultId.GetType(), defaultId);
 
     public string ProductType
     {
@@ -74,25 +76,22 @@ public partial class ProductItemPresent
         return properties;
     }
 
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Clans = new IClan[]
+        get
         {
-            new ClanMock()
-            {
-                Products = new System.Collections.Generic.Dictionary<ProductType, IProduct>()
-                {
-                    {
-                        Feudal.Interfaces.ProductType.Food,
-                        new ProductMock()
-                        {
-                            Type = Feudal.Interfaces.ProductType.Food,
-                            Current = 10f,
-                            Surplus = 2.1f
-                        }
-                    }
-                }
-            }
+            var clan = new ClanMock();
+
+            var product = clan.Products[defaultId] as ProductMock;
+            product.Current = 10f;
+            product.Surplus = 2.1f;
+
+            view.Id = defaultId;
+
+            var mock = new SessionMock();
+            mock.ClanMocks.Add(clan);
+
+            return mock;
         }
-    };
+    }
 }

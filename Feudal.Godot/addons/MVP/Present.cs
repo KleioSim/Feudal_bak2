@@ -18,6 +18,12 @@ public abstract partial class Present : Control
 
     protected IView view;
 
+    protected virtual IView View
+    {
+        get => view;
+        set => view = value;
+    }
+
     protected abstract void InitialConnects();
     protected abstract void Process();
 
@@ -66,7 +72,7 @@ public abstract partial class Present : Control
             throw new Exception();
         }
 
-        this.view = view;
+        this.View = view;
         InitialConnects();
     }
 }

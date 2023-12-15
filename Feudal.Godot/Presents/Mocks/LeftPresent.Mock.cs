@@ -31,7 +31,7 @@ public partial class LeftPresent : Present<LeftView, ISession>
             }
             else if (mainPanelType == nameof(ClanPanelView))
             {
-                view.ShowClanPanel(ClanItemView.DefaultId);
+                //view.ShowClanPanel(ClanItemView.DefaultId);
             }
             else if (mainPanelType == nameof(TerrainPanelView))
             {
@@ -68,12 +68,12 @@ public partial class LeftPresent : Present<LeftView, ISession>
 
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Clans = new[]
-        {
-            new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000 },
-            new ClanMock(),
-            new ClanMock(),
-        },
+        //Clans = new[]
+        //{
+        //    new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000 },
+        //    new ClanMock(),
+        //    new ClanMock(),
+        //},
         Terrains = new[]
         {
             new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill}
