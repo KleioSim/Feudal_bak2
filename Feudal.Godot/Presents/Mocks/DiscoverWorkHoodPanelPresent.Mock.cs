@@ -9,13 +9,13 @@ public partial class DiscoverWorkHoodPanelPresent
 {
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        WorkHoods = new List<IWorkHood>
-        {
-            new DiscoverWorkHood_Mock()
-            {
-                Id = DiscoverWorkHoodPanelView.DefaultId
-            }
-        },
+        //WorkHoods = new List<IWorkHood>
+        //{
+        //    new DiscoverWorkHood_Mock()
+        //    {
+        //        Id = DiscoverWorkHoodPanelView.DefaultId
+        //    }
+        //},
 
         //Clans = new List<IClan>()
         //{

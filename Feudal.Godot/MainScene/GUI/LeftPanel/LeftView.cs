@@ -42,13 +42,13 @@ public partial class LeftView : ViewControl
         var manPanel = MainPanelContainer.AddOrFindMainPanel<TerrainPanelView>(x => x.TerrainPosition == pos);
         manPanel.TerrainPosition = pos;
 
-        manPanel.WorkHoodPanel.LaborManager.SelectLaborButton.Pressed += () =>
+        manPanel.WorkHoodPanel2.SelectLaborButton.Pressed += () =>
         {
             var subPanel = SubPanelContainer.AddSubPanel<SelectLaborPanelView>();
             subPanel.SelectedLabor += (Id) =>
             {
                 SubPanelContainer.ClosePanel();
-                manPanel.WorkHoodPanel.LaborManager.EmitSignal(LaborInWorkHoodView.SignalName.AssginLabor, Id);
+                manPanel.WorkHoodPanel2.EmitSignal(LaborInWorkHoodView.SignalName.AssginLabor, Id);
             };
         };
 

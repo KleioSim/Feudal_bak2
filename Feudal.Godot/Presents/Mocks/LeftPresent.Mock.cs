@@ -31,11 +31,12 @@ public partial class LeftPresent : Present<LeftView, ISession>
             }
             else if (mainPanelType == nameof(ClanPanelView))
             {
-                //view.ShowClanPanel(ClanItemView.DefaultId);
+                view.ShowClanPanel(model.Clans.First().Id);
             }
             else if (mainPanelType == nameof(TerrainPanelView))
             {
-                view.ShowTerrainPanel(TerrainPanelView.DefaultPos);
+                var terrain = model.Terrains.First();
+                view.ShowTerrainPanel(new Vector2I(terrain.Position.x, terrain.Position.y));
             }
             else if (mainPanelType == "NULL")
             {
@@ -66,21 +67,67 @@ public partial class LeftPresent : Present<LeftView, ISession>
         return properties;
     }
 
-    protected override ISession MockModel { get; } = new SessionMock()
+
+    protected override ISession MockModel
     {
-        //Clans = new[]
-        //{
-        //    new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000 },
-        //    new ClanMock(),
-        //    new ClanMock(),
-        //},
-        Terrains = new[]
+        get
         {
-            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill}
-        },
-        WorkHoods = new[]
-        {
-            new DiscoverWorkHood_Mock(){ Id = DiscoverWorkHoodPanelView.DefaultId, Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y)}
+            var terrain = new TerrainMock()
+            {
+                Position = (0, 0),
+                TerrainType = Interfaces.TerrainType.Plain,
+                Resources = new[] { Interfaces.Resource.FatSoild },
+                IsDiscoverd = false,
+            };
+
+            var workHood = new TerrainWorkHoodMock() { Position = terrain.Position };
+            workHood.OptionWorkingMocks.AddRange(new IWorking[]
+            {
+                new ProgressWorking_Mock(){ Percent = 20 },
+                new ProductWorking_Mock() { ProductType = ProductType.Food, ProductCount = 1.0 },
+            });
+            workHood.CurrentWorking = workHood.OptionWorkingMocks.First();
+
+            var clans = new[]
+            {
+                new ClanMock(){ PopCount = 1000 },
+                new ClanMock(),
+                new ClanMock(),
+            };
+
+            var task = new TaskMock()
+            {
+                WorkHoodId = workHood.Id,
+                ClanId = clans[0].Id
+            };
+
+            var mock = new SessionMock();
+
+            mock.TerrainMocks.Add(terrain);
+            mock.WorkHoodMocks.Add(workHood);
+            mock.ClanMocks.AddRange(clans);
+
+            mock.TaskMocks.Add(task);
+
+            return mock;
         }
-    };
+    }
+
+    //{ get; } = new SessionMock()
+    //{
+    //    //Clans = new[]
+    //    //{
+    //    //    new ClanMock(){ Id = ClanItemView.DefaultId, Name = ClanItemView.DefaultId, PopCount = 1000 },
+    //    //    new ClanMock(),
+    //    //    new ClanMock(),
+    //    //},
+    //    //Terrains = new[]
+    //    //{
+    //    //    new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Hill}
+    //    //},
+    //    //WorkHoods = new[]
+    //    //{
+    //    //    new DiscoverWorkHood_Mock(){ Id = DiscoverWorkHoodPanelView.DefaultId, Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y)}
+    //    //}
+    //};
 }

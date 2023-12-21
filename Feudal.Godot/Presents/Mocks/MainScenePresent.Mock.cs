@@ -24,10 +24,10 @@ internal partial class MainScenePresent : Present<MainSceneView, ISession>
         //    new ClanMock(),
         //},
 
-        Terrains = new List<TerrainMock>()
-        {
-            new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Plain }
-        },
+        //Terrains = new List<TerrainMock>()
+        //{
+        //    new TerrainMock(){ Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y), TerrainType = TerrainType.Plain }
+        //},
 
         Date = new DateMock()
         {

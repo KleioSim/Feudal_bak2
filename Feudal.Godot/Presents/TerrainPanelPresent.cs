@@ -23,19 +23,21 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
         var workHood = model.WorkHoods.OfType<ITerrainWorkHood>()
             .SingleOrDefault(x => x.Position == terrain.Position);
 
-        if (workHood == null)
-        {
-            view.ClearWorkHoodPanel();
-            return;
-        }
+        view.WorkHoodPanel2.Id = workHood != null ? workHood.Id : null;
 
-        switch (workHood)
-        {
-            case IDiscoverWorkHood:
-                view.AddWorkHoodPanel<DiscoverWorkHoodPanelView>(workHood.Id);
-                break;
-            default:
-                throw new Exception();
-        }
+        //if (workHood == null)
+        //{
+        //    view.ClearWorkHoodPanel();
+        //    return;
+        //}
+
+        //switch (workHood)
+        //{
+        //    case IDiscoverWorkHood:
+        //        view.AddWorkHoodPanel<DiscoverWorkHoodPanelView>(workHood.Id);
+        //        break;
+        //    default:
+        //        throw new Exception();
+        //}
     }
 }

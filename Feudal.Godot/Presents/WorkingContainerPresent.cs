@@ -20,7 +20,10 @@ internal partial class WorkingContainerPresent : Present<WorkingContainerView, I
 
             var workHood = model.WorkHoods.Single(x => x.Id == view.WorkHoodId);
 
-            var newItems = view.OptionWorkings.Refresh(workHood.OptionWorkings.OfType<object>().ToHashSet());
+            var newItems = view.OptionWorkings.Refresh(workHood.OptionWorkings
+                .Where(x => x != workHood.CurrentWorking)
+                .OfType<object>().ToHashSet());
+
             foreach (var item in newItems)
             {
                 item.Button.Pressed += () =>

@@ -14,7 +14,7 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
 
     protected override ISession MockModel { get; } = new SessionMock()
     {
-        Terrains = new List<ITerrain>()
+        //Terrains = new List<ITerrain>()
     };
 
     private List<ITerrain> Terrains => model.Terrains as List<ITerrain>;

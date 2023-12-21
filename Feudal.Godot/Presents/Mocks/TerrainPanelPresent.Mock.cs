@@ -11,38 +11,45 @@ namespace Feudal.Godot.Presents;
 
 internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
 {
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        Terrains = new[]
+        get
         {
-            new TerrainMock()
+            var terrain = new TerrainMock()
             {
-                Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
+                Position = (0, 0),
                 TerrainType = Interfaces.TerrainType.Plain,
-                Resources = new []{ Interfaces.Resource.FatSoild },
+                Resources = new[] { Interfaces.Resource.FatSoild },
                 IsDiscoverd = false,
-            }
-        },
-        WorkHoods = new List<IWorkHood>
-        {
-            new DiscoverWorkHood_Mock()
-            {
-                Id = DiscoverWorkHoodPanelView.DefaultId,
-                Position = (TerrainPanelView.DefaultPos.X, TerrainPanelView.DefaultPos.Y),
-            }
-        },
-        //Tasks = new List<ITask>
-        //{
+            };
 
-        //},
-        //Clans = new List<IClan>()
-        //{
-        //    new ClanMock()
-        //    {
-        //        Id = ClanPanelView.DefaultId
-        //    }
-        //},
-    };
+            var workHood = new TerrainWorkHoodMock() { Position = terrain.Position };
+            workHood.OptionWorkingMocks.AddRange(new IWorking[]
+            {
+                new ProgressWorking_Mock(){ Percent = 20 },
+                new ProductWorking_Mock() { ProductType = ProductType.Food, ProductCount = 1.0 },
+            });
+            workHood.CurrentWorking = workHood.OptionWorkingMocks.First();
+
+            view.TerrainPosition = new Vector2I(terrain.Position.x, terrain.Position.y);
+
+            var clan = new ClanMock();
+            var task = new TaskMock()
+            {
+                WorkHoodId = workHood.Id,
+                ClanId = clan.Id
+            };
+
+            var mock = new SessionMock();
+
+            mock.TerrainMocks.Add(terrain);
+            mock.WorkHoodMocks.Add(workHood);
+            mock.ClanMocks.Add(clan);
+            mock.TaskMocks.Add(task);
+
+            return mock;
+        }
+    }
 
     private string terrainType = nameof(Interfaces.TerrainType.Plain);
     public string TerrainType
@@ -115,5 +122,10 @@ public class DiscoverWorkHood_Mock : WorkHood_Mock, IDiscoverWorkHood
 {
     public int DiscoverdPercent { get; set; }
 
+    public (int x, int y) Position { get; set; }
+}
+
+public class TerrainWorkHoodMock : WorkHood_Mock, ITerrainWorkHood
+{
     public (int x, int y) Position { get; set; }
 }
