@@ -36,7 +36,29 @@ abstract class WorkHood : IWorkHood
     public static int Count = 0;
     public string Id { get; } = $"WorkHood_{Count++}";
 
-    public IWorking CurrentWorking => throw new NotImplementedException();
+    public IWorking CurrentWorking { get; internal set; }
 
-    public IEnumerable<IWorking> OptionWorkings => throw new NotImplementedException();
+    public IEnumerable<IWorking> OptionWorkings => optionWorkings;
+
+    private List<IWorking> optionWorkings = new List<IWorking>();
+
+    internal void AddOptionWorking(IWorking working)
+    {
+        optionWorkings.Add(working);
+    }
+
+    internal void RemoveOptionWorking(IWorking working)
+    {
+        optionWorkings.Remove(working);
+    }
+}
+
+class TerrainWorkHood : WorkHood, ITerrainWorkHood
+{
+    public (int x, int y) Position { get; init; }
+
+    internal void VaildWorkings(IEnumerable<IWorkingDef> workingDefs)
+    {
+        throw new NotImplementedException();
+    }
 }

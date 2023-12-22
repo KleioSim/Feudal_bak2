@@ -10,25 +10,16 @@ namespace Feudal.Godot.Presents;
 [Tool]
 internal partial class TilemapPresent : Present<TilemapView, ISession>
 {
-    protected override ISession MockModel { get; } = new SessionMock()
+    protected override ISession MockModel
     {
-        //Terrains = new List<TerrainMock>()
-        //{
-        //    new TerrainMock()
-        //    {
-        //        Position = (0, 0),
-        //        TerrainType = Interfaces.TerrainType.Plain
-        //    }
-        //},
+        get
+        {
+            var mock = new SessionMock();
+            mock.TerrainMocks.Add(new TerrainMock() { Position = (0, 0) });
 
-        //WorkHoods = new List<IWorkHood>
-        //{
-        //    new DiscoverWorkHood_Mock()
-        //    {
-        //        Id = DiscoverWorkHoodPanelView.DefaultId
-        //    }
-        //}
-    };
+            return mock;
+        }
+    }
 
     private string terrainType = nameof(Interfaces.TerrainType.Plain);
     public string TerrainType

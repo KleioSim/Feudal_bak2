@@ -12,16 +12,14 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
 {
     private Vector2I curr;
 
-    protected override ISession MockModel { get; } = new SessionMock()
-    {
-        //Terrains = new List<ITerrain>()
-    };
+    protected override ISession MockModel => mockModel;
 
-    private List<ITerrain> Terrains => model.Terrains as List<ITerrain>;
     private TerrainType MapType => Enum.Parse<TerrainType>(view.SelectedTerrainType);
 
     private (int x, int y) currPos;
     private TerrainBuilder terrainBuilder;
+
+    private SessionMock mockModel = new SessionMock();
 
     protected override void InitialConnects()
     {
@@ -35,7 +33,7 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
 
             var terrainType = terrainBuilder.Build(currPos);
 
-            Terrains.Add(new TerrainMock() { Position = currPos, TerrainType = terrainType });
+            mockModel.TerrainMocks.Add(new TerrainMock() { Position = currPos, TerrainType = terrainType });
 
             currPos = GetNextPosition(currPos);
 
@@ -44,7 +42,7 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
 
         view.Generate.Pressed += () =>
         {
-            Terrains.Clear();
+            mockModel.TerrainMocks.Clear();
 
             terrainBuilder = new TerrainBuilder(MapType);
 
@@ -56,14 +54,14 @@ public partial class TilemapDebugPresent : Present<TilemapDebugView, ISession>
         view.TilemapView.ClickTile += (Vector2I index) =>
         {
             var pos = (index.X, index.Y);
-            if (Terrains.Any(x => x.Position == pos))
+            if (mockModel.TerrainMocks.Any(x => x.Position == pos))
             {
                 return;
             }
 
             var terrainType = terrainBuilder.Build(currPos);
 
-            Terrains.Add(new TerrainMock() { Position = pos, TerrainType = terrainType });
+            mockModel.TerrainMocks.Add(new TerrainMock() { Position = pos, TerrainType = terrainType });
 
             SendUICommand(new MESSAGE_MockUpdate());
         };
