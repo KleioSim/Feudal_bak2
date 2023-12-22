@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbrjph471s1se"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArrayView.cs" id="1_4sh5m"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceContainer/ResourceArrayView.cs" id="1_4sh5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osr01"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.588235)
@@ -14,6 +14,6 @@ script = ExtResource("1_4sh5m")
 [node name="HFlowContainer" type="HFlowContainer" parent="."]
 layout_mode = 2
 
-[node name="Item" parent="HFlowContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceItem.tscn"]
+[node name="Item" parent="HFlowContainer" instance_placeholder="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceContainer/ResourceItem.tscn"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2

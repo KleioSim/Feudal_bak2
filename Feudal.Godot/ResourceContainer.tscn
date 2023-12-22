@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4r73w3rvy6s3"]
 
-[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceArrayView.cs" id="1_nrw61"]
+[ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceContainer/ResourceArrayView.cs" id="1_nrw61"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osr01"]
 bg_color = Color(0.176471, 0.176471, 0.176471, 0.588235)

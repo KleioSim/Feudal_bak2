@@ -1,4 +1,4 @@
-﻿using Feudal.Interfaces;
+using Feudal.Interfaces;
 using Feudal.Interfaces.UICommands;
 using Feudal.Messages;
 using Godot;

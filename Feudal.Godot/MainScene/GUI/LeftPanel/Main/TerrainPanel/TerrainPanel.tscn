@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://iqtdd7cucgyx"]
 
 [ext_resource type="Script" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/TerrainPanelView.cs" id="1_icp7x"]
-[ext_resource type="PackedScene" uid="uid://dbrjph471s1se" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceContainer.tscn" id="2_fhj3j"]
-[ext_resource type="PackedScene" uid="uid://qiq0452ycsa5" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodPanel2.tscn" id="3_67ot6"]
+[ext_resource type="PackedScene" uid="uid://dbrjph471s1se" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/ResourceContainer/ResourceContainer.tscn" id="2_fhj3j"]
+[ext_resource type="PackedScene" uid="uid://qiq0452ycsa5" path="res://MainScene/GUI/LeftPanel/Main/TerrainPanel/WorkHoodPanel.tscn" id="3_67ot6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a862c"]
 font_size = 20

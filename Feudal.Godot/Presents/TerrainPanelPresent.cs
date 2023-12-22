@@ -23,7 +23,7 @@ internal partial class TerrainPanelPresent : Present<TerrainPanelView, ISession>
         var workHood = model.WorkHoods.OfType<ITerrainWorkHood>()
             .SingleOrDefault(x => x.Position == terrain.Position);
 
-        view.WorkHoodPanel2.Id = workHood != null ? workHood.Id : null;
+        view.WorkHoodPanel.Id = workHood != null ? workHood.Id : null;
 
         //if (workHood == null)
         //{
