@@ -118,13 +118,6 @@ public class WorkHood_Mock : IWorkHood
     public List<IWorking> OptionWorkingMocks { get; } = new List<IWorking>();
 }
 
-public class DiscoverWorkHood_Mock : WorkHood_Mock, IDiscoverWorkHood
-{
-    public int DiscoverdPercent { get; set; }
-
-    public (int x, int y) Position { get; set; }
-}
-
 public class TerrainWorkHoodMock : WorkHood_Mock, ITerrainWorkHood
 {
     public (int x, int y) Position { get; set; }

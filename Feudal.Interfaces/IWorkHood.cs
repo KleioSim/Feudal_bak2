@@ -16,6 +16,9 @@ public interface IWorking
 {
     string Key { get; }
     string Name { get; }
+    IWorkingDef def { get; }
+
+    void Do();
 }
 
 public interface IProgressWorking : IWorking
@@ -31,5 +34,22 @@ public interface IProductWorking : IWorking
 
 public interface IWorkingDef
 {
+    string Name { get; }
+}
 
+public interface IProductWorkingDef : IWorkingDef
+{
+    ProductType Type { get; }
+    double Count { get; }
+}
+
+public interface IProgressWorkingDef : IWorkingDef
+{
+    ProgressType Type { get; }
+    int Cost { get; }
+}
+
+public enum ProgressType
+{
+    Discover
 }

@@ -40,9 +40,16 @@ public class ProgressWorking_Mock : IProgressWorking
 
     public int Percent { get; set; }
 
+    public IWorkingDef def => throw new NotImplementedException();
+
     public ProgressWorking_Mock()
     {
         Key = $"ProgressWorking{count++}";
+    }
+
+    public void Do()
+    {
+        throw new NotImplementedException();
     }
 }
 
@@ -58,8 +65,15 @@ public class ProductWorking_Mock : IProductWorking
 
     public double ProductCount { get; set; }
 
+    public IWorkingDef def => throw new NotImplementedException();
+
     public ProductWorking_Mock()
     {
         Key = $"ProductWorking{count++}";
+    }
+
+    public void Do()
+    {
+        throw new NotImplementedException();
     }
 }

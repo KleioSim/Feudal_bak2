@@ -1,6 +1,7 @@
 ﻿using Feudal.Interfaces;
 using Feudal.MessageBuses.Interfaces;
 using Feudal.Messages;
+using Feudal.WorkHoods.Workings;
 using System.Collections;
 
 namespace Feudal.WorkHoods;
@@ -27,10 +28,7 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
 
     public WorkHoodManager(IMessageBus messageBus)
     {
-        DiscoverWorkHood.TerrainDiscovered = (workHood) =>
-        {
-            UpdateTerrainWorkHood(workHood.Position);
-        };
+        WorkHood.BuildWorking = WorkingBuilder.Build;
 
         this.messageBus = messageBus;
         messageBus.Register(this);
@@ -48,10 +46,18 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
         UpdateTerrainWorkHood(message.Position);
     }
 
+    [MessageProcess]
+    void OnMESSAGE_NextTurn(MESSAGE_DateInc message)
+    {
+        foreach (var workHood in list)
+        {
+            workHood.CurrentWorking.Do();
+        }
+    }
 
     private void UpdateTerrainWorkHood((int x, int y) position)
     {
-        var terrain = messageBus.PostMessage(new MESSAGE_FindTerrain() { Position = position }).WaitAck<ITerrain>();
+        var terrain = GetTerrain(position);
 
         var workingDefs = terrain.IsDiscoverd ? terrain.Resources.Select(x => GetWorkingDef(x)) : new[] { GetDiscoverWorkingDef(terrain.TerrainType) };
         if (!workingDefs.Any())

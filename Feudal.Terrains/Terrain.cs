@@ -10,5 +10,7 @@ class Terrain : ITerrain
 
     public bool IsDiscoverd { get; set; }
 
-    public IEnumerable<Resource> Resources => throw new NotImplementedException();
+    public IEnumerable<Resource> Resources => resources;
+
+    private List<Resource> resources = new List<Resource>();
 }

@@ -34,6 +34,21 @@ internal class Session : ISession
 
     public Session()
     {
+        WorkHoodManager.GetWorkingDef = (resource) =>
+        {
+            return null;
+        };
+
+        WorkHoodManager.GetDiscoverWorkingDef = (terrain) =>
+        {
+            return new ProgressWorkingDef() { Type = ProgressType.Discover, Cost = 3 };
+        };
+
+        WorkHoodManager.GetTerrain = (position) =>
+        {
+            return terrainManager.SingleOrDefault(x => x.Position == position);
+        };
+
         messageBus = new MessageBus();
 
         Date = new Date(messageBus);
@@ -44,4 +59,13 @@ internal class Session : ISession
 
         terrainManager.GenerateMap();
     }
+}
+
+class ProgressWorkingDef : IProgressWorkingDef
+{
+    public string Name => Type.ToString();
+
+    public ProgressType Type { get; init; }
+
+    public int Cost { get; init; }
 }

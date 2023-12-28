@@ -32,11 +32,10 @@ namespace Tasks
             var workHood = FindWorkHood(WorkHoodId);
             var clan = FindClan(ClanId);
 
-            switch (workHood)
+            switch (workHood.CurrentWorking)
             {
-                case IDiscoverWorkHood discoverWorkHood:
-                    discoverWorkHood.DiscoverdPercent += 10;
-                    Percent = discoverWorkHood.DiscoverdPercent;
+                case IProgressWorking progressWorking:
+                    Percent = progressWorking.Percent;
                     break;
                 default:
                     throw new Exception();
