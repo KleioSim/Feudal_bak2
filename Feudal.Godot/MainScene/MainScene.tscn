@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://MainScene/MainSceneView.cs" id="1_2bdc7"]
 [ext_resource type="PackedScene" uid="uid://bke6fnpqcxp0j" path="res://MainScene/GUI/GUI.tscn" id="1_j8ujk"]
-[ext_resource type="PackedScene" uid="uid://biathltfxvxxy" path="res://MainScene/GameMain/GameMain.tscn" id="3_hysmu"]
 [ext_resource type="PackedScene" uid="uid://bnukaohmlm2bl" path="res://addons/ScreenMoveControl/MoveControl.tscn" id="3_o2hnf"]
+[ext_resource type="PackedScene" uid="uid://droao4y6kuttb" path="res://MainScene/GameMain/Tilemap/Tilemap.tscn" id="4_e82ev"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -26,6 +26,4 @@ mouse_filter = 2
 [node name="GameCanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="GameMain" parent="GameCanvasLayer" instance=ExtResource("3_hysmu")]
-
-[editable path="GameCanvasLayer/GameMain"]
+[node name="Tilemap" parent="GameCanvasLayer" instance=ExtResource("4_e82ev")]

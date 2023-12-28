@@ -41,7 +41,7 @@ internal class Session : ISession
 
         WorkHoodManager.GetDiscoverWorkingDef = (terrain) =>
         {
-            return new ProgressWorkingDef() { Type = ProgressType.Discover, Cost = 3 };
+            return new ProgressWorkingDef() { Type = ProgressType.Discover, Cost = 30 };
         };
 
         WorkHoodManager.GetTerrain = (position) =>

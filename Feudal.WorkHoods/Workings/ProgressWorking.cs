@@ -4,18 +4,8 @@ using Feudal.Messages;
 
 namespace Feudal.WorkHoods.Workings;
 
-class ProgressWorking : IProgressWorking
+class ProgressWorking : Working, IProgressWorking
 {
-    public static Action<IMessage> SendMessage { get; set; }
-
-    public int Percent { get; set; }
-
-    public string Key => Name;
-
-    public string Name => def.Name;
-
-    public IWorkingDef def { get; init; }
-
     public IProgressWorkingDef _def => def as IProgressWorkingDef;
 
     private IWorkHood workHood;
@@ -25,7 +15,7 @@ class ProgressWorking : IProgressWorking
         this.workHood = workHood;
     }
 
-    public void Do()
+    public override void Do()
     {
         Percent += _def.Cost;
 

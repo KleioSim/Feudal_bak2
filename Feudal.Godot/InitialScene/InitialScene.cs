@@ -1,12 +1,12 @@
-using Feudal.Sessions.Builders;
+﻿using Feudal.Sessions.Builders;
 using Godot;
 using System;
 
 public partial class InitialScene : Node2D
 {
-    public override void _Ready()
+    public override void _Process(double delta)
     {
-        base._Ready();
+        base._Process(delta);
 
         Present.model = SessionBuilder.Build();
 

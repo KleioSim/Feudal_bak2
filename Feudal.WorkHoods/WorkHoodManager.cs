@@ -29,6 +29,7 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
     public WorkHoodManager(IMessageBus messageBus)
     {
         WorkHood.BuildWorking = WorkingBuilder.Build;
+        Working.SendMessage = (msg) => messageBus.PostMessage(msg);
 
         this.messageBus = messageBus;
         messageBus.Register(this);
@@ -53,6 +54,12 @@ public class WorkHoodManager : IEnumerable<IWorkHood>
         {
             workHood.CurrentWorking.Do();
         }
+    }
+
+    [MessageProcess]
+    void OnMESSAGE_TerrainDiscoverd(MESSAGE_TerrainDiscoverd message)
+    {
+        UpdateTerrainWorkHood(message.Position);
     }
 
     private void UpdateTerrainWorkHood((int x, int y) position)
